@@ -1,0 +1,333 @@
+{
+ "name": "Terra Sentinelle : classifieur d'occupation du sol",
+ "version": "ts-eurosat-1.0.0",
+ "real": true,
+ "task": "binaire cultive / non cultive (+ sortie multi-classes a 10 classes)",
+ "algorithm": "sklearn HistGradientBoostingClassifier (gradient boosting d'arbres sur histogrammes) · pas de deep learning : pas de GPU disponible, et la pertinence prime sur la complexite inutile",
+ "sklearn_version": "1.9.1",
+ "trained_on": {
+  "dataset": "EuroSAT (RGB)",
+  "source": "https://zenodo.org/records/7711810/files/EuroSAT_RGB.zip",
+  "citation": "Helber et al., 2019 · EuroSAT: A Novel Dataset and Deep Learning Benchmark for Land Use and Land Cover Classification (IEEE JSTARS). Vignettes Sentinel-2 reelles, 64x64, 10 classes.",
+  "imagery": "Sentinel-2 (RGB, 10 m/px, vignettes 64x64 = 640 m au sol)",
+  "geography": "EUROPE : 34 pays europeens. Aucune vignette africaine.",
+  "n_total": 27000,
+  "n_train": 21600,
+  "n_test": 5400,
+  "test_size": 0.2,
+  "stratified_on": "les 10 classes EuroSAT",
+  "classes": [
+   "AnnualCrop",
+   "Forest",
+   "HerbaceousVegetation",
+   "Highway",
+   "Industrial",
+   "Pasture",
+   "PermanentCrop",
+   "Residential",
+   "River",
+   "SeaLake"
+  ],
+  "cultivated_classes": [
+   "AnnualCrop",
+   "PermanentCrop"
+  ],
+  "positives_total": 5500,
+  "positive_rate": 0.2037
+ },
+ "features": {
+  "version": "feat-1.0",
+  "count": 35,
+  "names": [
+   "r_mean",
+   "r_std",
+   "r_p10",
+   "r_p50",
+   "r_p90",
+   "g_mean",
+   "g_std",
+   "g_p10",
+   "g_p50",
+   "g_p90",
+   "b_mean",
+   "b_std",
+   "b_p10",
+   "b_p50",
+   "b_p90",
+   "chroma_r_mean",
+   "chroma_g_mean",
+   "chroma_b_mean",
+   "exg_mean",
+   "exg_std",
+   "exg_p10",
+   "exg_p90",
+   "grvi_mean",
+   "grvi_std",
+   "grvi_p10",
+   "grvi_p90",
+   "gray_mean",
+   "gray_std",
+   "grad_mean",
+   "grad_std",
+   "grad_p90",
+   "grad_aniso",
+   "blockstd_mean",
+   "blockstd_std",
+   "entropy"
+  ],
+  "description": "statistiques par canal RGB, chromaticite normalisee, ExG = 2G-R-B, GRVI = (G-R)/(G+R), texture (gradient, ecart-type local en blocs 8x8, entropie, anisotropie)",
+  "no_nir": "le proche infrarouge n'est pas disponible sur les tuiles d'inference : pas de NDVI, ExG et GRVI en tiennent lieu"
+ },
+ "metrics": {
+  "measured_on": "jeu de test EuroSAT tenu a l'ecart (5400 vignettes, jamais vues a l'entrainement)",
+  "accuracy": 0.9528,
+  "precision": 0.902,
+  "recall": 0.8618,
+  "f1": 0.8815,
+  "roc_auc": 0.9866,
+  "confusion": [
+   [
+    4197,
+    103
+   ],
+   [
+    152,
+    948
+   ]
+  ],
+  "confusion_labels": [
+   "non_cultive",
+   "cultive"
+  ],
+  "multiclass": {
+   "accuracy": 0.8883,
+   "f1_macro": 0.8821,
+   "confusion": [
+    [
+     547,
+     1,
+     4,
+     11,
+     0,
+     9,
+     16,
+     0,
+     10,
+     2
+    ],
+    [
+     0,
+     591,
+     2,
+     2,
+     0,
+     4,
+     0,
+     0,
+     1,
+     0
+    ],
+    [
+     1,
+     1,
+     543,
+     14,
+     6,
+     5,
+     22,
+     3,
+     5,
+     0
+    ],
+    [
+     18,
+     0,
+     17,
+     330,
+     19,
+     13,
+     30,
+     21,
+     52,
+     0
+    ],
+    [
+     0,
+     0,
+     1,
+     19,
+     461,
+     0,
+     0,
+     16,
+     3,
+     0
+    ],
+    [
+     8,
+     3,
+     3,
+     8,
+     0,
+     361,
+     7,
+     0,
+     8,
+     2
+    ],
+    [
+     13,
+     0,
+     23,
+     25,
+     6,
+     9,
+     416,
+     2,
+     6,
+     0
+    ],
+    [
+     0,
+     0,
+     1,
+     9,
+     7,
+     0,
+     3,
+     580,
+     0,
+     0
+    ],
+    [
+     21,
+     3,
+     3,
+     62,
+     7,
+     10,
+     8,
+     1,
+     385,
+     0
+    ],
+    [
+     7,
+     2,
+     1,
+     1,
+     0,
+     0,
+     0,
+     0,
+     6,
+     583
+    ]
+   ],
+   "labels": [
+    "AnnualCrop",
+    "Forest",
+    "HerbaceousVegetation",
+    "Highway",
+    "Industrial",
+    "Pasture",
+    "PermanentCrop",
+    "Residential",
+    "River",
+    "SeaLake"
+   ]
+  },
+  "per_class": {
+   "AnnualCrop": {
+    "precision": 0.8894,
+    "recall": 0.9117,
+    "f1": 0.9004,
+    "support": 600,
+    "cultivated": true
+   },
+   "Forest": {
+    "precision": 0.9834,
+    "recall": 0.985,
+    "f1": 0.9842,
+    "support": 600,
+    "cultivated": false
+   },
+   "HerbaceousVegetation": {
+    "precision": 0.908,
+    "recall": 0.905,
+    "f1": 0.9065,
+    "support": 600,
+    "cultivated": false
+   },
+   "Highway": {
+    "precision": 0.6861,
+    "recall": 0.66,
+    "f1": 0.6728,
+    "support": 500,
+    "cultivated": false
+   },
+   "Industrial": {
+    "precision": 0.9111,
+    "recall": 0.922,
+    "f1": 0.9165,
+    "support": 500,
+    "cultivated": false
+   },
+   "Pasture": {
+    "precision": 0.8783,
+    "recall": 0.9025,
+    "f1": 0.8903,
+    "support": 400,
+    "cultivated": false
+   },
+   "PermanentCrop": {
+    "precision": 0.8287,
+    "recall": 0.832,
+    "f1": 0.8303,
+    "support": 500,
+    "cultivated": true
+   },
+   "Residential": {
+    "precision": 0.931,
+    "recall": 0.9667,
+    "f1": 0.9485,
+    "support": 600,
+    "cultivated": false
+   },
+   "River": {
+    "precision": 0.8088,
+    "recall": 0.77,
+    "f1": 0.7889,
+    "support": 500,
+    "cultivated": false
+   },
+   "SeaLake": {
+    "precision": 0.9932,
+    "recall": 0.9717,
+    "f1": 0.9823,
+    "support": 600,
+    "cultivated": false
+   }
+  }
+ },
+ "seed": 42,
+ "train_seconds": {
+  "binary": 1.4,
+  "multiclass": 5.5
+ },
+ "trained_at": "2026-09-11T21:54:30+00:00",
+ "artifact": {
+  "path": "data/model/model.joblib",
+  "bytes": 3087014,
+  "sha256_16": "f2a36a4814dd56dc"
+ },
+ "inference_on": {
+  "imagery": "Sentinel-2 cloudless 2020 (EOX s2cloudless), tuiles WMTS publiques sans authentification",
+  "zoom": 14,
+  "ground_resolution_m_px": 9.4,
+  "note": "zoom 14 choisi pour retrouver ~10 m/px sous la latitude du Benin, soit la resolution d'EuroSAT ; une decoupe 64x64 y couvre ~600 m, comme une vignette d'entrainement"
+ },
+ "domain_gap": "ATTENTION : ECART DE DOMAINE. Les metriques ci-dessus sont mesurees sur le jeu de test EuroSAT, c'est-a-dire sur de l'imagerie EUROPEENNE. Elles ne decrivent PAS la performance du modele au Benin et ne doivent jamais etre presentees comme telle. Les cartes d'occupation du sol globales sous-performent sur l'agriculture subsaharienne : parcelles plus petites que la vignette, cultures associees, jacheres, parcs agroforestiers, calendrier cultural et signature spectrale differents. S'ajoute un ecart de rendu : EuroSAT provient de produits Sentinel-2 L2A tandis que l'inference porte sur une mosaique EOX s2cloudless 2020 deja stylisee. Toute sortie du modele sur le Benin est donc une PREDICTION NON VALIDEE LOCALEMENT, a verifier sur le terrain par l'agent communal (role de Moussa Gounou, SPEC section 4). Aucune metrique beninoise n'est publiee ici parce qu'aucune n'a ete mesuree : il n'existe pas encore de jeu de verification annote pour le nord du Benin.",
+ "validation_status": "non valide localement (Benin) ; metriques valides pour le domaine europeen d'entrainement uniquement",
+ "not_claimed": "Ce modele ne predit pas les conflits et ne delivre aucune autorisation de passage."
+}

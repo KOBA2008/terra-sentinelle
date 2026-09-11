@@ -1,0 +1,450 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "COR-BKR-01-axis",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.245,
+            11.102
+          ],
+          [
+            2.289,
+            11.146
+          ],
+          [
+            2.326,
+            11.181
+          ],
+          [
+            2.364,
+            11.208
+          ],
+          [
+            2.401,
+            11.246
+          ],
+          [
+            2.438,
+            11.298
+          ],
+          [
+            2.479,
+            11.335
+          ],
+          [
+            2.521,
+            11.366
+          ],
+          [
+            2.562,
+            11.408
+          ],
+          [
+            2.605,
+            11.452
+          ],
+          [
+            2.648,
+            11.491
+          ]
+        ]
+      },
+      "properties": {
+        "id": "COR-BKR-01",
+        "name": "Couloir central Banikoara : Founougo / Kandi",
+        "kind": "axis",
+        "width_m": 220,
+        "length_km": 61.9,
+        "source": "Reconstitution équipe (points OIM TTT-DTM + pistes OSM)",
+        "delimited_on": "2019-03-12",
+        "official": false
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "COR-BKR-01-extent",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.244284,
+              11.102699
+            ],
+            [
+              2.288292,
+              11.146708
+            ],
+            [
+              2.325353,
+              11.181763
+            ],
+            [
+              2.363336,
+              11.208748
+            ],
+            [
+              2.400218,
+              11.246627
+            ],
+            [
+              2.437238,
+              11.298651
+            ],
+            [
+              2.478356,
+              11.335765
+            ],
+            [
+              2.520329,
+              11.366743
+            ],
+            [
+              2.561274,
+              11.40869
+            ],
+            [
+              2.604295,
+              11.452711
+            ],
+            [
+              2.647318,
+              11.491732
+            ],
+            [
+              2.648682,
+              11.490268
+            ],
+            [
+              2.605705,
+              11.451289
+            ],
+            [
+              2.562726,
+              11.40731
+            ],
+            [
+              2.521671,
+              11.365257
+            ],
+            [
+              2.479644,
+              11.334235
+            ],
+            [
+              2.438762,
+              11.297349
+            ],
+            [
+              2.401782,
+              11.245373
+            ],
+            [
+              2.364664,
+              11.207252
+            ],
+            [
+              2.326647,
+              11.180237
+            ],
+            [
+              2.289708,
+              11.145292
+            ],
+            [
+              2.245716,
+              11.101301
+            ],
+            [
+              2.244284,
+              11.102699
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "COR-BKR-01",
+        "name": "Emprise du couloir (reconstituée, non officielle)",
+        "kind": "extent",
+        "width_m": 220,
+        "source": "Reconstitution équipe (points OIM TTT-DTM + pistes OSM)",
+        "delimited_on": "2019-03-12",
+        "official": false
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SEG-01-geom",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.245,
+            11.102
+          ],
+          [
+            2.289,
+            11.146
+          ]
+        ]
+      },
+      "properties": {
+        "id": "SEG-01",
+        "name": "Tronçon SEG-01",
+        "kind": "segment",
+        "length_km": 6.9,
+        "width_m": 220,
+        "source": "Reconstitution équipe (points OIM TTT-DTM + pistes OSM)",
+        "delimited_on": "2019-03-12",
+        "official": false
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SEG-02-geom",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.289,
+            11.146
+          ],
+          [
+            2.326,
+            11.181
+          ]
+        ]
+      },
+      "properties": {
+        "id": "SEG-02",
+        "name": "Tronçon SEG-02",
+        "kind": "segment",
+        "length_km": 5.6,
+        "width_m": 220,
+        "source": "Reconstitution équipe (points OIM TTT-DTM + pistes OSM)",
+        "delimited_on": "2019-03-12",
+        "official": false
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SEG-03-geom",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.326,
+            11.181
+          ],
+          [
+            2.364,
+            11.208
+          ]
+        ]
+      },
+      "properties": {
+        "id": "SEG-03",
+        "name": "Tronçon SEG-03",
+        "kind": "segment",
+        "length_km": 5.1,
+        "width_m": 220,
+        "source": "Reconstitution équipe (points OIM TTT-DTM + pistes OSM)",
+        "delimited_on": "2019-03-12",
+        "official": false
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SEG-04-geom",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.364,
+            11.208
+          ],
+          [
+            2.401,
+            11.246
+          ]
+        ]
+      },
+      "properties": {
+        "id": "SEG-04",
+        "name": "Tronçon SEG-04",
+        "kind": "segment",
+        "length_km": 5.8,
+        "width_m": 220,
+        "source": "Reconstitution équipe (points OIM TTT-DTM + pistes OSM)",
+        "delimited_on": "2019-03-12",
+        "official": false
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SEG-05-geom",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.401,
+            11.246
+          ],
+          [
+            2.438,
+            11.298
+          ]
+        ]
+      },
+      "properties": {
+        "id": "SEG-05",
+        "name": "Tronçon SEG-05",
+        "kind": "segment",
+        "length_km": 7.1,
+        "width_m": 220,
+        "source": "Reconstitution équipe (points OIM TTT-DTM + pistes OSM)",
+        "delimited_on": "2019-03-12",
+        "official": false
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SEG-06-geom",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.438,
+            11.298
+          ],
+          [
+            2.479,
+            11.335
+          ]
+        ]
+      },
+      "properties": {
+        "id": "SEG-06",
+        "name": "Tronçon SEG-06",
+        "kind": "segment",
+        "length_km": 6.1,
+        "width_m": 220,
+        "source": "Reconstitution équipe (points OIM TTT-DTM + pistes OSM)",
+        "delimited_on": "2019-03-12",
+        "official": false
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SEG-07-geom",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.479,
+            11.335
+          ],
+          [
+            2.521,
+            11.366
+          ]
+        ]
+      },
+      "properties": {
+        "id": "SEG-07",
+        "name": "Tronçon SEG-07",
+        "kind": "segment",
+        "length_km": 5.7,
+        "width_m": 220,
+        "source": "Reconstitution équipe (points OIM TTT-DTM + pistes OSM)",
+        "delimited_on": "2019-03-12",
+        "official": false
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SEG-08-geom",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.521,
+            11.366
+          ],
+          [
+            2.562,
+            11.408
+          ]
+        ]
+      },
+      "properties": {
+        "id": "SEG-08",
+        "name": "Tronçon SEG-08",
+        "kind": "segment",
+        "length_km": 6.5,
+        "width_m": 220,
+        "source": "Reconstitution équipe (points OIM TTT-DTM + pistes OSM)",
+        "delimited_on": "2019-03-12",
+        "official": false
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SEG-09-geom",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.562,
+            11.408
+          ],
+          [
+            2.605,
+            11.452
+          ]
+        ]
+      },
+      "properties": {
+        "id": "SEG-09",
+        "name": "Tronçon SEG-09",
+        "kind": "segment",
+        "length_km": 6.8,
+        "width_m": 220,
+        "source": "Reconstitution équipe (points OIM TTT-DTM + pistes OSM)",
+        "delimited_on": "2019-03-12",
+        "official": false
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SEG-10-geom",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.605,
+            11.452
+          ],
+          [
+            2.648,
+            11.491
+          ]
+        ]
+      },
+      "properties": {
+        "id": "SEG-10",
+        "name": "Tronçon SEG-10",
+        "kind": "segment",
+        "length_km": 6.4,
+        "width_m": 220,
+        "source": "Reconstitution équipe (points OIM TTT-DTM + pistes OSM)",
+        "delimited_on": "2019-03-12",
+        "official": false
+      }
+    }
+  ]
+}

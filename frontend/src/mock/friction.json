@@ -1,0 +1,635 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "FR-2026-001",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.316776,
+              11.161392
+            ],
+            [
+              2.314219,
+              11.165037
+            ],
+            [
+              2.311039,
+              11.168215
+            ],
+            [
+              2.306842,
+              11.166489
+            ],
+            [
+              2.303729,
+              11.163582
+            ],
+            [
+              2.304027,
+              11.159309
+            ],
+            [
+              2.305962,
+              11.154789
+            ],
+            [
+              2.311012,
+              11.154724
+            ],
+            [
+              2.315683,
+              11.156534
+            ],
+            [
+              2.316776,
+              11.161392
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "FR-2026-001",
+        "severity": 5,
+        "confidence": 0.93,
+        "area_ha": 191.1,
+        "detected_on": "2026-02-11",
+        "source": "sentinel-2",
+        "model_version": "ts-crop-s2-v0.4-demo",
+        "status": "confirmed",
+        "corridor_segment_id": "SEG-02",
+        "note": "Mise en culture continue sur ~1,4 km d'emprise, deux exploitations cotonnières."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FR-2026-002",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.35261,
+              11.194441
+            ],
+            [
+              2.350739,
+              11.197858
+            ],
+            [
+              2.347598,
+              11.199948
+            ],
+            [
+              2.343582,
+              11.199629
+            ],
+            [
+              2.340381,
+              11.196682
+            ],
+            [
+              2.340846,
+              11.192367
+            ],
+            [
+              2.344064,
+              11.190078
+            ],
+            [
+              2.347489,
+              11.189546
+            ],
+            [
+              2.351046,
+              11.190769
+            ],
+            [
+              2.35261,
+              11.194441
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "FR-2026-002",
+        "severity": 4,
+        "confidence": 0.81,
+        "area_ha": 116.9,
+        "detected_on": "2026-02-11",
+        "source": "sentinel-2",
+        "model_version": "ts-crop-s2-v0.4-demo",
+        "status": "pending",
+        "corridor_segment_id": "SEG-03",
+        "note": "Parcelles récentes en bordure ouest, contact direct avec l'axe."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FR-2026-003",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.423387,
+              11.268221
+            ],
+            [
+              2.422888,
+              11.27243
+            ],
+            [
+              2.418727,
+              11.273368
+            ],
+            [
+              2.414892,
+              11.273208
+            ],
+            [
+              2.412118,
+              11.270266
+            ],
+            [
+              2.412652,
+              11.266369
+            ],
+            [
+              2.414375,
+              11.26235
+            ],
+            [
+              2.41876,
+              11.262891
+            ],
+            [
+              2.422515,
+              11.264322
+            ],
+            [
+              2.423387,
+              11.268221
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "FR-2026-003",
+        "severity": 5,
+        "confidence": 0.88,
+        "area_ha": 162.9,
+        "detected_on": "2026-01-29",
+        "source": "sentinel-2",
+        "model_version": "ts-crop-s2-v0.4-demo",
+        "status": "confirmed",
+        "corridor_segment_id": "SEG-05",
+        "note": "Goulet d'étranglement à l'entrée de Banikoara ; largeur utile estimée < 60 m."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FR-2026-004",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.467901,
+              11.317815
+            ],
+            [
+              2.465927,
+              11.320515
+            ],
+            [
+              2.463556,
+              11.322791
+            ],
+            [
+              2.460351,
+              11.321775
+            ],
+            [
+              2.457901,
+              11.319527
+            ],
+            [
+              2.458415,
+              11.316287
+            ],
+            [
+              2.460695,
+              11.314442
+            ],
+            [
+              2.463479,
+              11.313272
+            ],
+            [
+              2.465805,
+              11.315216
+            ],
+            [
+              2.467901,
+              11.317815
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "FR-2026-004",
+        "severity": 3,
+        "confidence": 0.64,
+        "area_ha": 72.4,
+        "detected_on": "2025-11-27",
+        "source": "sentinel-1",
+        "model_version": "ts-crop-s1-v0.3-demo",
+        "status": "pending",
+        "corridor_segment_id": "SEG-06",
+        "note": "Signal radar ambigu (saison humide). Vérification terrain nécessaire."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FR-2026-005",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.502359,
+              11.347132
+            ],
+            [
+              2.501706,
+              11.349403
+            ],
+            [
+              2.499711,
+              11.351314
+            ],
+            [
+              2.497348,
+              11.349896
+            ],
+            [
+              2.496115,
+              11.348156
+            ],
+            [
+              2.495675,
+              11.345951
+            ],
+            [
+              2.497266,
+              11.344229
+            ],
+            [
+              2.499656,
+              11.343264
+            ],
+            [
+              2.502061,
+              11.344568
+            ],
+            [
+              2.502359,
+              11.347132
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "FR-2026-005",
+        "severity": 2,
+        "confidence": 0.58,
+        "area_ha": 50.3,
+        "detected_on": "2025-10-14",
+        "source": "sentinel-1",
+        "model_version": "ts-crop-s1-v0.3-demo",
+        "status": "pending",
+        "corridor_segment_id": "SEG-07",
+        "note": "Donnée ancienne, antérieure aux récoltes. Faible confiance."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FR-2026-006",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.54011,
+              11.387666
+            ],
+            [
+              2.539516,
+              11.390796
+            ],
+            [
+              2.536789,
+              11.393548
+            ],
+            [
+              2.532911,
+              11.392498
+            ],
+            [
+              2.530814,
+              11.389435
+            ],
+            [
+              2.530981,
+              11.385958
+            ],
+            [
+              2.533038,
+              11.383052
+            ],
+            [
+              2.536622,
+              11.382718
+            ],
+            [
+              2.539876,
+              11.38424
+            ],
+            [
+              2.54011,
+              11.387666
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "FR-2026-006",
+        "severity": 4,
+        "confidence": 0.86,
+        "area_ha": 98.5,
+        "detected_on": "2026-02-11",
+        "source": "sentinel-2",
+        "model_version": "ts-crop-s2-v0.4-demo",
+        "status": "corrected",
+        "corridor_segment_id": "SEG-08",
+        "note": "Emprise corrigée par l'agent : la parcelle s'arrête 80 m avant l'axe."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FR-2026-007",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.586532,
+              11.431573
+            ],
+            [
+              2.585034,
+              11.433842
+            ],
+            [
+              2.583082,
+              11.435986
+            ],
+            [
+              2.580598,
+              11.434471
+            ],
+            [
+              2.578542,
+              11.43292
+            ],
+            [
+              2.578429,
+              11.430185
+            ],
+            [
+              2.580054,
+              11.427745
+            ],
+            [
+              2.583012,
+              11.427549
+            ],
+            [
+              2.585729,
+              11.428728
+            ],
+            [
+              2.586532,
+              11.431573
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "FR-2026-007",
+        "severity": 3,
+        "confidence": 0.71,
+        "area_ha": 63.6,
+        "detected_on": "2026-01-29",
+        "source": "sentinel-2",
+        "model_version": "ts-crop-s2-v0.4-demo",
+        "status": "pending",
+        "corridor_segment_id": "SEG-09",
+        "note": "Jachère probable classée à tort en culture : à vérifier."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FR-2026-008",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.629864,
+              11.468207
+            ],
+            [
+              2.629353,
+              11.470002
+            ],
+            [
+              2.627638,
+              11.470741
+            ],
+            [
+              2.625616,
+              11.470889
+            ],
+            [
+              2.62407,
+              11.469326
+            ],
+            [
+              2.624606,
+              11.467281
+            ],
+            [
+              2.625397,
+              11.465152
+            ],
+            [
+              2.627695,
+              11.465356
+            ],
+            [
+              2.629969,
+              11.465903
+            ],
+            [
+              2.629864,
+              11.468207
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "FR-2026-008",
+        "severity": 1,
+        "confidence": 0.49,
+        "area_ha": 36.3,
+        "detected_on": "2025-09-22",
+        "source": "sentinel-1",
+        "model_version": "ts-crop-s1-v0.3-demo",
+        "status": "invalidated",
+        "corridor_segment_id": "SEG-10",
+        "note": "Invalidée sur le terrain : zone de pâturage, pas de culture."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FR-2026-009",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.390277,
+              11.227001
+            ],
+            [
+              2.388923,
+              11.229576
+            ],
+            [
+              2.386676,
+              11.231821
+            ],
+            [
+              2.383592,
+              11.230805
+            ],
+            [
+              2.381637,
+              11.228503
+            ],
+            [
+              2.382092,
+              11.225663
+            ],
+            [
+              2.38359,
+              11.223195
+            ],
+            [
+              2.386491,
+              11.223218
+            ],
+            [
+              2.390037,
+              11.223504
+            ],
+            [
+              2.390277,
+              11.227001
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "FR-2026-009",
+        "severity": 4,
+        "confidence": 0.79,
+        "area_ha": 88.2,
+        "detected_on": "2026-02-11",
+        "source": "sentinel-2",
+        "model_version": "ts-crop-s2-v0.4-demo",
+        "status": "pending",
+        "corridor_segment_id": "SEG-04",
+        "note": "Extension d'un champ de maïs sur l'emprise nord."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FR-2026-010",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.273839,
+              11.11933
+            ],
+            [
+              2.272081,
+              11.121068
+            ],
+            [
+              2.270547,
+              11.122484
+            ],
+            [
+              2.268073,
+              11.1226
+            ],
+            [
+              2.26704,
+              11.120388
+            ],
+            [
+              2.26679,
+              11.118181
+            ],
+            [
+              2.268634,
+              11.117019
+            ],
+            [
+              2.270621,
+              11.115764
+            ],
+            [
+              2.272466,
+              11.117272
+            ],
+            [
+              2.273839,
+              11.11933
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "FR-2026-010",
+        "severity": 2,
+        "confidence": 0.55,
+        "area_ha": 40.7,
+        "detected_on": "2025-10-14",
+        "source": "sentinel-1",
+        "model_version": "ts-crop-s1-v0.3-demo",
+        "status": "pending",
+        "corridor_segment_id": "SEG-01",
+        "note": "Couverture nuageuse à la dernière acquisition optique ; radar seul."
+      }
+    }
+  ]
+}

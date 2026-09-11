@@ -1,0 +1,214 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "VIL-01",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.438,
+          11.298
+        ]
+      },
+      "properties": {
+        "id": "VIL-01",
+        "name": "Banikoara",
+        "rank": "chef-lieu",
+        "population_est": 34000,
+        "source": "OpenStreetMap Bénin (Geofabrik) : positions de démonstration",
+        "observed_on": "2025-11-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "VIL-02",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.308,
+          11.161
+        ]
+      },
+      "properties": {
+        "id": "VIL-02",
+        "name": "Founougo",
+        "rank": "arrondissement",
+        "population_est": 21000,
+        "source": "OpenStreetMap Bénin (Geofabrik) : positions de démonstration",
+        "observed_on": "2025-11-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "VIL-03",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.524,
+          11.372
+        ]
+      },
+      "properties": {
+        "id": "VIL-03",
+        "name": "Gomparou",
+        "rank": "arrondissement",
+        "population_est": 12500,
+        "source": "OpenStreetMap Bénin (Geofabrik) : positions de démonstration",
+        "observed_on": "2025-11-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "VIL-04",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.274,
+          11.236
+        ]
+      },
+      "properties": {
+        "id": "VIL-04",
+        "name": "Goumori",
+        "rank": "arrondissement",
+        "population_est": 15800,
+        "source": "OpenStreetMap Bénin (Geofabrik) : positions de démonstration",
+        "observed_on": "2025-11-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "VIL-05",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.601,
+          11.447
+        ]
+      },
+      "properties": {
+        "id": "VIL-05",
+        "name": "Kokey",
+        "rank": "arrondissement",
+        "population_est": 9400,
+        "source": "OpenStreetMap Bénin (Geofabrik) : positions de démonstration",
+        "observed_on": "2025-11-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "VIL-06",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.486,
+          11.226
+        ]
+      },
+      "properties": {
+        "id": "VIL-06",
+        "name": "Ounet",
+        "rank": "arrondissement",
+        "population_est": 8700,
+        "source": "OpenStreetMap Bénin (Geofabrik) : positions de démonstration",
+        "observed_on": "2025-11-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "VIL-07",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.578,
+          11.288
+        ]
+      },
+      "properties": {
+        "id": "VIL-07",
+        "name": "Sompérékou",
+        "rank": "arrondissement",
+        "population_est": 11200,
+        "source": "OpenStreetMap Bénin (Geofabrik) : positions de démonstration",
+        "observed_on": "2025-11-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "VIL-08",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.352,
+          11.341
+        ]
+      },
+      "properties": {
+        "id": "VIL-08",
+        "name": "Soroko",
+        "rank": "arrondissement",
+        "population_est": 7600,
+        "source": "OpenStreetMap Bénin (Geofabrik) : positions de démonstration",
+        "observed_on": "2025-11-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "VIL-09",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.642,
+          11.498
+        ]
+      },
+      "properties": {
+        "id": "VIL-09",
+        "name": "Toura",
+        "rank": "arrondissement",
+        "population_est": 6900,
+        "source": "OpenStreetMap Bénin (Geofabrik) : positions de démonstration",
+        "observed_on": "2025-11-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "VIL-10",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.412,
+          11.423
+        ]
+      },
+      "properties": {
+        "id": "VIL-10",
+        "name": "Igrigou",
+        "rank": "village",
+        "population_est": 3100,
+        "source": "OpenStreetMap Bénin (Geofabrik) : positions de démonstration",
+        "observed_on": "2025-11-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "VIL-11",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.331,
+          11.461
+        ]
+      },
+      "properties": {
+        "id": "VIL-11",
+        "name": "Sonnou",
+        "rank": "village",
+        "population_est": 2400,
+        "source": "OpenStreetMap Bénin (Geofabrik) : positions de démonstration",
+        "observed_on": "2025-11-04"
+      }
+    }
+  ]
+}

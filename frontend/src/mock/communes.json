@@ -1,0 +1,380 @@
+{
+  "region": {
+    "name": "Nord & Centre Benin",
+    "bbox": [
+      0.906,
+      7.56,
+      3.964,
+      12.295
+    ],
+    "center": [
+      2.435,
+      9.9275
+    ]
+  },
+  "departments": [
+    {
+      "id": "alibori",
+      "name": "Alibori"
+    },
+    {
+      "id": "atacora",
+      "name": "Atacora"
+    },
+    {
+      "id": "borgou",
+      "name": "Borgou"
+    },
+    {
+      "id": "donga",
+      "name": "Donga"
+    },
+    {
+      "id": "collines",
+      "name": "Collines"
+    }
+  ],
+  "communes": [
+    {
+      "id": "banikoara",
+      "name": "Banikoara",
+      "dept": "alibori",
+      "lon": 2.438,
+      "lat": 11.298,
+      "r": 0.26
+    },
+    {
+      "id": "gogounou",
+      "name": "Gogounou",
+      "dept": "alibori",
+      "lon": 2.836,
+      "lat": 10.838,
+      "r": 0.24
+    },
+    {
+      "id": "kandi",
+      "name": "Kandi",
+      "dept": "alibori",
+      "lon": 2.938,
+      "lat": 11.128,
+      "r": 0.23
+    },
+    {
+      "id": "karimama",
+      "name": "Karimama",
+      "dept": "alibori",
+      "lon": 2.633,
+      "lat": 12.065,
+      "r": 0.3
+    },
+    {
+      "id": "malanville",
+      "name": "Malanville",
+      "dept": "alibori",
+      "lon": 3.383,
+      "lat": 11.868,
+      "r": 0.25
+    },
+    {
+      "id": "segbana",
+      "name": "Ségbana",
+      "dept": "alibori",
+      "lon": 3.694,
+      "lat": 10.93,
+      "r": 0.27
+    },
+    {
+      "id": "boukoumbe",
+      "name": "Boukoumbé",
+      "dept": "atacora",
+      "lon": 1.103,
+      "lat": 10.18,
+      "r": 0.15
+    },
+    {
+      "id": "cobly",
+      "name": "Cobly",
+      "dept": "atacora",
+      "lon": 1.036,
+      "lat": 10.499,
+      "r": 0.13
+    },
+    {
+      "id": "kerou",
+      "name": "Kérou",
+      "dept": "atacora",
+      "lon": 2.108,
+      "lat": 10.828,
+      "r": 0.29
+    },
+    {
+      "id": "kouande",
+      "name": "Kouandé",
+      "dept": "atacora",
+      "lon": 1.691,
+      "lat": 10.334,
+      "r": 0.25
+    },
+    {
+      "id": "materi",
+      "name": "Matéri",
+      "dept": "atacora",
+      "lon": 1.146,
+      "lat": 10.696,
+      "r": 0.21
+    },
+    {
+      "id": "natitingou",
+      "name": "Natitingou",
+      "dept": "atacora",
+      "lon": 1.379,
+      "lat": 10.305,
+      "r": 0.16
+    },
+    {
+      "id": "pehunco",
+      "name": "Péhunco",
+      "dept": "atacora",
+      "lon": 1.955,
+      "lat": 10.226,
+      "r": 0.21
+    },
+    {
+      "id": "tanguieta",
+      "name": "Tanguiéta",
+      "dept": "atacora",
+      "lon": 1.267,
+      "lat": 10.622,
+      "r": 0.23
+    },
+    {
+      "id": "toucountouna",
+      "name": "Toucountouna",
+      "dept": "atacora",
+      "lon": 1.394,
+      "lat": 10.535,
+      "r": 0.15
+    },
+    {
+      "id": "bembereke",
+      "name": "Bembèrèkè",
+      "dept": "borgou",
+      "lon": 2.669,
+      "lat": 10.228,
+      "r": 0.23
+    },
+    {
+      "id": "kalale",
+      "name": "Kalalé",
+      "dept": "borgou",
+      "lon": 3.383,
+      "lat": 10.294,
+      "r": 0.27
+    },
+    {
+      "id": "ndali",
+      "name": "N'Dali",
+      "dept": "borgou",
+      "lon": 2.719,
+      "lat": 9.865,
+      "r": 0.23
+    },
+    {
+      "id": "nikki",
+      "name": "Nikki",
+      "dept": "borgou",
+      "lon": 3.211,
+      "lat": 9.94,
+      "r": 0.25
+    },
+    {
+      "id": "parakou",
+      "name": "Parakou",
+      "dept": "borgou",
+      "lon": 2.616,
+      "lat": 9.337,
+      "r": 0.11
+    },
+    {
+      "id": "perere",
+      "name": "Pèrèrè",
+      "dept": "borgou",
+      "lon": 3.005,
+      "lat": 9.797,
+      "r": 0.21
+    },
+    {
+      "id": "sinende",
+      "name": "Sinendé",
+      "dept": "borgou",
+      "lon": 2.36,
+      "lat": 10.328,
+      "r": 0.2
+    },
+    {
+      "id": "tchaourou",
+      "name": "Tchaourou",
+      "dept": "borgou",
+      "lon": 2.6,
+      "lat": 8.887,
+      "r": 0.33
+    },
+    {
+      "id": "bassila",
+      "name": "Bassila",
+      "dept": "donga",
+      "lon": 1.665,
+      "lat": 9.008,
+      "r": 0.31
+    },
+    {
+      "id": "copargo",
+      "name": "Copargo",
+      "dept": "donga",
+      "lon": 1.545,
+      "lat": 9.837,
+      "r": 0.15
+    },
+    {
+      "id": "djougou",
+      "name": "Djougou",
+      "dept": "donga",
+      "lon": 1.666,
+      "lat": 9.705,
+      "r": 0.25
+    },
+    {
+      "id": "ouake",
+      "name": "Ouaké",
+      "dept": "donga",
+      "lon": 1.383,
+      "lat": 9.663,
+      "r": 0.14
+    },
+    {
+      "id": "bante",
+      "name": "Bantè",
+      "dept": "collines",
+      "lon": 1.885,
+      "lat": 8.418,
+      "r": 0.25
+    },
+    {
+      "id": "dassa-zoume",
+      "name": "Dassa-Zoumè",
+      "dept": "collines",
+      "lon": 2.183,
+      "lat": 7.75,
+      "r": 0.21
+    },
+    {
+      "id": "glazoue",
+      "name": "Glazoué",
+      "dept": "collines",
+      "lon": 2.24,
+      "lat": 7.976,
+      "r": 0.19
+    },
+    {
+      "id": "ouesse",
+      "name": "Ouèssè",
+      "dept": "collines",
+      "lon": 2.47,
+      "lat": 8.483,
+      "r": 0.25
+    },
+    {
+      "id": "savalou",
+      "name": "Savalou",
+      "dept": "collines",
+      "lon": 1.975,
+      "lat": 7.928,
+      "r": 0.23
+    },
+    {
+      "id": "save",
+      "name": "Savè",
+      "dept": "collines",
+      "lon": 2.487,
+      "lat": 8.034,
+      "r": 0.23
+    }
+  ],
+  "corridor_chains": [
+    {
+      "id": "COR-N01",
+      "name": "Axe fleuve Niger : Alibori / Borgou",
+      "stops": [
+        "karimama",
+        "malanville",
+        "kandi",
+        "gogounou",
+        "bembereke",
+        "ndali",
+        "parakou",
+        "tchaourou"
+      ]
+    },
+    {
+      "id": "COR-N02",
+      "name": "Axe Banikoara : Kérou : Donga",
+      "stops": [
+        "banikoara",
+        "kerou",
+        "pehunco",
+        "sinende",
+        "djougou",
+        "bassila"
+      ]
+    },
+    {
+      "id": "COR-N03",
+      "name": "Axe Atacora occidental",
+      "stops": [
+        "materi",
+        "tanguieta",
+        "toucountouna",
+        "natitingou",
+        "kouande",
+        "copargo",
+        "djougou",
+        "ouake"
+      ]
+    },
+    {
+      "id": "COR-N04",
+      "name": "Axe oriental : Ségbana / Nikki",
+      "stops": [
+        "malanville",
+        "segbana",
+        "kalale",
+        "nikki",
+        "perere",
+        "tchaourou"
+      ]
+    },
+    {
+      "id": "COR-N05",
+      "name": "Descente des Collines",
+      "stops": [
+        "bassila",
+        "bante",
+        "savalou",
+        "glazoue",
+        "dassa-zoume",
+        "save",
+        "ouesse",
+        "tchaourou"
+      ]
+    },
+    {
+      "id": "COR-N06",
+      "name": "Bretelle Cobly : Boukoumbé",
+      "stops": [
+        "cobly",
+        "boukoumbe",
+        "natitingou"
+      ]
+    }
+  ]
+}

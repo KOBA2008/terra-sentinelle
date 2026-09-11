@@ -1,0 +1,92 @@
+[
+  {
+    "id": "FR-2026-002",
+    "corridor_segment_id": "SEG-03",
+    "severity": 4,
+    "confidence": 0.81,
+    "area_ha": 116.9,
+    "detected_on": "2026-02-11",
+    "source": "sentinel-2",
+    "center": [
+      2.35261,
+      11.194441
+    ],
+    "nearest_village": "Soroko",
+    "note": "Parcelles récentes en bordure ouest, contact direct avec l'axe."
+  },
+  {
+    "id": "FR-2026-004",
+    "corridor_segment_id": "SEG-06",
+    "severity": 3,
+    "confidence": 0.64,
+    "area_ha": 72.4,
+    "detected_on": "2025-11-27",
+    "source": "sentinel-1",
+    "center": [
+      2.467901,
+      11.317815
+    ],
+    "nearest_village": "Igrigou",
+    "note": "Signal radar ambigu (saison humide). Vérification terrain nécessaire."
+  },
+  {
+    "id": "FR-2026-005",
+    "corridor_segment_id": "SEG-07",
+    "severity": 2,
+    "confidence": 0.58,
+    "area_ha": 50.3,
+    "detected_on": "2025-10-14",
+    "source": "sentinel-1",
+    "center": [
+      2.502359,
+      11.347132
+    ],
+    "nearest_village": "Founougo",
+    "note": "Donnée ancienne, antérieure aux récoltes. Faible confiance."
+  },
+  {
+    "id": "FR-2026-007",
+    "corridor_segment_id": "SEG-09",
+    "severity": 3,
+    "confidence": 0.71,
+    "area_ha": 63.6,
+    "detected_on": "2026-01-29",
+    "source": "sentinel-2",
+    "center": [
+      2.586532,
+      11.431573
+    ],
+    "nearest_village": "Banikoara",
+    "note": "Jachère probable classée à tort en culture : à vérifier."
+  },
+  {
+    "id": "FR-2026-009",
+    "corridor_segment_id": "SEG-04",
+    "severity": 4,
+    "confidence": 0.79,
+    "area_ha": 88.2,
+    "detected_on": "2026-02-11",
+    "source": "sentinel-2",
+    "center": [
+      2.390277,
+      11.227001
+    ],
+    "nearest_village": "Sompérékou",
+    "note": "Extension d'un champ de maïs sur l'emprise nord."
+  },
+  {
+    "id": "FR-2026-010",
+    "corridor_segment_id": "SEG-01",
+    "severity": 2,
+    "confidence": 0.55,
+    "area_ha": 40.7,
+    "detected_on": "2025-10-14",
+    "source": "sentinel-1",
+    "center": [
+      2.273839,
+      11.11933
+    ],
+    "nearest_village": "Sonnou",
+    "note": "Couverture nuageuse à la dernière acquisition optique ; radar seul."
+  }
+]

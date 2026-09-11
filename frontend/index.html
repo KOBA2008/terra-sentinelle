@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Terra Sentinelle : Veille des couloirs de transhumance</title>
+    <meta name="description" content="Terra Sentinelle : veille des couloirs de transhumance sur 5 départements et 33 communes du nord et du centre du Bénin. Démonstration, données synthétiques." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <script>
+      // Applique le thème mémorisé avant la première peinture (pas de flash).
+      try {
+        var c = localStorage.getItem('terra-sentinelle.theme.v1')
+        if (c === 'light' || c === 'dark') document.documentElement.setAttribute('data-theme', c)
+      } catch (e) {}
+    </script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

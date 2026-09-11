@@ -1,0 +1,165 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "EAU-01",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.318,
+          11.173
+        ]
+      },
+      "properties": {
+        "id": "EAU-01",
+        "name": "Mare de Founougo",
+        "type": "mare",
+        "seasonal": true,
+        "status": "saisonnier",
+        "source": "OpenStreetMap + relevé terrain (démonstration)",
+        "observed_on": "2025-09-22"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "EAU-02",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.288,
+          11.229
+        ]
+      },
+      "properties": {
+        "id": "EAU-02",
+        "name": "Barrage de Goumori",
+        "type": "barrage",
+        "seasonal": false,
+        "status": "permanent",
+        "source": "OpenStreetMap + relevé terrain (démonstration)",
+        "observed_on": "2026-01-18"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "EAU-03",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.479,
+          11.238
+        ]
+      },
+      "properties": {
+        "id": "EAU-03",
+        "name": "Forage Ounet 2",
+        "type": "forage",
+        "seasonal": false,
+        "status": "permanent",
+        "source": "OpenStreetMap + relevé terrain (démonstration)",
+        "observed_on": "2026-01-18"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "EAU-04",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.531,
+          11.361
+        ]
+      },
+      "properties": {
+        "id": "EAU-04",
+        "name": "Mare de Gomparou",
+        "type": "mare",
+        "seasonal": true,
+        "status": "saisonnier",
+        "source": "OpenStreetMap + relevé terrain (démonstration)",
+        "observed_on": "2025-09-22"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "EAU-05",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.345,
+          11.452
+        ]
+      },
+      "properties": {
+        "id": "EAU-05",
+        "name": "Mare de Sonnou",
+        "type": "mare",
+        "seasonal": true,
+        "status": "saisonnier",
+        "source": "OpenStreetMap + relevé terrain (démonstration)",
+        "observed_on": "2025-09-22"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "EAU-06",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.596,
+          11.439
+        ]
+      },
+      "properties": {
+        "id": "EAU-06",
+        "name": "Forage Kokey 1",
+        "type": "forage",
+        "seasonal": false,
+        "status": "permanent",
+        "source": "OpenStreetMap + relevé terrain (démonstration)",
+        "observed_on": "2026-01-18"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "EAU-07",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.635,
+          11.488
+        ]
+      },
+      "properties": {
+        "id": "EAU-07",
+        "name": "Mare de Toura",
+        "type": "mare",
+        "seasonal": true,
+        "status": "saisonnier",
+        "source": "OpenStreetMap + relevé terrain (démonstration)",
+        "observed_on": "2025-09-22"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "EAU-08",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.362,
+          11.333
+        ]
+      },
+      "properties": {
+        "id": "EAU-08",
+        "name": "Retenue de Soroko",
+        "type": "barrage",
+        "seasonal": false,
+        "status": "permanent",
+        "source": "OpenStreetMap + relevé terrain (démonstration)",
+        "observed_on": "2026-01-18"
+      }
+    }
+  ]
+}

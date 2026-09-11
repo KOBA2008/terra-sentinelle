@@ -1,0 +1,880 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Terra Sentinelle — Note de conception technique</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Liberation Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 10.5pt; line-height: 1.55; color: #1c231f;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    width: 210mm; height: 297mm; padding: 18mm 18mm 22mm 18mm;
+    position: relative; overflow: hidden; page-break-after: always; background: #fff;
+  }
+  .page:last-child { page-break-after: auto; }
+  .pfoot {
+    position: absolute; left: 18mm; right: 18mm; bottom: 10mm;
+    border-top: 0.5pt solid #d3ded8; padding-top: 2.2mm;
+    font-size: 7.5pt; color: #6f7d76; display: flex; justify-content: space-between;
+  }
+  .phead {
+    font-size: 7.5pt; letter-spacing: .09em; text-transform: uppercase; color: #1a7a52;
+    border-bottom: 0.5pt solid #d3ded8; padding-bottom: 1.8mm; margin-bottom: 6mm;
+    display: flex; justify-content: space-between;
+  }
+  .phead span:last-child { color: #8b978f; letter-spacing: .04em; }
+
+  h1, h2, h3, h4 { margin: 0; font-weight: 700; color: #10261d; }
+  h2 { font-size: 15pt; line-height: 1.25; margin: 0 0 1.5mm; letter-spacing: -.01em; }
+  h2 .num { color: #1a7a52; font-variant-numeric: tabular-nums; margin-right: 2.5mm; }
+  h3 { font-size: 11pt; margin: 5.5mm 0 1.5mm; color: #1a7a52; }
+  h4 { font-size: 9.7pt; margin: 4mm 0 1mm; color: #26312b; }
+  .lead { font-size: 10.5pt; color: #46524b; margin: 0 0 4mm; }
+  .rule { height: 2pt; width: 22mm; background: #1a7a52; margin: 2.5mm 0 4.5mm; }
+  p { margin: 0 0 3mm; text-align: justify; hyphens: auto; }
+  ul, ol { margin: 0 0 3mm; padding-left: 5mm; }
+  li { margin-bottom: 1.2mm; }
+  strong { color: #10261d; }
+  .small { font-size: 9pt; }
+  .mono { font-family: "DejaVu Sans Mono", "Liberation Mono", Consolas, monospace; }
+
+  table { width: 100%; border-collapse: collapse; margin: 2mm 0 4mm; }
+  th { background: #1a7a52; color: #fff; font-size: 8pt; text-align: left; font-weight: 600;
+       padding: 1.8mm 2mm; letter-spacing: .02em; }
+  td { font-size: 8.2pt; padding: 1.6mm 2mm; border-bottom: 0.4pt solid #dfe7e2; vertical-align: top; line-height: 1.4; }
+  tbody tr:nth-child(even) td { background: #f4f8f6; }
+  td.m { font-family: "DejaVu Sans Mono", "Liberation Mono", monospace; font-size: 7.4pt; color: #10261d; }
+
+  .box { border: 0.6pt solid #cfe0d7; background: #f4f8f6; border-left: 2.5pt solid #1a7a52;
+         padding: 3mm 4mm; margin: 3.5mm 0; font-size: 9.3pt; }
+  .box .t { font-weight: 700; color: #1a7a52; font-size: 8.3pt; letter-spacing: .07em;
+            text-transform: uppercase; margin-bottom: 1.2mm; }
+  .warn { border: 0.6pt solid #e6d3a8; background: #fdf7e9; border-left: 2.5pt solid #a8730f; }
+  .warn .t { color: #8a5c08; }
+  .quote { border-left: 2.5pt solid #1a7a52; padding: 1mm 0 1mm 4mm; margin: 3mm 0 4mm;
+           font-size: 10.5pt; color: #17342a; }
+  .pitch { background: #f4f8f6; border: 0.6pt solid #cfe0d7; padding: 4mm 5mm; margin: 3mm 0 4mm;
+           font-size: 9.8pt; line-height: 1.6; text-align: justify; }
+  .kv { width: 100%; border-collapse: collapse; margin-top: 2mm; }
+  .kv td { border: none; border-bottom: 0.4pt solid #e3ebe7; padding: 1.5mm 0; font-size: 9.2pt; background: none !important; }
+  .kv td:first-child { width: 42mm; color: #6f7d76; }
+  .cols { display: flex; gap: 6mm; }
+  .cols > div { flex: 1; }
+  .cap { font-size: 7.8pt; color: #6f7d76; margin: 1mm 0 4mm; }
+
+  /* Couverture */
+  .cover { padding: 0; display: flex; flex-direction: column; }
+  .cover .band { height: 62mm; background: #1a7a52; padding: 18mm 18mm 0; color: #fff; }
+  .cover .band .k { font-size: 8.5pt; letter-spacing: .22em; text-transform: uppercase; opacity: .85; }
+  .cover .band h1 { color: #fff; font-size: 30pt; line-height: 1.1; margin: 6mm 0 2mm; letter-spacing: -.02em; }
+  .cover .band .sub { font-size: 12pt; opacity: .92; }
+  .cover .body { padding: 14mm 18mm 0; flex: 1; }
+  .cover .foot { padding: 0 18mm 16mm; font-size: 8.5pt; color: #6f7d76; }
+  .tocline { display: flex; align-items: baseline; gap: 2mm; margin-bottom: 3.2mm; font-size: 10pt; }
+  .tocline .n { color: #1a7a52; font-weight: 700; width: 7mm; }
+  .tocline .t { flex: 0 0 auto; }
+  .tocline .d { flex: 1; border-bottom: 0.5pt dotted #b9c7c0; transform: translateY(-1mm); }
+  .tocline .p { color: #6f7d76; font-variant-numeric: tabular-nums; }
+  svg { display: block; width: 100%; }
+  .stepnum { font-weight: 700; color: #1a7a52; }
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 : COUVERTURE ============ -->
+<div class="page cover">
+  <div class="band">
+    <div class="k">Hackathon Deep Learning · IndabaX Bénin 2026</div>
+    <h1>Terra Sentinelle</h1>
+    <div class="sub">Note de conception technique</div>
+  </div>
+  <div class="body">
+    <p class="lead" style="font-size:11pt;color:#26312b;margin-bottom:8mm;">
+      Système de veille satellitaire des couloirs de transhumance et d'aide à la décision
+      pour les comités communaux de transhumance — commune de Banikoara, département de l'Alibori, nord Bénin.
+    </p>
+
+    <div class="quote" style="font-size:11pt;">
+      « Les couloirs de transhumance ont été délimités une fois. Les champs, eux, changent chaque saison.
+      Le conflit ne naît pas d'une carte absente, il naît d'une carte périmée. »
+    </div>
+
+    <table class="kv" style="margin-top:10mm;">
+      <tr><td>Défi revendiqué</td><td><strong>Résilience climatique</strong></td></tr>
+      <tr><td>Défi secondaire</td><td>Agriculture &amp; sécurité alimentaire</td></tr>
+      <tr><td>Équipe</td><td>KOBA David</td></tr>
+      <tr><td>Zone de démonstration</td><td>Banikoara (Alibori) — lat 11,298 / lon 2,438</td></tr>
+      <tr><td>Utilisateur principal</td><td>Moussa Gounou, agent d'élevage de la mairie de Banikoara</td></tr>
+      <tr><td>Nature du document</td><td>Note de conception technique — jury et partenaires institutionnels</td></tr>
+    </table>
+
+    <div class="box warn" style="margin-top:12mm;">
+      <div class="t">Avertissement de lecture</div>
+      Ce document décrit une conception et un prototype de hackathon. L'emprise de couloir utilisée est
+      <strong>reconstituée par l'équipe et n'a aucune valeur officielle</strong>, les données de démonstration
+      sont synthétiques bien que plausibles, et les métriques de modèle affichées dans le prototype sont des
+      <strong>valeurs de démonstration</strong> tant qu'aucun entraînement réel n'a eu lieu. Chaque chapitre
+      concerné le rappelle explicitement.
+    </div>
+  </div>
+  <div class="foot">Terra Sentinelle · Note de conception technique · Version 1.0 · Septembre 2026</div>
+</div>
+
+<!-- ============ PAGE 2 : SOMMAIRE ============ -->
+<div class="page">
+  <div class="phead"><span>Sommaire</span><span>Terra Sentinelle</span></div>
+  <h2>Sommaire</h2>
+  <div class="rule"></div>
+
+  <div class="tocline"><span class="n">1</span><span class="t">Résumé</span><span class="d"></span><span class="p">3</span></div>
+  <div class="tocline"><span class="n">2</span><span class="t">Le problème</span><span class="d"></span><span class="p">4</span></div>
+  <div class="tocline"><span class="n">3</span><span class="t">Utilisateurs et parcours</span><span class="d"></span><span class="p">5</span></div>
+  <div class="tocline"><span class="n">4</span><span class="t">Architecture</span><span class="d"></span><span class="p">6</span></div>
+  <div class="tocline"><span class="n">5</span><span class="t">Chaîne satellite et choix techniques</span><span class="d"></span><span class="p">7</span></div>
+  <div class="tocline"><span class="n">6</span><span class="t">Moteur de friction et d'itinéraire</span><span class="d"></span><span class="p">9</span></div>
+  <div class="tocline"><span class="n">7</span><span class="t">Données</span><span class="d"></span><span class="p">10</span></div>
+  <div class="tocline"><span class="n">8</span><span class="t">Évaluation</span><span class="d"></span><span class="p">11</span></div>
+  <div class="tocline"><span class="n">9</span><span class="t">Gouvernance, éthique et risques</span><span class="d"></span><span class="p">11</span></div>
+  <div class="tocline"><span class="n">10</span><span class="t">Limites</span><span class="d"></span><span class="p">12</span></div>
+  <div class="tocline"><span class="n">11</span><span class="t">État du prototype et feuille de route</span><span class="d"></span><span class="p">12</span></div>
+
+  <h3 style="margin-top:12mm;">Ce que fait, et ne fait pas, Terra Sentinelle</h3>
+  <div class="cols">
+    <div>
+      <h4>Le système fait</h4>
+      <ul class="small">
+        <li>Détecter, à partir d'images satellitaires, les zones potentiellement mises en culture dans ou près de l'emprise d'un couloir.</li>
+        <li>Produire avant la saison une carte de friction avec gravité et confiance.</li>
+        <li>Permettre à un agent communal de confirmer, corriger ou invalider chaque détection depuis le terrain, y compris hors connexion.</li>
+        <li>Fournir au comité communal une situation actualisée et traçable, puis diffuser sa décision en fulfulde.</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Le système ne fait pas</h4>
+      <ul class="small">
+        <li>Prédire les conflits.</li>
+        <li>Délivrer une autorisation de passage.</li>
+        <li>Trancher une question de propriété ou de légitimité foncière.</li>
+        <li>Se substituer au comité communal de transhumance ni à la négociation locale.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box" style="margin-top:8mm;">
+    <div class="t">Convention de traçabilité</div>
+    Toute donnée présentée dans les interfaces porte quatre attributs : <strong>sa source</strong>,
+    <strong>sa date de collecte</strong>, <strong>son niveau de confiance</strong> et
+    <strong>son statut de validation</strong>. Une donnée qui ne peut pas les porter n'est pas affichée
+    comme un fait ; elle est affichée comme une incertitude.
+  </div>
+
+  <div class="pfoot"><span>Terra Sentinelle — Note de conception technique</span><span>2</span></div>
+</div>
+
+<!-- ============ PAGE 3 : §1 RÉSUMÉ ============ -->
+<div class="page">
+  <div class="phead"><span>1 · Résumé</span><span>Page 3</span></div>
+  <h2><span class="num">1</span>Résumé</h2>
+  <div class="rule"></div>
+
+  <p class="lead">Le paragraphe qui suit est la description de référence du projet. Il est reproduit ici mot pour mot.</p>
+
+  <div class="pitch">
+    Dans le nord du Bénin, les couloirs de transhumance ont été délimités, mais les cartes deviennent
+    rapidement obsolètes à mesure que l'occupation du sol évolue au fil des saisons agricoles.
+    Terra Sentinelle transforme ces cartes statiques en un système de veille actualisé. À partir d'images
+    satellitaires Sentinel-2, un modèle de classification identifie les zones potentiellement mises en culture
+    à l'intérieur ou à proximité de l'emprise des couloirs, puis génère avant chaque saison de transhumance
+    une carte de friction indiquant les portions potentiellement contraintes, avec un niveau de gravité et de
+    confiance. Les agents communaux peuvent confirmer, corriger ou invalider ces détections depuis le terrain,
+    y compris hors connexion. Le comité communal de transhumance dispose alors d'une situation actualisée pour
+    examiner les portions sensibles, décider d'un maintien, d'un ajustement ou d'un contournement du parcours,
+    puis diffuser sa décision aux représentants des éleveurs sous forme de message vocal en fulfulde.
+    Chaque donnée conserve sa source, sa date de collecte, son niveau de confiance et son statut de validation,
+    tandis que les zones incertaines restent explicitement signalées. Terra Sentinelle ne prédit pas les conflits
+    et ne délivre aucune autorisation de passage : il actualise la connaissance du territoire afin que la
+    décision humaine soit prise en amont, sur la base d'informations récentes, traçables et vérifiables.
+  </div>
+
+  <h3>Phrase de cadrage</h3>
+  <div class="quote">
+    « Les couloirs de transhumance ont été délimités une fois. Les champs, eux, changent chaque saison.
+    Le conflit ne naît pas d'une carte absente, il naît d'une carte périmée. »
+  </div>
+
+  <h3>Défi revendiqué</h3>
+  <p>
+    Le projet est présenté au titre de la <strong>résilience climatique</strong>. La transhumance est une
+    stratégie d'adaptation à la variabilité des ressources en eau et en pâturage ; lorsque les itinéraires qui
+    la rendent possible se ferment, c'est une capacité d'adaptation qui se ferme avec eux. Le défi secondaire
+    est l'<strong>agriculture et la sécurité alimentaire</strong> : le même outil rend visible, pour les
+    cultivateurs comme pour les éleveurs, quelles portions du territoire sont devenues incompatibles avec
+    l'usage prévu.
+  </p>
+
+  <h3>Utilisateur principal</h3>
+  <p>
+    <strong>Moussa Gounou</strong>, agent d'élevage de la mairie de Banikoara (Alibori). C'est lui qui reçoit
+    la carte de friction avant la saison, qui va vérifier sur le terrain — souvent hors réseau — et qui
+    confirme ou invalide chaque détection depuis son téléphone. Le comité communal de transhumance arbitre
+    ensuite sur la base de ce qu'il a validé. Les représentants d'éleveurs sont les destinataires du message
+    vocal en fulfulde. Le chapitre 3 détaille ce parcours de bout en bout.
+  </p>
+
+  <div class="box">
+    <div class="t">Position du produit</div>
+    Terra Sentinelle n'est pas un outil de prédiction. C'est un <strong>instrument d'actualisation de la
+    connaissance du territoire</strong>, dont le produit final n'est pas une carte mais une décision de comité
+    prise avant la saison, datée, motivée et diffusée à ceux qu'elle concerne.
+  </div>
+
+  <div class="pfoot"><span>Terra Sentinelle — Note de conception technique</span><span>3</span></div>
+</div>
+
+<!-- ============ PAGE 4 : §2 LE PROBLÈME ============ -->
+<div class="page">
+  <div class="phead"><span>2 · Le problème</span><span>Page 4</span></div>
+  <h2><span class="num">2</span>Le problème</h2>
+  <div class="rule"></div>
+
+  <p>
+    Dans les communes du nord du Bénin — Alibori, Borgou, Atacora — l'élevage transhumant et l'agriculture
+    de saison partagent le même espace. Les troupeaux se déplacent selon la disponibilité de l'eau et du
+    pâturage ; les cultivateurs étendent ou déplacent leurs parcelles selon les pluies, les prix et la
+    fertilité des sols. Ces deux usages ne sont pas incompatibles par nature : ils le deviennent quand ils se
+    rencontrent au même endroit, au même moment, sans que personne ne l'ait vu venir.
+  </p>
+  <p>
+    L'incident typique est connu : un troupeau emprunte un itinéraire qu'il utilise depuis des années et
+    traverse une parcelle mise en culture depuis la saison précédente. Les cultures sont endommagées, la
+    responsabilité est disputée, la médiation s'installe — parfois elle échoue. Le coût humain et économique
+    de ces épisodes dans le nord du Bénin est <em>à documenter</em> à partir des sources officielles ; nous
+    ne citerons pas ici de chiffre que nous ne pourrions pas sourcer.
+  </p>
+
+  <h3>Ce n'est pas un problème de carte manquante</h3>
+  <p>
+    Le réflexe courant consiste à dire qu'il faudrait « cartographier les couloirs ». C'est un contresens sur
+    la situation réelle : <strong>les couloirs ont été délimités</strong>. Des processus de délimitation ont
+    eu lieu, avec des balises, des procès-verbaux, des accords locaux. Le problème n'est pas l'absence de
+    carte, c'est son <strong>obsolescence</strong>.
+  </p>
+  <p>
+    La délimitation est un acte administratif : elle a lieu une fois, à une date donnée, et produit un objet
+    stable. L'occupation du sol, elle, est un processus continu : chaque saison agricole, des parcelles
+    apparaissent, d'autres sont abandonnées, des fronts de culture avancent de quelques centaines de mètres.
+    Au bout de quelques saisons, la carte officielle décrit un territoire qui n'existe plus tel quel, alors
+    qu'elle continue de servir de référence aux décisions. L'écart entre les deux n'est visible par personne,
+    parce que personne n'a les moyens de le mesurer chaque année sur l'ensemble d'un linéaire communal.
+  </p>
+
+  <div class="quote">
+    « Les couloirs de transhumance ont été délimités une fois. Les champs, eux, changent chaque saison.
+    Le conflit ne naît pas d'une carte absente, il naît d'une carte périmée. »
+  </div>
+
+  <h3>Pourquoi l'écart n'est pas mesuré aujourd'hui</h3>
+  <ul>
+    <li><strong>Coût du relevé terrain.</strong> Vérifier plusieurs dizaines de kilomètres de couloir à pied ou
+      à moto, chaque année, avant la saison, dépasse les moyens ordinaires d'un service communal d'élevage.</li>
+    <li><strong>Fenêtre de décision étroite.</strong> L'information n'est utile que si elle arrive
+      <em>avant</em> le passage des troupeaux ; constatée pendant, elle ne sert plus qu'au contentieux.</li>
+    <li><strong>Dispersion des données.</strong> Les limites administratives, les points d'eau, les villages,
+      les suivis de mouvements existent, mais dans des jeux séparés, à des dates différentes, sans emprise de
+      couloir exploitable qui les relie (voir chapitre 7).</li>
+    <li><strong>Absence de produit de décision.</strong> Même lorsqu'une information existe, elle n'est pas
+      mise en forme pour le seul organe qui peut en faire quelque chose : le comité communal de transhumance.</li>
+  </ul>
+
+  <h3>Le déplacement que propose Terra Sentinelle</h3>
+  <p>
+    Le satellite observe déjà le territoire tous les cinq jours environ, gratuitement, depuis 2015. La
+    question n'est donc plus l'acquisition de l'information mais sa <strong>mise en décision</strong> :
+    transformer un flux d'images en un petit nombre de portions de couloir à examiner, hiérarchisées par
+    gravité et accompagnées d'un niveau de confiance explicite, remis à un comité qui se réunit avant la
+    saison. Le produit visé n'est pas une carte de plus, c'est une <strong>liste courte de décisions à
+    prendre</strong>, vérifiable sur le terrain et traçable ensuite.
+  </p>
+
+  <div class="pfoot"><span>Terra Sentinelle — Note de conception technique</span><span>4</span></div>
+</div>
+
+<!-- ============ PAGE 5 : §3 UTILISATEURS ET PARCOURS ============ -->
+<div class="page">
+  <div class="phead"><span>3 · Utilisateurs et parcours</span><span>Page 5</span></div>
+  <h2><span class="num">3</span>Utilisateurs et parcours</h2>
+  <div class="rule"></div>
+
+  <p>
+    Le système a un utilisateur principal, nommé et unique, et deux cercles d'utilisateurs secondaires. Cette
+    hiérarchie est un choix de conception : l'interface est optimisée pour le premier, et non pour une
+    moyenne d'utilisateurs abstraits.
+  </p>
+
+  <table>
+    <thead><tr><th style="width:34mm;">Acteur</th><th style="width:30mm;">Rôle</th><th>Ce qu'il attend du système</th><th style="width:26mm;">Interface</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Moussa Gounou</strong><br>agent d'élevage, mairie de Banikoara</td><td>Utilisateur principal — vérification terrain</td><td>Une liste courte et ordonnée de portions à aller voir, utilisable hors réseau, et un moyen simple de dire « c'est vrai », « c'est faux », « ce n'est pas tout à fait ça ».</td><td>Application terrain (mobile, hors connexion)</td></tr>
+      <tr><td><strong>Comité communal de transhumance</strong></td><td>Décideur</td><td>Une situation actualisée et datée, portion par portion, avec ce qui est confirmé et ce qui ne l'est pas, pour arbitrer entre maintien, ajustement et contournement.</td><td>Interface web de séance</td></tr>
+      <tr><td><strong>Représentants d'éleveurs</strong></td><td>Destinataires de la décision</td><td>Savoir, avant de partir, ce qui a été décidé sur leur itinéraire, dans leur langue.</td><td>Message vocal en fulfulde</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Parcours complet, de la détection satellite à la diffusion vocale</h3>
+
+  <p><span class="stepnum">1. Avant la saison — passage satellite et détection.</span>
+    La chaîne satellite (chapitre 5) produit un état d'occupation du sol sur la bande du couloir et sa zone
+    tampon. Le croisement avec l'emprise donne un ensemble de <em>zones de friction</em> : chacune porte une
+    gravité de 1 à 5, une confiance de 0 à 1, une surface en hectares, une date de détection, le capteur
+    d'origine et la version du modèle. Leur statut initial est <span class="mono">pending</span>.</p>
+
+  <p><span class="stepnum">2. Préparation de la tournée.</span>
+    Moussa ouvre l'application et voit les zones triées par gravité décroissante, rattachées à un segment de
+    couloir. Il télécharge la zone de travail — fond de carte, emprise, détections — pendant qu'il a encore
+    du réseau au chef-lieu.</p>
+
+  <p><span class="stepnum">3. Sur le terrain, hors connexion.</span>
+    Devant une détection, il constate ce qui existe réellement : une parcelle en culture, une jachère, une
+    erreur du modèle sur un sol nu, ou une emprise mal placée. Il enregistre une observation :
+    <span class="mono">confirmed</span>, <span class="mono">corrected</span> (avec correction de la géométrie
+    ou de la gravité) ou <span class="mono">invalidated</span>, avec une note et, si utile, une photo. Tout
+    est stocké localement ; rien n'exige de réseau.</p>
+
+  <p><span class="stepnum">4. Retour du réseau — synchronisation.</span>
+    Les observations partent en lot vers <span class="mono">POST /observations</span>. Le serveur répond ce
+    qu'il a accepté, ce qu'il a rejeté et l'horodatage de synchronisation. Les détections changent de statut
+    et deviennent des faits vérifiés, avec le nom de l'agent et la date de collecte attachés.</p>
+
+  <p><span class="stepnum">5. Séance du comité.</span>
+    Le lendemain, le comité communal ouvre l'interface web. Il voit le linéaire du couloir, les zones
+    confirmées en gravité forte, celles qui restent incertaines — affichées comme telles — et, pour les
+    portions bloquantes, jusqu'à trois itinéraires alternatifs calculés avec leur distance, leur coût et les
+    contraintes rencontrées (chapitre 6). Pour chaque segment, il décide : <strong>maintien</strong>,
+    <strong>ajustement</strong> ou <strong>contournement</strong>. La décision est enregistrée avec son
+    auteur collectif, sa date et sa note.</p>
+
+  <p><span class="stepnum">6. Diffusion.</span>
+    Chaque décision donne lieu à un message vocal en <strong>fulfulde</strong>, la langue des communautés
+    d'éleveurs concernées, accompagné de sa transcription française pour l'archive communale. Le canal de
+    diffusion effectif — radio locale, messagerie, relais des représentants — relève de l'organisation
+    communale et n'est pas imposé par l'outil.</p>
+
+  <div class="box">
+    <div class="t">Principe de parcours</div>
+    L'information ne devient jamais une décision sans passer par un humain qui l'a vue sur le terrain, puis
+    par un organe collectif qui l'a arbitrée. Le satellite ouvre le dossier ; il ne le referme pas.
+  </div>
+
+  <div class="pfoot"><span>Terra Sentinelle — Note de conception technique</span><span>5</span></div>
+</div>
+
+<!-- ============ PAGE 6 : §4 ARCHITECTURE ============ -->
+<div class="page">
+  <div class="phead"><span>4 · Architecture</span><span>Page 6</span></div>
+  <h2><span class="num">4</span>Architecture</h2>
+  <div class="rule"></div>
+
+  <p>
+    L'architecture tient en trois blocs faiblement couplés, reliés par un unique contrat d'API en GeoJSON.
+    Ce découpage est délibéré : la chaîne satellite est un traitement par lots, lent et périodique ; l'API et
+    le moteur de décision sont un service permanent et léger ; les interfaces doivent pouvoir fonctionner
+    sans le reste, notamment hors connexion.
+  </p>
+
+  <svg viewBox="0 0 700 258" role="img" aria-label="Architecture en trois blocs">
+    <defs>
+      <marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+        <path d="M0,0 L7,3 L0,6 z" fill="#1a7a52"/>
+      </marker>
+    </defs>
+    <!-- Bloc A -->
+    <rect x="2" y="16" width="212" height="228" rx="8" fill="#f4f8f6" stroke="#cfe0d7"/>
+    <rect x="2" y="16" width="212" height="22" rx="8" fill="#1a7a52"/>
+    <rect x="2" y="30" width="212" height="8" fill="#1a7a52"/>
+    <text x="14" y="31" fill="#fff" font-size="12" font-family="Liberation Sans, Arial" font-weight="bold">A · Chaîne satellite (lots)</text>
+    <g font-size="11" font-family="Liberation Sans, Arial" fill="#1c231f">
+      <rect x="16" y="50" width="184" height="26" rx="5" fill="#fff" stroke="#cfe0d7"/><text x="26" y="67">Sentinel-2 (10 m) · Sentinel-1 (radar)</text>
+      <rect x="16" y="84" width="184" height="26" rx="5" fill="#fff" stroke="#cfe0d7"/><text x="26" y="101">Composite médian + masque nuages</text>
+      <rect x="16" y="118" width="184" height="26" rx="5" fill="#fff" stroke="#cfe0d7"/><text x="26" y="135">A priori Dynamic World V1</text>
+      <rect x="16" y="152" width="184" height="26" rx="5" fill="#fff" stroke="#cfe0d7"/><text x="26" y="169">Classifieur adapté localement</text>
+      <rect x="16" y="186" width="184" height="26" rx="5" fill="#fff" stroke="#1a7a52"/><text x="26" y="203">Croisement × emprise du couloir</text>
+      <text x="16" y="230" font-size="10" fill="#6f7d76">Sortie : polygones de friction datés,</text>
+      <text x="16" y="241" font-size="10" fill="#6f7d76">gravité + confiance + source</text>
+    </g>
+    <!-- Bloc B -->
+    <rect x="244" y="16" width="212" height="228" rx="8" fill="#f4f8f6" stroke="#cfe0d7"/>
+    <rect x="244" y="16" width="212" height="22" rx="8" fill="#1a7a52"/>
+    <rect x="244" y="30" width="212" height="8" fill="#1a7a52"/>
+    <text x="256" y="31" fill="#fff" font-size="12" font-family="Liberation Sans, Arial" font-weight="bold">B · API &amp; moteur de décision</text>
+    <g font-size="11" font-family="Liberation Sans, Arial" fill="#1c231f">
+      <rect x="258" y="50" width="184" height="26" rx="5" fill="#fff" stroke="#cfe0d7"/><text x="268" y="67">API REST GeoJSON (EPSG:4326)</text>
+      <rect x="258" y="84" width="184" height="26" rx="5" fill="#fff" stroke="#cfe0d7"/><text x="268" y="101">Entrepôt géo + journal de validation</text>
+      <rect x="258" y="118" width="184" height="26" rx="5" fill="#fff" stroke="#cfe0d7"/><text x="268" y="135">Moteur de friction (gravité, conf.)</text>
+      <rect x="258" y="152" width="184" height="26" rx="5" fill="#fff" stroke="#cfe0d7"/><text x="268" y="169">Surface de coût + 3 itinéraires</text>
+      <rect x="258" y="186" width="184" height="26" rx="5" fill="#fff" stroke="#cfe0d7"/><text x="268" y="203">Décisions du comité + diffusion</text>
+      <text x="258" y="230" font-size="10" fill="#6f7d76">Sortie : produit de décision traçable,</text>
+      <text x="258" y="241" font-size="10" fill="#6f7d76">réversible et horodaté</text>
+    </g>
+    <!-- Bloc C -->
+    <rect x="486" y="16" width="212" height="228" rx="8" fill="#f4f8f6" stroke="#cfe0d7"/>
+    <rect x="486" y="16" width="212" height="22" rx="8" fill="#1a7a52"/>
+    <rect x="486" y="30" width="212" height="8" fill="#1a7a52"/>
+    <text x="498" y="31" fill="#fff" font-size="12" font-family="Liberation Sans, Arial" font-weight="bold">C · Interfaces web &amp; terrain</text>
+    <g font-size="11" font-family="Liberation Sans, Arial" fill="#1c231f">
+      <rect x="500" y="50" width="184" height="26" rx="5" fill="#fff" stroke="#cfe0d7"/><text x="510" y="67">Web comité (carte + séance)</text>
+      <rect x="500" y="84" width="184" height="26" rx="5" fill="#fff" stroke="#cfe0d7"/><text x="510" y="101">App terrain hors connexion</text>
+      <rect x="500" y="118" width="184" height="26" rx="5" fill="#fff" stroke="#cfe0d7"/><text x="510" y="135">File de synchronisation par lots</text>
+      <rect x="500" y="152" width="184" height="26" rx="5" fill="#fff" stroke="#cfe0d7"/><text x="510" y="169">Message vocal fulfulde + transcript</text>
+      <rect x="500" y="186" width="184" height="26" rx="5" fill="#fff" stroke="#cfe0d7"/><text x="510" y="203">Accès par rôle (voir chapitre 9)</text>
+      <text x="500" y="230" font-size="10" fill="#6f7d76">Sortie : décision diffusée aux</text>
+      <text x="500" y="241" font-size="10" fill="#6f7d76">représentants d'éleveurs</text>
+    </g>
+    <!-- flèches -->
+    <line x1="216" y1="120" x2="240" y2="120" stroke="#1a7a52" stroke-width="1.6" marker-end="url(#ar)"/>
+    <line x1="458" y1="106" x2="482" y2="106" stroke="#1a7a52" stroke-width="1.6" marker-end="url(#ar)"/>
+    <line x1="482" y1="140" x2="458" y2="140" stroke="#1a7a52" stroke-width="1.6" marker-end="url(#ar)" stroke-dasharray="4 3"/>
+    <text x="463" y="160" font-size="9" fill="#6f7d76" font-family="Liberation Sans, Arial">validations</text>
+  </svg>
+  <div class="cap">Figure 1 — Les trois blocs et le sens des échanges. Le retour en pointillés est la remontée des validations terrain, qui modifie l'état conservé par le bloc B.</div>
+
+  <h3>Schéma de données et champs de traçabilité</h3>
+  <p>
+    Toutes les réponses géographiques sont du GeoJSON valide en EPSG:4326 (lon/lat). L'objet central est la
+    <strong>zone de friction</strong> : un polygone rattaché à un segment de couloir
+    (<span class="mono">corridor_segment_id</span>) et porteur des quatre attributs de traçabilité exigés au
+    chapitre 9 de la spécification.
+  </p>
+  <table>
+    <thead><tr><th style="width:38mm;">Champ</th><th style="width:34mm;">Valeurs</th><th>Rôle dans la traçabilité</th></tr></thead>
+    <tbody>
+      <tr><td class="m">source</td><td class="m">sentinel-2 | sentinel-1 | terrain</td><td>D'où vient l'information. Une donnée d'origine terrain prime sur une donnée satellite en cas de désaccord.</td></tr>
+      <tr><td class="m">detected_on</td><td class="m">date ISO</td><td>Date de collecte. Une détection ancienne est affichée comme ancienne : l'obsolescence est le problème même que traite le projet.</td></tr>
+      <tr><td class="m">confidence</td><td class="m">0 … 1</td><td>Niveau de confiance du modèle ou de l'observation. Sous un seuil, la zone s'affiche en trait pointillé et ne peut pas être présentée comme un fait.</td></tr>
+      <tr><td class="m">status</td><td class="m">pending | confirmed | corrected | invalidated</td><td>Statut de validation humaine. C'est lui qui distingue une hypothèse d'un constat.</td></tr>
+      <tr><td class="m">severity</td><td class="m">1 … 5</td><td>Gravité de la contrainte pour le passage (chapitre 6).</td></tr>
+      <tr><td class="m">model_version</td><td class="m">chaîne</td><td>Version du modèle ayant produit la détection, pour pouvoir rejouer et comparer.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="pfoot"><span>Terra Sentinelle — Note de conception technique</span><span>6</span></div>
+</div>
+
+<!-- ============ PAGE 7 : §4 API + §5 début ============ -->
+<div class="page">
+  <div class="phead"><span>4 · Architecture — contrat d'API</span><span>Page 7</span></div>
+  <h3 style="margin-top:0;">Contrat d'API</h3>
+  <p class="small">
+    Le frontend et le backend s'y tiennent strictement ; base <span class="mono">http://localhost:8000/api</span>
+    en développement, CORS ouvert sur <span class="mono">localhost:5173</span>.
+  </p>
+  <table>
+    <thead><tr><th style="width:56mm;">Route</th><th>Réponse / corps</th><th style="width:38mm;">Usage</th></tr></thead>
+    <tbody>
+      <tr><td class="m">GET /commune</td><td class="m">{id, name, department, center:[lon,lat], bbox:[w,s,e,n]}</td><td>Cadrage initial de la carte.</td></tr>
+      <tr><td class="m">GET /corridor</td><td class="m">FeatureCollection — LineString (axe) + Polygon (emprise) ; properties {id, name, width_m, source, delimited_on, official:false}</td><td>Emprise du couloir. Le champ <span class="mono">official:false</span> est structurel, pas décoratif.</td></tr>
+      <tr><td class="m">GET /layers/{kind}</td><td class="m">FeatureCollection ; kind ∈ villages | water_points | pastures | parcels</td><td>Couches de contexte pour la lecture et le coût.</td></tr>
+      <tr><td class="m">GET /friction?season=2026</td><td class="m">FeatureCollection ; properties {id, severity 1..5, confidence 0..1, area_ha, detected_on, source, model_version, status, corridor_segment_id, note}</td><td>Carte de friction de la saison.</td></tr>
+      <tr><td class="m">POST /friction/{id}/validate</td><td class="m">body {status, note, agent} → feature mis à jour</td><td>Validation terrain d'une détection.</td></tr>
+      <tr><td class="m">GET /routes?from=&amp;to=</td><td class="m">{alternatives:[{id, geometry, distance_km, cost, constraints[], uncertain_segments[[idx,idx]], data_used[]}]}</td><td>Trois itinéraires alternatifs, avec segments incertains explicités.</td></tr>
+      <tr><td class="m">POST /observations</td><td class="m">body {batch:[…]} → {accepted, rejected, synced_at}</td><td>Synchronisation des relevés hors connexion.</td></tr>
+      <tr><td class="m">GET /decisions</td><td class="m">[{id, corridor_segment_id, decision: maintien | ajustement | contournement, committee, decided_on, broadcast:{lang:"ff", duration_s, transcript_fr}}]</td><td>Historique des décisions et de leur diffusion.</td></tr>
+      <tr><td class="m">POST /decisions</td><td class="m">body {corridor_segment_id, decision, committee, note}</td><td>Enregistrement d'une décision de séance.</td></tr>
+      <tr><td class="m">GET /stats</td><td class="m">{friction_total, confirmed, pending, invalidated, km_corridor, last_pass:{date, sensor, cloud_pct}, model:{f1, precision, recall, tested_on}}</td><td>Tableau de bord. <span class="mono">last_pass</span> expose la fraîcheur réelle de l'observation.</td></tr>
+    </tbody>
+  </table>
+  <p class="small" style="margin-bottom:6mm;">
+    Deux éléments de ce contrat méritent d'être relevés : <span class="mono">last_pass.cloud_pct</span>, qui
+    rend visible la couverture nuageuse du dernier passage utilisable, et
+    <span class="mono">uncertain_segments</span>, qui oblige tout itinéraire proposé à déclarer les portions
+    sur lesquelles les données ne permettent pas de conclure.
+  </p>
+
+  <h2 style="margin-top:8mm;"><span class="num">5</span>Chaîne satellite et choix techniques</h2>
+  <div class="rule"></div>
+  <p>
+    C'est le cœur technique du projet. L'objectif de la chaîne n'est pas de produire la meilleure carte
+    d'occupation du sol possible, mais de produire, <strong>avant chaque saison et de façon reproductible</strong>,
+    un état de l'occupation du sol suffisamment fiable sur une bande étroite — l'emprise du couloir et sa zone
+    tampon — pour qu'un agent communal sache où aller vérifier en priorité.
+  </p>
+
+  <h3>Capteurs retenus</h3>
+  <p>
+    <strong>Sentinel-2</strong> (optique, 10 m dans le visible et le proche infrarouge, revisite d'environ
+    cinq jours avec les deux satellites) constitue la source principale. La résolution de 10 m est la limite
+    basse acceptable pour l'agriculture de la région : elle permet de voir une parcelle de quelques hectares,
+    pas de délimiter proprement un champ de moins d'un demi-hectare. <strong>Sentinel-1</strong> (radar en
+    bande C, imagerie active) fournit la source complémentaire indispensable, pour une raison qui n'est pas
+    un détail d'ingénierie mais une contrainte climatique structurante, exposée ci-après.
+  </p>
+
+  <div class="pfoot"><span>Terra Sentinelle — Note de conception technique</span><span>7</span></div>
+</div>
+
+<!-- ============ PAGE 8 : §5 NUAGES + PARADE + FIGURE ============ -->
+<div class="page">
+  <div class="phead"><span>5 · Chaîne satellite et choix techniques</span><span>Page 8</span></div>
+  <h3 style="margin-top:0;">Le problème des nuages, et pourquoi il n'est pas contournable</h3>
+  <p>
+    Dans le nord du Bénin, la saison de culture <strong>est</strong> la saison des pluies. Ce n'est pas une
+    coïncidence gênante, c'est la définition même du calendrier agricole soudano-sahélien : on sème quand il
+    pleut. Or c'est exactement pendant cette période que le signal optique est le moins disponible, parce que
+    la couverture nuageuse est maximale. Autrement dit, <strong>le moment où l'information a le plus de
+    valeur est celui où le capteur principal voit le moins</strong>.
+  </p>
+  <p>
+    Une chaîne naïve qui prendrait « la dernière image Sentinel-2 disponible » échouerait de deux manières :
+    soit elle renverrait une image en grande partie masquée, soit elle renverrait une image de saison sèche
+    et décrirait un territoire qui n'est pas celui de la saison de culture. Dans les deux cas, la carte
+    produite serait fausse au moment précis où le comité en a besoin.
+  </p>
+
+  <h4>La parade retenue</h4>
+  <p>
+    Deux mécanismes complémentaires, l'un optique, l'autre radar.
+  </p>
+  <ul>
+    <li><strong>Composite médian Sentinel-2 avec masquage des nuages.</strong> Sur une fenêtre temporelle de
+      plusieurs semaines, chaque pixel est d'abord filtré (nuages, ombres de nuages et cirrus écartés à
+      partir des masques de qualité fournis avec le produit), puis on retient la <em>médiane</em> des valeurs
+      valides restantes. La médiane, et non la moyenne, parce qu'elle résiste aux valeurs extrêmes laissées
+      par un masquage imparfait : un résidu de nuage brillant ou une ombre trop sombre sont écartés par la
+      statistique elle-même. Le résultat est une image de synthèse sans nuage, représentative de la période,
+      qui n'a jamais existé telle quelle un jour donné — et c'est acceptable, puisqu'on cherche l'état d'une
+      saison, pas d'une date.</li>
+    <li><strong>Sentinel-1 en appoint pendant la saison humide.</strong> Le radar en bande C traverse la
+      couverture nuageuse : il fournit une observation là où l'optique est aveugle. Le signal rétrodiffusé
+      réagit à la rugosité et à l'humidité de surface, ce qui permet de distinguer un couvert cultivé d'un
+      sol nu ou d'une surface en eau, et fournit une confirmation indépendante des détections optiques.</li>
+  </ul>
+
+  <div class="box">
+    <div class="t">Pourquoi ce choix est pertinent, et non simplement complexe</div>
+    On pourrait objecter que combiner deux capteurs alourdit la chaîne. C'est l'inverse : c'est la seule
+    combinaison qui rend le produit <strong>disponible à la date où la décision se prend</strong>. Un système
+    qui ne fonctionnerait qu'en saison sèche serait techniquement plus simple et opérationnellement inutile.
+    Le composite médian et l'appoint radar ne sont pas des raffinements, ce sont les conditions de la
+    disponibilité. Et cette complexité est bornée : elle reste un prétraitement standard, exécuté une fois
+    par saison, sans architecture distribuée ni infrastructure lourde.
+  </div>
+
+  <h3>Chaîne de traitement</h3>
+  <svg viewBox="0 0 700 118" role="img" aria-label="Chaîne de traitement satellite">
+    <defs>
+      <marker id="ar2" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+        <path d="M0,0 L7,3 L0,6 z" fill="#1a7a52"/>
+      </marker>
+    </defs>
+    <g font-family="Liberation Sans, Arial" font-size="10.5" fill="#1c231f">
+      <rect x="2" y="30" width="96" height="44" rx="6" fill="#fff" stroke="#1a7a52"/>
+      <text x="14" y="49">Sentinel-2</text><text x="14" y="63" font-size="9" fill="#6f7d76">optique 10 m</text>
+      <rect x="2" y="82" width="96" height="32" rx="6" fill="#fff" stroke="#1a7a52" stroke-dasharray="4 3"/>
+      <text x="14" y="96">Sentinel-1</text><text x="14" y="108" font-size="9" fill="#6f7d76">radar, saison humide</text>
+
+      <rect x="118" y="30" width="104" height="44" rx="6" fill="#f4f8f6" stroke="#cfe0d7"/>
+      <text x="128" y="49">Masquage</text><text x="128" y="63" font-size="9" fill="#6f7d76">nuages, ombres, cirrus</text>
+
+      <rect x="242" y="30" width="104" height="44" rx="6" fill="#f4f8f6" stroke="#cfe0d7"/>
+      <text x="252" y="49">Composite</text><text x="252" y="63" font-size="9" fill="#6f7d76">médian saisonnier</text>
+
+      <rect x="366" y="24" width="112" height="56" rx="6" fill="#f4f8f6" stroke="#cfe0d7"/>
+      <text x="376" y="43">Classification</text><text x="376" y="57" font-size="9" fill="#6f7d76">a priori Dynamic World</text>
+      <text x="376" y="69" font-size="9" fill="#6f7d76">+ adaptation locale</text>
+
+      <rect x="498" y="24" width="96" height="56" rx="6" fill="#f4f8f6" stroke="#1a7a52"/>
+      <text x="508" y="43">Croisement</text><text x="508" y="57" font-size="9" fill="#6f7d76">emprise couloir</text>
+      <text x="508" y="69" font-size="9" fill="#6f7d76">+ zone tampon</text>
+
+      <rect x="614" y="24" width="84" height="56" rx="6" fill="#1a7a52"/>
+      <text x="624" y="43" fill="#fff">Friction</text><text x="624" y="57" font-size="9" fill="#e6f2ec">gravité</text>
+      <text x="624" y="69" font-size="9" fill="#e6f2ec">+ confiance</text>
+
+      <line x1="100" y1="52" x2="114" y2="52" stroke="#1a7a52" stroke-width="1.5" marker-end="url(#ar2)"/>
+      <path d="M100,98 L108,98 L108,60 L114,60" fill="none" stroke="#1a7a52" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#ar2)"/>
+      <line x1="224" y1="52" x2="238" y2="52" stroke="#1a7a52" stroke-width="1.5" marker-end="url(#ar2)"/>
+      <line x1="348" y1="52" x2="362" y2="52" stroke="#1a7a52" stroke-width="1.5" marker-end="url(#ar2)"/>
+      <line x1="480" y1="52" x2="494" y2="52" stroke="#1a7a52" stroke-width="1.5" marker-end="url(#ar2)"/>
+      <line x1="596" y1="52" x2="610" y2="52" stroke="#1a7a52" stroke-width="1.5" marker-end="url(#ar2)"/>
+      <text x="2" y="14" font-size="9" fill="#6f7d76">Acquisition</text>
+      <text x="242" y="14" font-size="9" fill="#6f7d76">Prétraitement saisonnier</text>
+      <text x="498" y="14" font-size="9" fill="#6f7d76">Produit de décision</text>
+    </g>
+  </svg>
+  <div class="cap">Figure 2 — De l'acquisition au produit de décision. Le trajet en pointillés est la voie radar, activée lorsque la couverture nuageuse rend le composite optique insuffisant.</div>
+
+  <div class="pfoot"><span>Terra Sentinelle — Note de conception technique</span><span>8</span></div>
+</div>
+
+<!-- ============ PAGE 9 : §5 DYNAMIC WORLD + §6 début ============ -->
+<div class="page">
+  <div class="phead"><span>5 · Chaîne satellite — occupation du sol</span><span>Page 9</span></div>
+  <h3 style="margin-top:0;">Dynamic World V1 comme a priori d'occupation du sol</h3>
+  <p>
+    Dynamic World V1 fournit une occupation du sol à 10 m, quasi en temps réel, avec une classe
+    <span class="mono">crops</span> accompagnée de probabilités par classe. C'est le point de départ naturel :
+    il couvre la zone, il est libre, il est mis à jour au fil des acquisitions Sentinel-2, et il livre une
+    probabilité plutôt qu'une simple étiquette — ce qui alimente directement notre notion de confiance.
+  </p>
+  <p>
+    Mais un a priori global reste un a priori. Les cartes d'occupation du sol produites à l'échelle mondiale
+    <strong>sous-performent sur l'agriculture subsaharienne</strong>, pour des raisons structurelles et bien
+    identifiées :
+  </p>
+  <ul>
+    <li><strong>La taille des parcelles.</strong> Une exploitation familiale se compte souvent en fractions
+      d'hectare. À 10 m de résolution, une part importante des pixels d'une petite parcelle sont des pixels
+      de bordure, mélangeant culture, végétation spontanée et sol nu. Le classifieur global, entraîné sur des
+      motifs agricoles majoritairement plus grands et plus réguliers, perd ces parcelles.</li>
+    <li><strong>Les cultures associées.</strong> Cultiver plusieurs espèces sur la même parcelle, ou sous un
+      couvert d'arbres utiles, est une pratique répandue. La signature spectrale qui en résulte ne ressemble
+      ni à un champ « propre » ni à une formation naturelle : elle tombe entre les classes.</li>
+    <li><strong>Le calendrier cultural et la jachère.</strong> Une parcelle en jachère d'un an reste
+      juridiquement et socialement un champ, tout en ressemblant spectralement à une savane. L'inverse est
+      vrai en début de saison, où un champ récemment préparé se confond avec un sol nu.</li>
+  </ul>
+  <p>
+    Nous partons donc de Dynamic World comme a priori, nous l'<strong>adaptons localement</strong> — par
+    ajustement des seuils de probabilité sur la zone, par exploitation de la dynamique temporelle du
+    composite saisonnier et par l'apport indépendant du radar — et, ce qui compte autant,
+    <strong>nous mesurons l'écart</strong> entre l'a priori global et le résultat adapté, sur les tuiles de
+    test et sur les validations terrain. Cet écart est une information en soi : il indique où la carte
+    globale se trompe systématiquement, donc où la vérification humaine doit porter en priorité.
+  </p>
+
+  <div class="box">
+    <div class="t">Pourquoi ne pas utiliser Dynamic World tel quel ?</div>
+    Parce que, tel quel, il répond à une autre question. Dynamic World dit « ce pixel ressemble à une
+    culture ». Le comité communal a besoin de savoir « cette portion de couloir est-elle devenue impraticable
+    et avec quel degré de certitude ». Entre les deux, il y a le croisement avec l'emprise, la segmentation
+    en portions décidables, la gravité, la confiance, la vérification terrain et la mise en forme pour une
+    séance. <strong>Notre contribution n'est pas le classifieur : c'est le croisement avec l'emprise du
+    couloir et le produit de décision remis au comité avant la saison.</strong> Le classifieur est un moyen,
+    remplaçable ; le produit de décision est la fin, et il n'existe nulle part aujourd'hui.
+  </div>
+
+  <h2 style="margin-top:7mm;"><span class="num">6</span>Moteur de friction et d'itinéraire</h2>
+  <div class="rule"></div>
+  <h3 style="margin-top:0;">De la détection à la carte de friction</h3>
+  <p>
+    Une détection brute est un ensemble de pixels classés « culture » à l'intérieur de l'emprise du couloir
+    ou de sa zone tampon. Elle devient une <em>zone de friction</em> après trois opérations : agrégation des
+    pixels en polygones et élimination des objets trop petits pour être décidables ; rattachement au segment
+    de couloir concerné ; attribution d'une gravité et d'une confiance.
+  </p>
+
+  <div class="pfoot"><span>Terra Sentinelle — Note de conception technique</span><span>9</span></div>
+</div>
+
+<!-- ============ PAGE 10 : §6 suite + §7 début ============ -->
+<div class="page">
+  <div class="phead"><span>6 · Moteur de friction et d'itinéraire</span><span>Page 10</span></div>
+  <h4 style="margin-top:0;">Gravité et confiance : deux axes indépendants</h4>
+  <p>
+    La <strong>gravité</strong> (1 à 5) répond à « si c'est vrai, à quel point cela contraint le passage ».
+    Elle combine la part de la largeur d'emprise effectivement occupée, la longueur de couloir affectée, la
+    présence d'un contournement immédiat et la proximité d'un point d'eau ou d'un village — un rétrécissement
+    à l'approche d'un point d'eau est plus grave qu'ailleurs, parce que c'est là que troupeaux et cultures se
+    concentrent. La <strong>confiance</strong> (0 à 1) répond à une tout autre question : « à quel point
+    sommes-nous sûrs que c'est vrai ». Elle agrège la probabilité du classifieur, la concordance
+    optique/radar, la qualité du composite (nombre d'observations valides, couverture nuageuse résiduelle) et
+    l'ancienneté de la détection.
+  </p>
+  <p>
+    Les deux ne se mélangent jamais en un score unique. Une zone grave et peu certaine doit être visitée en
+    priorité <em>parce qu'elle est incertaine</em> ; une zone grave et confirmée relève déjà de la décision.
+    Confondre les deux reviendrait à cacher ce que l'on ne sait pas derrière ce que l'on craint.
+  </p>
+
+  <h3>Surface de coût et itinéraires alternatifs</h3>
+  <p>
+    Pour proposer un contournement, la zone d'étude est convertie en une <strong>surface de coût</strong> :
+    une grille où chaque cellule porte le coût de la traverser. Le coût de base est faible dans l'emprise du
+    couloir, plus élevé hors emprise, très élevé sur les zones de friction confirmées de forte gravité,
+    prohibitif sur les obstacles physiques (cours d'eau sans passage, bâti). Deux termes correctifs y sont
+    ajoutés : une pénalité de proximité aux villages et aux parcelles cultivées hors couloir — contourner ne
+    doit pas consister à déplacer le problème chez le voisin — et une <strong>pénalité d'incertitude</strong>,
+    qui renchérit les cellules dont la confiance est faible.
+  </p>
+  <p>
+    Le calcul d'itinéraire est une recherche de chemin de moindre coût entre les deux extrémités du segment
+    concerné. Trois alternatives sont retournées, et non une seule : un itinéraire de moindre coût global, un
+    itinéraire de moindre distance et un itinéraire de moindre exposition (qui maximise l'évitement des zones
+    cultivées, quitte à rallonger). Chacune est décrite par sa distance, son coût, les contraintes
+    rencontrées et la liste des données utilisées. <strong>Le système ne recommande pas un itinéraire</strong> :
+    il présente trois options comparables et laisse l'arbitrage au comité, qui connaît des paramètres —
+    accords locaux, historique, relations entre villages — que le système ignore.
+  </p>
+
+  <h3>Propagation de l'incertitude jusqu'à l'affichage</h3>
+  <p>
+    L'incertitude n'est pas consommée par le calcul : elle le traverse. Chaque itinéraire retourne un champ
+    <span class="mono">uncertain_segments</span>, liste d'intervalles d'indices sur sa géométrie
+    correspondant aux portions qui empruntent des cellules de faible confiance. À l'affichage, ces portions
+    sont tracées <strong>en pointillés</strong>, et non en trait plein comme le reste. Le comité voit donc
+    littéralement où la proposition repose sur une information solide et où elle repose sur une hypothèse.
+    La même règle s'applique aux polygones de friction : contour plein si confirmé ou de confiance élevée,
+    contour pointillé sinon. C'est l'application directe du principe posé au chapitre 9 de la spécification :
+    l'incertitude s'affiche, elle ne se cache pas.
+  </p>
+
+  <h2 style="margin-top:7mm;"><span class="num">7</span>Données</h2>
+  <div class="rule"></div>
+  <table>
+    <thead><tr><th style="width:36mm;">Source</th><th style="width:38mm;">Nature</th><th style="width:24mm;">Résolution</th><th style="width:26mm;">Accès</th><th>Usage dans le projet</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Sentinel-2</strong></td><td>Imagerie optique multispectrale</td><td>10 m</td><td>Copernicus / Earth Engine — libre</td><td>Source principale de détection ; composite médian saisonnier.</td></tr>
+      <tr><td><strong>Sentinel-1</strong></td><td>Imagerie radar bande C</td><td>10 m</td><td>Copernicus / Earth Engine — libre</td><td>Observation en saison humide ; confirmation indépendante.</td></tr>
+      <tr><td><strong>Dynamic World V1</strong></td><td>Occupation du sol quasi temps réel, probabilités par classe</td><td>10 m</td><td>Earth Engine — libre</td><td>A priori d'occupation du sol ; classe <span class="mono">crops</span> ; référence de comparaison.</td></tr>
+      <tr><td><strong>ESA WorldCover v200</strong></td><td>Occupation du sol, 11 classes dont <span class="mono">cropland</span></td><td>10 m</td><td>ESA — libre</td><td>Seconde référence indépendante pour mesurer l'écart entre cartes globales.</td></tr>
+      <tr><td><strong>OpenStreetMap Bénin</strong></td><td>Réseau routier, hydrographie, bâti, lieux-dits</td><td>Vectoriel</td><td>Geofabrik — libre</td><td>Obstacles et pénalités de la surface de coût ; repères de terrain.</td></tr>
+      <tr><td><strong>Limites administratives</strong></td><td>Découpage commune / arrondissement</td><td>Vectoriel</td><td>HDX — libre</td><td>Cadrage de la zone, rattachement institutionnel des décisions.</td></tr>
+      <tr><td><strong>OIM TTT-DTM</strong></td><td>Suivi des mouvements de transhumance (points, pas de polygones)</td><td>Points</td><td>OIM — libre</td><td>Indication du couloir central et des flux ; aide à la reconstitution d'emprise.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="pfoot"><span>Terra Sentinelle — Note de conception technique</span><span>10</span></div>
+</div>
+
+<!-- ============ PAGE 11 : §7 ce qui manque + §8 + §9 ============ -->
+<div class="page">
+  <div class="phead"><span>7 · Données — 8 · Évaluation — 9 · Gouvernance</span><span>Page 11</span></div>
+  <h3 style="margin-top:0;">Ce qui manque</h3>
+  <p>
+    La donnée la plus nécessaire au projet est celle qui n'existe pas sous forme ouverte.
+  </p>
+  <ul>
+    <li><strong>Aucun jeu ouvert de polygones de couloirs de transhumance du Bénin.</strong> Les couloirs ont
+      été délimités, mais le résultat de ces délimitations n'est pas disponible sous forme de géométries
+      exploitables et publiques. Les suivis de type TTT-DTM donnent des <em>points</em> de passage, pas une
+      emprise.</li>
+    <li><strong>Le foncier existe, mais fermé.</strong> Le Plan foncier rural et l'e-Foncier de l'ANDF
+      constituent un actif réel — de l'ordre de <strong>460 000 parcelles sur 24 arrondissements de 12
+      communes</strong> — mais ces données ne sont pas ouvertes. Un déploiement réel passerait par une
+      convention avec l'ANDF et l'autorité communale, pas par un téléchargement.</li>
+  </ul>
+  <div class="box warn">
+    <div class="t">Conséquence directe pour ce prototype</div>
+    L'emprise de couloir utilisée dans la démonstration est <strong>reconstituée par l'équipe</strong> à
+    partir des sources ouvertes et des points de passage disponibles. Elle <strong>n'a aucune valeur
+    officielle</strong> et ne saurait être opposée à quiconque. Le contrat d'API porte ce fait dans les
+    données elles-mêmes, via la propriété <span class="mono">official:false</span> du couloir, et les
+    interfaces l'affichent. De même, les couches de démonstration sont synthétiques, quoique plausibles.
+  </div>
+
+  <h2 style="margin-top:6mm;"><span class="num">8</span>Évaluation</h2>
+  <div class="rule"></div>
+  <p>
+    L'évaluation se fait à deux niveaux, et le second compte davantage que le premier.
+  </p>
+  <p>
+    <strong>Niveau 1 — qualité du modèle.</strong> Précision, rappel et F1 sur la classe « culture »,
+    calculés sur des <strong>tuiles de test tenues à l'écart</strong> de l'entraînement, séparées
+    géographiquement et non par simple tirage aléatoire de pixels : des pixels voisins tirés au hasard se
+    ressemblent trop et produisent un score flatteur qui ne dit rien de la généralisation à une autre portion
+    de territoire. On y ajoute l'écart mesuré avec Dynamic World et WorldCover sur les mêmes tuiles, et la
+    proportion de détections invalidées par les agents après visite — qui est, à terme, la mesure de
+    précision la plus honnête dont nous disposerons.
+  </p>
+  <p>
+    <strong>Niveau 2 — le vrai test, qui n'est pas une métrique.</strong> La question à laquelle le projet
+    doit répondre est : <em>un comité communal a-t-il modifié une décision après avoir vu la carte ?</em> Un
+    modèle excellent dont la sortie n'a jamais changé une décision n'a produit aucun effet. Les indicateurs
+    correspondants sont sans ambiguïté : nombre de portions examinées en séance, nombre de décisions
+    d'ajustement ou de contournement prises avant la saison plutôt qu'après un incident, délai entre la
+    détection et la décision, et nombre de décisions effectivement diffusées aux représentants d'éleveurs.
+  </p>
+  <div class="box warn">
+    <div class="t">Statut des métriques affichées</div>
+    Les valeurs de <span class="mono">model:{f1, precision, recall, tested_on}</span> exposées par
+    <span class="mono">GET /stats</span> et affichées dans le prototype sont des <strong>valeurs de
+    démonstration</strong>. Aucun entraînement réel n'a encore eu lieu ; elles servent à valider la chaîne
+    d'affichage, pas à revendiquer une performance.
+  </div>
+
+  <div class="pfoot"><span>Terra Sentinelle — Note de conception technique</span><span>11</span></div>
+</div>
+
+<!-- ============ PAGE 12 : §9 + §10 + §11 ============ -->
+<div class="page">
+  <div class="phead"><span>9 · Gouvernance — 10 · Limites — 11 · Prototype</span><span>Page 12</span></div>
+  <h2 style="margin-top:0;"><span class="num">9</span>Gouvernance, éthique et risques</h2>
+  <div class="rule"></div>
+  <p class="small">
+    Une carte de l'occupation du sol dans une zone de tension foncière n'est pas un objet neutre. Les points
+    suivants ne sont pas des précautions de style : ce sont des conditions de mise en service.
+  </p>
+  <table>
+    <thead><tr><th style="width:44mm;">Point</th><th>Traitement retenu</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Accès par rôle</strong></td><td>Trois rôles distincts — agent communal, membre du comité, consultation publique — avec des vues différentes. Un agent valide des détections ; seul le comité enregistre une décision ; la vue publique ne donne accès ni aux géométries fines ni aux notes de terrain.</td></tr>
+      <tr><td><strong>Zones sensibles</strong></td><td>Certaines portions, identifiées comme litigieuses par le comité, sont <strong>invisibles hors du comité</strong>. Publier la localisation précise d'un litige foncier en cours revient à l'alimenter.</td></tr>
+      <tr><td><strong>Hébergement</strong></td><td>Les données de décision sont hébergées sous la responsabilité de <strong>l'autorité communale</strong>, qui en reste propriétaire. L'équipe technique n'est pas dépositaire des arbitrages d'un comité.</td></tr>
+      <tr><td><strong>Consentement</strong></td><td>Enregistrer une parcelle sans titre foncier — cas majoritaire — crée une trace qui peut servir contre son occupant. Toute saisie de parcelle suppose le consentement informé de la personne concernée, la possibilité d'enregistrer un usage sans nommer d'occupant, et la mention explicite qu'aucune inscription dans l'outil ne vaut reconnaissance ni extinction d'un droit.</td></tr>
+      <tr><td><strong>Risque de détournement</strong></td><td>Une carte de friction est, lue autrement, une carte des conflits fonciers potentiels : elle pourrait servir à cibler des exploitants ou à préparer un rapport de force. D'où la restriction d'accès, la rétention des zones sensibles, la journalisation des consultations et le principe selon lequel le produit diffusé largement est la <strong>décision du comité</strong>, non la carte brute.</td></tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin-top:6mm;"><span class="num">10</span>Limites</h2>
+  <div class="rule"></div>
+  <div class="quote" style="margin-top:0;">
+    « Terra Sentinelle ne prédit pas les conflits et ne délivre aucune autorisation de passage. »
+  </div>
+  <p class="small">
+    Au-delà de ce refus de principe, trois limites doivent être énoncées sans atténuation.
+  </p>
+  <p class="small">
+    <strong>Le système voit un champ, il ne voit pas un droit.</strong> La détection établit qu'une surface
+    est cultivée dans l'emprise d'un couloir. Elle ne dit pas <em>qui avait le droit d'être là</em> — or
+    c'est très précisément l'objet du conflit. Une image satellite ne tranche pas une question de légitimité
+    foncière : elle ne connaît ni les accords oraux, ni les antériorités d'usage, ni les arrangements de
+    voisinage, ni les procès-verbaux de délimitation. Cette limite est d'autant plus forte que la part des
+    parcelles formellement enregistrées au Bénin reste très faible : dans la majorité des cas, il n'existe
+    aucun document auquel confronter l'observation. Le produit du système est donc un <strong>constat
+    d'occupation</strong>, jamais un jugement.
+  </p>
+  <p class="small">
+    <strong>Dépendance institutionnelle.</strong> L'outil ne produit aucun effet par lui-même. Sans comité
+    communal de transhumance qui se réunit effectivement, avant la saison, et qui accepte d'utiliser la
+    carte, il ne se passe rien : les détections restent des polygones dans une base. La valeur est créée par
+    la séance, pas par le modèle.
+  </p>
+  <p class="small">
+    <strong>Limites techniques.</strong> À 10 m, les très petites parcelles et les cultures sous couvert
+    restent mal vues ; la distinction entre jachère et champ reste ambiguë ; le radar réduit la dépendance
+    aux nuages mais n'a pas la finesse sémantique de l'optique ; et l'emprise reconstituée conditionne tout
+    le croisement — une emprise décalée produit des détections décalées.
+  </p>
+
+  <h2 style="margin-top:6mm;"><span class="num">11</span>État du prototype et feuille de route</h2>
+  <div class="rule"></div>
+  <table>
+    <thead><tr><th style="width:34mm;">Élément</th><th style="width:30mm;">État</th><th>Précision</th></tr></thead>
+    <tbody>
+      <tr><td>Spécification partagée</td><td>Établie</td><td>Pitch, contrat d'API, palette, données et règles d'honnêteté figés avant le développement.</td></tr>
+      <tr><td>Interface web et terrain</td><td>En cours</td><td>Socle React / Vite / TypeScript / Tailwind avec MapLibre GL installé ; écrans, couches et file de synchronisation en cours d'implémentation.</td></tr>
+      <tr><td>API et moteur</td><td>En cours</td><td>Routes conformes au chapitre 4, servies sur données de démonstration.</td></tr>
+      <tr><td>Chaîne satellite</td><td>Simulée</td><td>Composite, classification et croisement décrits et dimensionnés ; exécution sur Earth Engine non réalisée dans le temps du hackathon.</td></tr>
+      <tr><td>Données</td><td>Démonstration</td><td>Emprise reconstituée, couches synthétiques plausibles, métriques de démonstration.</td></tr>
+      <tr><td>Diffusion vocale</td><td>Simulée</td><td>Transcription française et durée présentes dans le modèle de données ; production audio en fulfulde non réalisée.</td></tr>
+    </tbody>
+  </table>
+  <p class="small" style="margin-bottom:0;">
+    <strong>Ce que coûterait une mise en service réelle.</strong> Par ordre de criticité : obtenir une emprise
+    de couloir officielle auprès de la commune et des services compétents ; conventionner l'accès aux données
+    foncières de l'ANDF ; constituer un jeu d'entraînement annoté localement avec les agents communaux, puis
+    entraîner et évaluer réellement le modèle ; industrialiser la chaîne Earth Engine en traitement
+    saisonnier ; produire les messages vocaux en fulfulde avec des locuteurs ; former les agents et le
+    comité ; et, condition sans laquelle le reste ne sert pas, inscrire l'usage de l'outil dans le calendrier
+    de séance du comité communal de transhumance.
+  </p>
+
+  <div class="pfoot"><span>Terra Sentinelle — Note de conception technique</span><span>12</span></div>
+</div>
+
+</body>
+</html>

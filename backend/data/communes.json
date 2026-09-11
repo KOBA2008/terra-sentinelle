@@ -1,0 +1,569 @@
+{
+ "_readme": "SOURCE DE VERITE UNIQUE de la liste des communes couvertes par Terra Sentinelle (SPEC section 5 : 5 departements / 33 communes du nord et du centre du Benin). Aucune commune n'est codee en dur dans le code Python : pour corriger un nom, un centre ou une emprise, modifiez CE fichier puis relancez  python seed.py.",
+ "_fields": {
+  "id": "slug ASCII, identifiant stable utilise dans les URL /api/commune/{id}",
+  "name": "nom affiche (accents autorises)",
+  "department": "nom du departement affiche",
+  "department_id": "slug ASCII du departement",
+  "center": "[lon, lat] en EPSG:4326 : position APPROXIMATIVE du chef-lieu, a verifier",
+  "bbox": "[ouest, sud, est, nord] : emprise de travail APPROXIMATIVE, pas une limite administrative"
+ },
+ "_warning": "Centres et emprises approximatifs, saisis a la main pour la demonstration : ils ne remplacent pas les limites administratives officielles (source a integrer : HDX). A faire verifier par David avant le pitch.",
+ "region": {
+  "name": "Nord & Centre Benin",
+  "country": "Benin",
+  "reference_commune": "banikoara"
+ },
+ "departments": [
+  {
+   "id": "alibori",
+   "name": "Alibori"
+  },
+  {
+   "id": "atacora",
+   "name": "Atacora"
+  },
+  {
+   "id": "borgou",
+   "name": "Borgou"
+  },
+  {
+   "id": "donga",
+   "name": "Donga"
+  },
+  {
+   "id": "collines",
+   "name": "Collines"
+  }
+ ],
+ "communes": [
+  {
+   "id": "banikoara",
+   "name": "Banikoara",
+   "department": "Alibori",
+   "department_id": "alibori",
+   "center": [
+    2.438,
+    11.298
+   ],
+   "bbox": [
+    2.2,
+    11.05,
+    2.72,
+    11.55
+   ]
+  },
+  {
+   "id": "gogounou",
+   "name": "Gogounou",
+   "department": "Alibori",
+   "department_id": "alibori",
+   "center": [
+    2.836,
+    10.838
+   ],
+   "bbox": [
+    2.596,
+    10.628,
+    3.076,
+    11.048
+   ]
+  },
+  {
+   "id": "kandi",
+   "name": "Kandi",
+   "department": "Alibori",
+   "department_id": "alibori",
+   "center": [
+    2.938,
+    11.128
+   ],
+   "bbox": [
+    2.708,
+    10.928,
+    3.168,
+    11.328
+   ]
+  },
+  {
+   "id": "karimama",
+   "name": "Karimama",
+   "department": "Alibori",
+   "department_id": "alibori",
+   "center": [
+    2.633,
+    12.065
+   ],
+   "bbox": [
+    2.333,
+    11.835,
+    2.933,
+    12.295
+   ]
+  },
+  {
+   "id": "malanville",
+   "name": "Malanville",
+   "department": "Alibori",
+   "department_id": "alibori",
+   "center": [
+    3.383,
+    11.868
+   ],
+   "bbox": [
+    3.133,
+    11.658,
+    3.633,
+    12.078
+   ]
+  },
+  {
+   "id": "segbana",
+   "name": "Ségbana",
+   "department": "Alibori",
+   "department_id": "alibori",
+   "center": [
+    3.694,
+    10.93
+   ],
+   "bbox": [
+    3.424,
+    10.7,
+    3.964,
+    11.16
+   ]
+  },
+  {
+   "id": "boukoumbe",
+   "name": "Boukoumbé",
+   "department": "Atacora",
+   "department_id": "atacora",
+   "center": [
+    1.103,
+    10.18
+   ],
+   "bbox": [
+    0.953,
+    10.04,
+    1.253,
+    10.32
+   ]
+  },
+  {
+   "id": "cobly",
+   "name": "Cobly",
+   "department": "Atacora",
+   "department_id": "atacora",
+   "center": [
+    1.036,
+    10.499
+   ],
+   "bbox": [
+    0.906,
+    10.379,
+    1.166,
+    10.619
+   ]
+  },
+  {
+   "id": "kerou",
+   "name": "Kérou",
+   "department": "Atacora",
+   "department_id": "atacora",
+   "center": [
+    2.108,
+    10.828
+   ],
+   "bbox": [
+    1.818,
+    10.568,
+    2.398,
+    11.088
+   ]
+  },
+  {
+   "id": "kouande",
+   "name": "Kouandé",
+   "department": "Atacora",
+   "department_id": "atacora",
+   "center": [
+    1.691,
+    10.334
+   ],
+   "bbox": [
+    1.441,
+    10.104,
+    1.941,
+    10.564
+   ]
+  },
+  {
+   "id": "materi",
+   "name": "Matéri",
+   "department": "Atacora",
+   "department_id": "atacora",
+   "center": [
+    1.146,
+    10.696
+   ],
+   "bbox": [
+    0.936,
+    10.506,
+    1.356,
+    10.886
+   ]
+  },
+  {
+   "id": "natitingou",
+   "name": "Natitingou",
+   "department": "Atacora",
+   "department_id": "atacora",
+   "center": [
+    1.379,
+    10.305
+   ],
+   "bbox": [
+    1.219,
+    10.155,
+    1.539,
+    10.455
+   ]
+  },
+  {
+   "id": "pehunco",
+   "name": "Péhunco",
+   "department": "Atacora",
+   "department_id": "atacora",
+   "center": [
+    1.955,
+    10.226
+   ],
+   "bbox": [
+    1.745,
+    10.036,
+    2.165,
+    10.416
+   ]
+  },
+  {
+   "id": "tanguieta",
+   "name": "Tanguiéta",
+   "department": "Atacora",
+   "department_id": "atacora",
+   "center": [
+    1.267,
+    10.622
+   ],
+   "bbox": [
+    1.037,
+    10.412,
+    1.497,
+    10.832
+   ]
+  },
+  {
+   "id": "toucountouna",
+   "name": "Toucountouna",
+   "department": "Atacora",
+   "department_id": "atacora",
+   "center": [
+    1.394,
+    10.535
+   ],
+   "bbox": [
+    1.244,
+    10.395,
+    1.544,
+    10.675
+   ]
+  },
+  {
+   "id": "bembereke",
+   "name": "Bembèrèkè",
+   "department": "Borgou",
+   "department_id": "borgou",
+   "center": [
+    2.669,
+    10.228
+   ],
+   "bbox": [
+    2.439,
+    10.018,
+    2.899,
+    10.438
+   ]
+  },
+  {
+   "id": "kalale",
+   "name": "Kalalé",
+   "department": "Borgou",
+   "department_id": "borgou",
+   "center": [
+    3.383,
+    10.294
+   ],
+   "bbox": [
+    3.113,
+    10.054,
+    3.653,
+    10.534
+   ]
+  },
+  {
+   "id": "ndali",
+   "name": "N'Dali",
+   "department": "Borgou",
+   "department_id": "borgou",
+   "center": [
+    2.719,
+    9.865
+   ],
+   "bbox": [
+    2.489,
+    9.655,
+    2.949,
+    10.075
+   ]
+  },
+  {
+   "id": "nikki",
+   "name": "Nikki",
+   "department": "Borgou",
+   "department_id": "borgou",
+   "center": [
+    3.211,
+    9.94
+   ],
+   "bbox": [
+    2.961,
+    9.72,
+    3.461,
+    10.16
+   ]
+  },
+  {
+   "id": "parakou",
+   "name": "Parakou",
+   "department": "Borgou",
+   "department_id": "borgou",
+   "center": [
+    2.616,
+    9.337
+   ],
+   "bbox": [
+    2.506,
+    9.237,
+    2.726,
+    9.437
+   ]
+  },
+  {
+   "id": "perere",
+   "name": "Pèrèrè",
+   "department": "Borgou",
+   "department_id": "borgou",
+   "center": [
+    3.005,
+    9.797
+   ],
+   "bbox": [
+    2.795,
+    9.607,
+    3.215,
+    9.987
+   ]
+  },
+  {
+   "id": "sinende",
+   "name": "Sinendé",
+   "department": "Borgou",
+   "department_id": "borgou",
+   "center": [
+    2.36,
+    10.328
+   ],
+   "bbox": [
+    2.16,
+    10.138,
+    2.56,
+    10.518
+   ]
+  },
+  {
+   "id": "tchaourou",
+   "name": "Tchaourou",
+   "department": "Borgou",
+   "department_id": "borgou",
+   "center": [
+    2.6,
+    8.887
+   ],
+   "bbox": [
+    2.27,
+    8.577,
+    2.93,
+    9.197
+   ]
+  },
+  {
+   "id": "bassila",
+   "name": "Bassila",
+   "department": "Donga",
+   "department_id": "donga",
+   "center": [
+    1.665,
+    9.008
+   ],
+   "bbox": [
+    1.355,
+    8.718,
+    1.975,
+    9.298
+   ]
+  },
+  {
+   "id": "copargo",
+   "name": "Copargo",
+   "department": "Donga",
+   "department_id": "donga",
+   "center": [
+    1.545,
+    9.837
+   ],
+   "bbox": [
+    1.395,
+    9.697,
+    1.695,
+    9.977
+   ]
+  },
+  {
+   "id": "djougou",
+   "name": "Djougou",
+   "department": "Donga",
+   "department_id": "donga",
+   "center": [
+    1.666,
+    9.705
+   ],
+   "bbox": [
+    1.416,
+    9.475,
+    1.916,
+    9.935
+   ]
+  },
+  {
+   "id": "ouake",
+   "name": "Ouaké",
+   "department": "Donga",
+   "department_id": "donga",
+   "center": [
+    1.383,
+    9.663
+   ],
+   "bbox": [
+    1.243,
+    9.533,
+    1.523,
+    9.793
+   ]
+  },
+  {
+   "id": "bante",
+   "name": "Bantè",
+   "department": "Collines",
+   "department_id": "collines",
+   "center": [
+    1.885,
+    8.418
+   ],
+   "bbox": [
+    1.635,
+    8.188,
+    2.135,
+    8.648
+   ]
+  },
+  {
+   "id": "dassa-zoume",
+   "name": "Dassa-Zoumè",
+   "department": "Collines",
+   "department_id": "collines",
+   "center": [
+    2.183,
+    7.75
+   ],
+   "bbox": [
+    1.973,
+    7.56,
+    2.393,
+    7.94
+   ]
+  },
+  {
+   "id": "glazoue",
+   "name": "Glazoué",
+   "department": "Collines",
+   "department_id": "collines",
+   "center": [
+    2.24,
+    7.976
+   ],
+   "bbox": [
+    2.05,
+    7.806,
+    2.43,
+    8.146
+   ]
+  },
+  {
+   "id": "ouesse",
+   "name": "Ouèssè",
+   "department": "Collines",
+   "department_id": "collines",
+   "center": [
+    2.47,
+    8.483
+   ],
+   "bbox": [
+    2.22,
+    8.253,
+    2.72,
+    8.713
+   ]
+  },
+  {
+   "id": "savalou",
+   "name": "Savalou",
+   "department": "Collines",
+   "department_id": "collines",
+   "center": [
+    1.975,
+    7.928
+   ],
+   "bbox": [
+    1.745,
+    7.718,
+    2.205,
+    8.138
+   ]
+  },
+  {
+   "id": "save",
+   "name": "Savè",
+   "department": "Collines",
+   "department_id": "collines",
+   "center": [
+    2.487,
+    8.034
+   ],
+   "bbox": [
+    2.257,
+    7.824,
+    2.717,
+    8.244
+   ]
+  }
+ ]
+}

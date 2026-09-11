@@ -1,0 +1,24 @@
+# Dependances
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+
+# Builds
+dist/
+.vercel/
+.logs/
+
+# Jeu d'entrainement EuroSAT : 227 Mo, retelecharge par train_model.py
+backend/data/datasets/
+
+# Donnees regenerees par seed.py
+backend/data/communes/
+backend/data/predictions/
+backend/data/region.json
+backend/data/region_corridors.geojson
+backend/data/terra.sqlite
+
+# Systeme
+.DS_Store
+*.local

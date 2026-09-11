@@ -1,0 +1,8 @@
+# Terra Sentinelle — backend (Python 3.10+)
+# Installation :  pip install -r requirements.txt
+fastapi==0.141.1
+uvicorn[standard]==0.52.4
+pydantic==2.13.5
+shapely==2.1.2
+networkx==3.6.1
+numpy==2.5.3

@@ -1,0 +1,28 @@
+[
+  {
+    "id": "DEC-2026-001",
+    "corridor_segment_id": "SEG-02",
+    "decision": "ajustement",
+    "committee": "Comité communal de transhumance de Banikoara",
+    "decided_on": "2026-02-18",
+    "note": "Décalage de l'axe de 180 m vers l'est sur 1,4 km, en accord avec les exploitants.",
+    "broadcast": {
+      "lang": "ff",
+      "duration_s": 42,
+      "transcript_fr": "Avis du comité communal de transhumance de Banikoara. Sur le tronçon SEG-02, entre Founougo et Goumori, le passage est déplacé de cent quatre-vingts mètres vers l'est sur une distance d'un kilomètre quatre. Les balises seront posées avant le quinze mars. Ce message est un avis de passage, il ne remplace aucune autorisation."
+    }
+  },
+  {
+    "id": "DEC-2026-002",
+    "corridor_segment_id": "SEG-10",
+    "decision": "maintien",
+    "committee": "Comité communal de transhumance de Banikoara",
+    "decided_on": "2026-02-18",
+    "note": "Détection invalidée sur le terrain, aucune contrainte réelle constatée.",
+    "broadcast": {
+      "lang": "ff",
+      "duration_s": 28,
+      "transcript_fr": "Avis du comité communal de transhumance de Banikoara. Sur le tronçon SEG-10, vers Toura, le tracé habituel est maintenu. Aucune mise en culture n'a été constatée lors de la vérification du terrain."
+    }
+  }
+]
