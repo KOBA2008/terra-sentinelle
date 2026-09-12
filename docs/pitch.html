@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<title>Terra Sentinelle — Document de pitch</title>
+<title>Terra Sentinelle · Document de pitch</title>
 <style>
   @page { size: A4; margin: 0; }
   :root{
@@ -74,14 +74,14 @@
 
   .refusal{
     border:2px solid var(--ink);
-    padding:11mm 10mm;
+    padding:8mm 10mm;
     text-align:center;
   }
   .refusal .q{
     font-family:"Montserrat",sans-serif; font-weight:800;
-    font-size:17pt; line-height:1.28; letter-spacing:-.025em; color:var(--ink);
+    font-size:16pt; line-height:1.28; letter-spacing:-.025em; color:var(--ink);
   }
-  .refusal .src{ margin-top:5mm; font-size:7.4pt; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3); font-family:"Montserrat",sans-serif; font-weight:700; }
+  .refusal .src{ margin-top:4mm; font-size:7.4pt; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3); font-family:"Montserrat",sans-serif; font-weight:700; }
 
   /* ---------- page 1 ---------- */
   .brandrow{ display:flex; align-items:center; gap:4.5mm; }
@@ -118,6 +118,7 @@
     width:2.2mm; height:2.2mm; background:var(--green); border-radius:50%;
   }
   ul.clean.amberdot li::before{ background:var(--amber); }
+  ul.clean.tight li{ margin-bottom:1.6mm; font-size:9pt; line-height:1.45; }
 
   .steps{ counter-reset:s; }
   .step{ display:flex; gap:5mm; padding:3.6mm 0; border-top:.6px solid var(--rule); }
@@ -131,7 +132,7 @@
   .step .t{ font-family:"Montserrat",sans-serif; font-weight:700; font-size:9.6pt; }
   .step .x{ font-size:9pt; color:var(--ink-2); margin-top:.8mm; line-height:1.5; }
 
-  .arg{ border-top:1.5px solid var(--ink); padding-top:4mm; margin-bottom:7mm; }
+  .arg{ border-top:1.5px solid var(--ink); padding-top:4mm; margin-bottom:6mm; }
   .arg .idx{ font-family:"DejaVu Sans Mono",monospace; font-size:9pt; color:var(--green); font-weight:700; }
   .arg h2{ margin:1.5mm 0 2.5mm; }
   .arg p{ font-size:9.4pt; }
@@ -142,8 +143,9 @@
     letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);
     border-bottom:1px solid var(--ink); padding:0 3mm 2mm 0;
   }
-  table.tbl td{ padding:2.6mm 3mm 2.6mm 0; border-bottom:.6px solid var(--rule); color:var(--ink-2); vertical-align:top; }
+  table.tbl td{ padding:2.4mm 3mm 2.4mm 0; border-bottom:.6px solid var(--rule); color:var(--ink-2); vertical-align:top; }
   table.tbl td.k{ color:var(--ink); font-weight:700; width:42%; }
+  table.tbl.compact td{ padding:1.9mm 3mm 1.9mm 0; font-size:8.5pt; }
   .todoc{ color:var(--amber); font-family:"DejaVu Sans Mono",monospace; font-size:8.2pt; font-weight:700; }
 
   .note{
@@ -151,20 +153,33 @@
     padding:4.5mm 5mm; font-size:8.8pt; color:#6b4b06; line-height:1.5;
   }
   .note b{ color:#5a3f04; }
+  .note.green{ background:var(--green-l); border-left-color:var(--green); color:#1d3a2e; }
+  .note.green b{ color:var(--green-d); }
 
   .grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:5mm; }
+  .grid4{ display:grid; grid-template-columns:repeat(4,1fr); gap:4mm; }
   .card{ border:.8px solid var(--rule); border-top:2.5px solid var(--green); padding:4.5mm; }
   .card.amber{ border-top-color:var(--amber); }
   .card h3{ font-size:9.2pt; margin-bottom:2mm; }
   .card p, .card li{ font-size:8.5pt; line-height:1.5; }
-  .card ul.clean li{ padding-left:4.5mm; margin-bottom:1.8mm; }
+  .card ul.clean li{ padding-left:4.5mm; margin-bottom:1.4mm; }
   .card ul.clean li::before{ width:1.6mm; height:1.6mm; top:1.9mm; }
 
+  /* ---------- chiffres du modele ---------- */
+  .kpi{ border:.8px solid var(--rule); border-top:2.5px solid var(--green); padding:3.5mm 3mm; text-align:center; }
+  .kpi .v{ font-family:"DejaVu Sans Mono",monospace; font-weight:700; font-size:14pt; color:var(--green-d); letter-spacing:-.02em; }
+  .kpi .l{ font-family:"Montserrat",sans-serif; font-weight:700; font-size:6.8pt; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin-top:1.6mm; }
+
+  .links{ border:.8px solid var(--green); background:var(--green-l); padding:3.5mm 5mm; }
+  .links .l{ font-family:"Montserrat",sans-serif; font-weight:800; font-size:7.4pt; letter-spacing:.16em; text-transform:uppercase; color:var(--green-d); }
+  .links .u{ font-family:"DejaVu Sans Mono",monospace; font-size:8pt; color:#1d3a2e; word-break:break-all; line-height:1.5; margin-top:1.2mm; }
+
   .spacer{ flex:1; }
-  .g{ flex:1 1 auto; min-height:8mm; }
+  .g{ flex:1 1 auto; min-height:6mm; }
+  .page.tight .g{ min-height:3mm; }
   .closing{
     border-top:1.5px solid var(--ink); border-bottom:1.5px solid var(--ink);
-    padding:6mm 0; font-size:10.2pt; line-height:1.62; color:var(--ink);
+    padding:4.5mm 0; font-size:9.8pt; line-height:1.58; color:var(--ink);
   }
   .closing b{ color:var(--green-d); }
 </style>
@@ -181,11 +196,11 @@
     </svg>
     <div>
       <div class="display p1-name">Terra&nbsp;Sentinelle</div>
-      <div class="p1-sub">Veille satellitaire des couloirs de transhumance · Banikoara, Alibori, nord Bénin</div>
+      <div class="p1-sub">Veille satellitaire des couloirs de transhumance · 5 départements, 33 communes, nord et centre du Bénin</div>
     </div>
   </div>
 
-  <div class="g" style="flex-grow:.7"></div>
+  <div class="g" style="flex-grow:.6"></div>
 
   <div class="quote big">
     « Les couloirs de transhumance ont été délimités une fois. Les champs, eux, changent chaque saison.
@@ -211,6 +226,15 @@
 
   <div class="g"></div>
 
+  <div class="grid4">
+    <div class="kpi"><div class="v">33</div><div class="l">Communes couvertes</div></div>
+    <div class="kpi"><div class="v">1 585</div><div class="l">km de couloirs</div></div>
+    <div class="kpi"><div class="v">157</div><div class="l">Zones de friction</div></div>
+    <div class="kpi"><div class="v">0,8815</div><div class="l">F1 mesuré du modèle</div></div>
+  </div>
+
+  <div class="g"></div>
+
   <div class="facts">
     <div class="fact">
       <div class="l">Utilisateur principal</div>
@@ -221,27 +245,38 @@
     <div class="fact">
       <div class="l">Défi revendiqué</div>
       <div class="v">Résilience climatique</div>
-      <div class="d">Secondaire : agriculture &amp; sécurité alimentaire. Hackathon Deep Learning
+      <div class="d">Secondaire : agriculture et sécurité alimentaire. Hackathon Deep Learning
       IndabaX Bénin 2026.</div>
     </div>
     <div class="fact">
       <div class="l">État du prototype</div>
-      <div class="v">Application web fonctionnelle</div>
-      <div class="d">Carte de friction, fiche de détection, mode terrain hors connexion, recalcul
-      d'itinéraire, tableau de bord — sur données de démonstration.</div>
+      <div class="v">Livré, public, en ligne</div>
+      <div class="d">Application web, modèle réellement entraîné, inférence sur imagerie Sentinel-2
+      du nord Bénin. Code source et démonstration publics (page 6).</div>
     </div>
   </div>
 
-  <div class="g" style="flex-grow:1.2"></div>
+  <div class="g" style="flex-grow:1.1"></div>
+
+  <div style="border-top:.6px solid var(--rule); padding-top:3.5mm; margin-bottom:4mm;">
+    <div class="eyebrow">Équipe TechMakers</div>
+    <div style="font-size:9.2pt; color:var(--ink-2); margin-top:1.8mm; line-height:1.5;">
+      KOBA David · GANTIN Philippe-Cadet · ADANLAO Adéyinka Laurinda · DJIBO Issa · ABIALA Daniel
+    </div>
+  </div>
 
   <div>
     <span class="badge green">Décision humaine en amont</span>
     <span style="display:inline-block;width:2mm"></span>
-    <span class="badge amber">Données de démonstration synthétiques</span>
+    <span class="badge green">Modèle réellement entraîné</span>
+    <span style="display:inline-block;width:2mm"></span>
+    <span class="badge amber">Écart de domaine assumé</span>
+    <span style="display:inline-block;width:2mm"></span>
+    <span class="badge amber">Couches géographiques générées</span>
   </div>
 
   <footer>
-    <span>Terra Sentinelle · Document de pitch · Équipe KOBA David</span>
+    <span>Terra Sentinelle · Document de pitch · Équipe TechMakers</span>
     <span class="mono">1 / 6</span>
   </footer>
 </div>
@@ -255,16 +290,16 @@
 
   <h1 class="title">Le problème est temporel,<br>pas spatial.</h1>
 
-  <div style="height:7mm"></div>
+  <div style="height:6mm"></div>
 
   <p style="font-size:10.6pt; line-height:1.65;">
-    Dans les communes du nord du Bénin, les conflits entre agriculteurs et éleveurs se cristallisent
-    sur le passage des troupeaux. La réponse institutionnelle a été cartographique : délimiter des
-    couloirs de transhumance, les faire connaître, les faire respecter. <strong>Cette carte existe.</strong>
+    Dans les communes du nord et du centre du Bénin, les conflits entre agriculteurs et éleveurs se
+    cristallisent sur le passage des troupeaux. La réponse institutionnelle a été cartographique : délimiter
+    des couloirs de transhumance, les faire connaître, les faire respecter. <strong>Cette carte existe.</strong>
     Elle a été tracée une fois, à une date donnée.
   </p>
 
-  <div style="height:5mm"></div>
+  <div style="height:4mm"></div>
 
   <p style="font-size:10.6pt; line-height:1.65;">
     Ce qui change, c'est le sol. Chaque saison agricole déplace des parcelles, en ouvre de nouvelles,
@@ -273,7 +308,7 @@
     <strong>L'information manquante n'est pas la position du couloir : c'est son état actuel.</strong>
   </p>
 
-  <div style="height:8mm"></div>
+  <div style="height:7mm"></div>
 
   <div class="grid3">
     <div class="card">
@@ -286,15 +321,27 @@
     </div>
     <div class="card amber">
       <h3>Ce que le comité a</h3>
-      <p>Au moment de l'arbitrage, la carte d'origine — sans relevé récent de ce qui a bougé depuis.</p>
+      <p>Au moment de l'arbitrage, la carte d'origine, sans relevé récent de ce qui a bougé depuis.</p>
     </div>
   </div>
 
-  <div style="height:9mm"></div>
+  <div style="height:7mm"></div>
+
+  <h2>L'échelle du problème, telle que nous la couvrons</h2>
+  <div style="height:3mm"></div>
+  <p style="font-size:9.6pt;">
+    Le système ne traite pas une commune isolée : il couvre <strong>5 départements et 33 communes</strong>
+    du nord et du centre du Bénin, soit un réseau de <strong>1 585 km</strong> de couloirs et
+    <strong>157 zones de friction</strong> dont <strong>84 restent à vérifier</strong>.
+    <strong>Banikoara</strong> (Alibori) est la commune de démonstration détaillée, avec 57,13 km de couloir
+    en 8 segments, 17 villages, 7 points d'eau, 5 zones de pâturage et 32 parcelles dont 6 dans l'emprise.
+  </p>
+
+  <div style="height:6mm"></div>
 
   <h2>Ce que nous savons, et ce que nous ne chiffrons pas encore</h2>
-  <div style="height:3.5mm"></div>
-  <table class="tbl">
+  <div style="height:3mm"></div>
+  <table class="tbl compact">
     <tr>
       <th>Élément</th><th>État</th>
     </tr>
@@ -304,7 +351,7 @@
     </tr>
     <tr>
       <td class="k">PFR / e-Foncier de l'ANDF</td>
-      <td>Environ 460 000 parcelles sur 24 arrondissements de 12 communes — non ouvert.</td>
+      <td>Environ 460 000 parcelles sur 24 arrondissements de 12 communes, non ouvert.</td>
     </tr>
     <tr>
       <td class="k">OIM TTT-DTM, suivi des mouvements de transhumance</td>
@@ -316,7 +363,7 @@
     </tr>
     <tr>
       <td class="k">Part de l'emprise du couloir mise en culture</td>
-      <td><span class="todoc">à documenter</span> — c'est précisément ce que le système mesure.</td>
+      <td><span class="todoc">à documenter</span> : c'est précisément ce que le système mesure.</td>
     </tr>
     <tr>
       <td class="k">Coût économique et humain des incidents</td>
@@ -333,7 +380,7 @@
   </div>
 
   <footer>
-    <span>Terra Sentinelle · Document de pitch · Équipe KOBA David</span>
+    <span>Terra Sentinelle · Document de pitch · Équipe TechMakers</span>
     <span class="mono">2 / 6</span>
   </footer>
 </div>
@@ -357,9 +404,9 @@
     examiner les portions sensibles, décider d'un maintien, d'un ajustement ou d'un contournement du parcours,
     puis diffuser sa décision aux représentants des éleveurs sous forme de message vocal en fulfulde.
     Chaque donnée conserve sa source, sa date de collecte, son niveau de confiance et son statut de validation,
-    tandis que les zones incertaines restent explicitement signalées. Terra Sentinelle ne prédit pas les conflits
-    et ne délivre aucune autorisation de passage : il actualise la connaissance du territoire afin que la
-    décision humaine soit prise en amont, sur la base d'informations récentes, traçables et vérifiables.
+    tandis que les zones incertaines restent explicitement signalées. Terra Sentinelle actualise ainsi la
+    connaissance du territoire afin que la décision humaine soit prise en amont, sur la base d'informations
+    récentes, traçables et vérifiables.
   </div>
 
   <div style="height:7mm"></div>
@@ -378,7 +425,7 @@
         <text x="60" y="52" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">1</text>
         <text x="16" y="92" fill="#121815" font-size="17" font-weight="700">Détection</text>
         <text x="16" y="110" fill="#6d7c75" font-size="14.5" font-family="Lato, sans-serif">satellite</text>
-        <text x="16" y="128" fill="#6d7c75" font-size="14.5" font-family="Lato, sans-serif">Sentinel-2 / -1</text>
+        <text x="16" y="128" fill="#6d7c75" font-size="14.5" font-family="Lato, sans-serif">Sentinel-2</text>
       </g>
       <g>
         <circle cx="248" cy="46" r="22" fill="#1a7a52"/>
@@ -418,13 +465,13 @@
     <text x="702" y="25" text-anchor="middle" fill="#8a5c05" font-size="10.5" font-family="Montserrat, sans-serif" font-weight="700" letter-spacing="1">DÉCISION HUMAINE</text>
   </svg>
 
-  <div style="height:6mm"></div>
+  <div style="height:5mm"></div>
 
   <div class="steps">
     <div class="step">
       <div class="n">1</div>
       <div><div class="t">Détection satellite</div>
-      <div class="x">Un modèle de classification lit l'emprise du couloir sur imagerie Sentinel-2 et repère les zones potentiellement mises en culture, à l'intérieur ou à proximité.</div></div>
+      <div class="x">Un classifieur entraîné sur imagerie Sentinel-2 lit l'emprise du couloir et repère les cellules potentiellement mises en culture, à l'intérieur ou à proximité. L'inférence tourne aujourd'hui sur de vraies tuiles du nord du Bénin.</div></div>
     </div>
     <div class="step">
       <div class="n">2</div>
@@ -449,7 +496,7 @@
   </div>
 
   <footer>
-    <span>Terra Sentinelle · Document de pitch · Équipe KOBA David</span>
+    <span>Terra Sentinelle · Document de pitch · Équipe TechMakers</span>
     <span class="mono">3 / 6</span>
   </footer>
 </div>
@@ -463,67 +510,98 @@
 
   <div class="arg">
     <div class="idx">01</div>
-    <h2>L'IA est nécessaire, pas décorative</h2>
-    <p>Rafraîchir la carte d'occupation du sol d'une commune entière, à chaque saison, ne peut pas se faire
-    par relevé de terrain : ni les effectifs ni les délais ne le permettent. L'imagerie satellitaire est la
-    seule source qui repasse au-dessus de Banikoara assez souvent pour que la carte suive le rythme des
-    cultures — et la lire à cette échelle suppose un modèle de classification. Retirez l'apprentissage
-    automatique du système et il ne reste pas un produit plus simple : il ne reste plus de produit.</p>
+    <h2>L'IA n'est pas annoncée : elle est entraînée, et voici ses chiffres</h2>
+    <p>Un classifieur d'occupation du sol est <strong>réellement entraîné</strong>, sur EuroSAT :
+    27 000 vignettes Sentinel-2 réelles et étiquetées, 64 × 64 pixels, 10 classes. Split stratifié
+    21 600 / 5 400, <strong>jeu de test tenu à l'écart</strong>, graine fixée à 42, résultat reproductible.
+    Algorithme : <span class="mono">HistGradientBoostingClassifier</span> de scikit-learn sur
+    35 caractéristiques (statistiques par canal, ExG, GRVI, texture). Version
+    <span class="mono">ts-eurosat-1.0.0</span>. Les valeurs ci-dessous sont mesurées sur le jeu de test,
+    pas estimées.</p>
+    <div style="height:3.5mm"></div>
+    <div class="grid4">
+      <div class="kpi"><div class="v">0,9528</div><div class="l">Exactitude</div></div>
+      <div class="kpi"><div class="v">0,8815</div><div class="l">F1 « cultivé »</div></div>
+      <div class="kpi"><div class="v">0,9866</div><div class="l">ROC-AUC</div></div>
+      <div class="kpi"><div class="v">0,8883</div><div class="l">Exactitude 10 classes</div></div>
+    </div>
+    <div style="height:2.5mm"></div>
+    <p style="font-size:8.8pt;">Détail de la tâche binaire cultivé / non cultivé : précision 0,902,
+    rappel 0,8618. Sur les 10 classes, F1 macro de 0,8821. Ces métriques décrivent le domaine
+    d'entraînement européen, et lui seul : voir page 5.</p>
   </div>
 
   <div class="arg">
     <div class="idx">02</div>
-    <h2>Les choix techniques répondent à la contrainte réelle</h2>
-    <p>La saison de culture est la saison des pluies : le ciel est couvert au moment précis où l'on a besoin
-    de voir le sol. La parade retenue est un <strong>composite médian Sentinel-2 avec masquage des nuages</strong>,
-    complété par <strong>Sentinel-1 radar, qui traverse la couverture nuageuse</strong>. Le règlement du hackathon
-    indique que « la pertinence des choix techniques compte davantage que la complexité inutile » : nous n'ajoutons
-    pas un capteur pour la démonstration, nous l'ajoutons parce que l'optique seule échoue en saison humide.</p>
-    <div style="height:3.5mm"></div>
-    <div class="note">
-      <b>Notre contribution n'est pas le classifieur.</b> Les cartes d'occupation du sol globales sous-performent
-      sur l'agriculture subsaharienne — petites parcelles, cultures associées. Nous partons de Dynamic World comme
-      a priori, nous adaptons localement et nous mesurons l'écart. Ce que nous apportons, c'est le croisement avec
-      l'emprise du couloir et le produit de décision remis au comité.
-    </div>
+    <h2>Le modèle tourne sur de vraies images du nord du Bénin</h2>
+    <p>L'inférence ne se fait pas sur un jeu de test : elle se fait sur des <strong>tuiles Sentinel-2
+    réelles</strong> servies par EOX s2cloudless, sans authentification, au zoom 14 soit environ 9,4 m par
+    pixel, ce qui retrouve sous la latitude du Bénin la résolution des vignettes d'entraînement. La grille est
+    bornée à 64 cellules par commune et les tuiles sont <strong>mises en cache sur disque</strong> : la
+    démonstration fonctionne hors connexion. Sur Banikoara, le modèle classe 7 cellules en culture permanente,
+    1 en culture annuelle et 56 en végétation herbacée, avec une probabilité de mise en culture qui s'étend
+    de 0,003 à 0,991.</p>
   </div>
 
   <div class="arg" style="margin-bottom:0;">
     <div class="idx">03</div>
-    <h2>Les données existent et sont libres</h2>
-    <p>Aucune brique du système ne dépend d'un jeu de données que nous n'avons pas le droit d'utiliser.</p>
-    <div style="height:3.5mm"></div>
-    <table class="tbl">
+    <h2>Les choix techniques répondent à la contrainte réelle, et les données sont libres</h2>
+    <p>La saison de culture est la saison des pluies : le ciel est couvert au moment précis où l'on a besoin
+    de voir le sol. La parade retenue est un <strong>composite médian Sentinel-2 avec masquage des nuages</strong>,
+    complété par <strong>Sentinel-1 radar, qui traverse la couverture nuageuse</strong>. La voie radar est
+    décrite et justifiée mais <strong>non implémentée à ce stade</strong> : seule la voie optique tourne.
+    Aucune brique du système ne dépend d'un jeu de données que nous n'avons pas le droit d'utiliser.</p>
+    <div style="height:3mm"></div>
+    <table class="tbl compact">
       <tr><th>Source</th><th>Apport</th></tr>
-      <tr><td class="k">Sentinel-2 — optique 10 m</td><td>Lecture du sol, base de la détection de mise en culture.</td></tr>
-      <tr><td class="k">Sentinel-1 — radar</td><td>Traverse les nuages ; assure la continuité en saison des pluies.</td></tr>
-      <tr><td class="k">Dynamic World V1</td><td>Occupation du sol 10 m quasi temps réel, classe « crops » avec probabilités.</td></tr>
-      <tr><td class="k">ESA WorldCover v200</td><td>10 m, 11 classes dont cropland — référence de comparaison.</td></tr>
-      <tr><td class="k">OpenStreetMap Bénin (Geofabrik)</td><td>Villages, pistes, points d'eau.</td></tr>
-      <tr><td class="k">Limites administratives (HDX)</td><td>Cadre communal et départemental.</td></tr>
+      <tr><td class="k">EuroSAT (Helber et al., 2019)</td><td>Vignettes Sentinel-2 réelles étiquetées : entraînement du classifieur.</td></tr>
+      <tr><td class="k">Sentinel-2 via EOX s2cloudless</td><td>Tuiles réelles du nord Bénin, sans clé d'accès : inférence et fond de carte.</td></tr>
+      <tr><td class="k">Sentinel-1, radar</td><td>Traverse les nuages, continuité en saison des pluies. Non implémenté à ce jour.</td></tr>
+      <tr><td class="k">Dynamic World V1, ESA WorldCover v200</td><td>Occupation du sol 10 m, références de comparaison pour mesurer l'écart.</td></tr>
+      <tr><td class="k">OpenStreetMap Bénin, limites HDX</td><td>Villages, pistes, points d'eau, cadre communal et départemental.</td></tr>
     </table>
   </div>
 
   <div class="spacer"></div>
 
   <footer>
-    <span>Terra Sentinelle · Document de pitch · Équipe KOBA David</span>
+    <span>Terra Sentinelle · Document de pitch · Équipe TechMakers</span>
     <span class="mono">4 / 6</span>
   </footer>
 </div>
 
 <!-- ============================= PAGE 5 ============================= -->
-<div class="page">
+<div class="page tight">
   <div class="pagehead">
-    <span class="lbl">Ce que nous ne faisons pas</span>
+    <span class="lbl">L'écart de domaine</span>
     <span class="num">05</span>
   </div>
 
-  <div style="height:4mm"></div>
-
   <div class="refusal">
-    <div class="q">« Terra Sentinelle ne prédit pas les conflits<br>et ne délivre aucune autorisation de passage. »</div>
-    <div class="src">Limite de conception, assumée</div>
+    <div class="q">Les métriques décrivent l'Europe.<br>Le Bénin, c'est l'agent communal qui le vérifie.</div>
+    <div class="src">La limite du modèle, et la raison d'être du produit</div>
+  </div>
+
+  <div class="g"></div>
+
+  <h2>L'écart de domaine : notre limite principale est aussi notre raison d'être</h2>
+  <div style="height:3mm"></div>
+  <p style="font-size:9.8pt;">
+    Le modèle est entraîné sur de l'imagerie <strong>européenne</strong> et appliqué au <strong>Bénin</strong>.
+    EuroSAT ne contient aucune vignette africaine. Les cartes d'occupation du sol globales sous-performent sur
+    l'agriculture subsaharienne : parcelles plus petites que la vignette, cultures associées, jachères, parcs
+    agroforestiers, calendrier cultural et signature spectrale différents. Les chiffres de la page 4 décrivent
+    donc EuroSAT, <strong>pas le Bénin</strong>, et aucune métrique béninoise n'est publiée ici parce
+    qu'aucune n'a été mesurée : il n'existe pas, à ce jour, de parcelles annotées sur la zone.
+  </p>
+  <div style="height:3.5mm"></div>
+  <div class="note green">
+    <b>C'est exactement pour cela que l'agent communal doit aller voir.</b> Une sortie du modèle sur le Bénin
+    est une prédiction non validée localement. Le produit ne la présente jamais comme un constat : il la
+    présente comme une portion à vérifier, classée par gravité, que Moussa Gounou confirme, corrige ou
+    invalide sur le terrain. La vérification humaine n'est pas un pansement posé sur une faiblesse technique,
+    c'est la fonction centrale du produit, et l'écart de domaine est ce qui la rend indispensable plutôt
+    qu'optionnelle.
   </div>
 
   <div class="g"></div>
@@ -531,14 +609,14 @@
   <div class="duo">
     <div class="block">
       <div class="k">La frontière est nette</div>
-      <p style="font-size:9.8pt;">Le système détecte qu'<strong>il y a un champ sur le couloir</strong>.
-      Il ne dit pas <strong>qui avait le droit d'être là</strong> — et c'est précisément là-dessus que
+      <p style="font-size:9.6pt;">Le système détecte qu'<strong>il y a un champ sur le couloir</strong>.
+      Il ne dit pas <strong>qui avait le droit d'être là</strong>, et c'est précisément là-dessus que
       porte le conflit. Cette question relève du droit, de l'usage et de la médiation, pas d'une image
       satellite.</p>
     </div>
     <div class="block">
       <div class="k">Il informe, il ne remplace pas</div>
-      <p style="font-size:9.8pt;">Terra Sentinelle informe un arbitrage humain, il ne le remplace pas.
+      <p style="font-size:9.6pt;">Terra Sentinelle informe un arbitrage humain, il ne le remplace pas.
       Le comité communal reste l'autorité qui décide du maintien, de l'ajustement ou du contournement.
       Le système lui fournit une situation, pas une conclusion.</p>
     </div>
@@ -547,16 +625,17 @@
   <div class="g"></div>
 
   <h2>Transparence sur les données</h2>
-  <div style="height:3.5mm"></div>
-  <table class="tbl">
+  <div style="height:3mm"></div>
+  <table class="tbl compact">
     <tr><th>Élément</th><th>Statut affiché dans l'outil et dans les documents</th></tr>
-    <tr><td class="k">Emprise du couloir</td><td><span class="todoc">reconstituée par l'équipe — non officielle</span></td></tr>
-    <tr><td class="k">Données de la démonstration</td><td><span class="todoc">synthétiques, plausibles, non réelles</span></td></tr>
-    <tr><td class="k">Métriques du modèle</td><td><span class="todoc">valeurs de démonstration — aucun entraînement réel à ce stade</span></td></tr>
-    <tr><td class="k">Zones incertaines</td><td>Signalées explicitement (tracé en pointillés, niveau de confiance visible). L'incertitude s'affiche, elle ne se cache pas.</td></tr>
+    <tr><td class="k">Modèle et métriques</td><td>Réels et mesurés, sur jeu de test EuroSAT tenu à l'écart. <span class="todoc">valables pour l'Europe, pas pour le Bénin</span></td></tr>
+    <tr><td class="k">Imagerie d'inférence</td><td>Réelle : tuiles Sentinel-2 du nord Bénin, mises en cache sur disque.</td></tr>
+    <tr><td class="k">Emprise du couloir</td><td><span class="todoc">reconstituée par l'équipe, sans valeur officielle</span></td></tr>
+    <tr><td class="k">Couloirs, villages, points d'eau, pâturages, parcelles</td><td><span class="todoc">générés, plausibles, non réels</span></td></tr>
+    <tr><td class="k">Zones incertaines</td><td>Signalées explicitement : tracé en pointillés, niveau de confiance visible. L'incertitude s'affiche, elle ne se cache pas.</td></tr>
   </table>
 
-  <div class="g" style="flex-grow:1.1"></div>
+  <div class="spacer"></div>
 
   <div class="closing">
     Aujourd'hui, un comité communal discute du passage des troupeaux avec une carte périmée.
@@ -565,7 +644,7 @@
   </div>
 
   <footer>
-    <span>Terra Sentinelle · Document de pitch · Équipe KOBA David</span>
+    <span>Terra Sentinelle · Document de pitch · Équipe TechMakers</span>
     <span class="mono">5 / 6</span>
   </footer>
 </div>
@@ -577,68 +656,84 @@
     <span class="num">06</span>
   </div>
 
-  <h1 class="title" style="font-size:20pt;">Ce qui tourne aujourd'hui.</h1>
-  <div style="height:5mm"></div>
+  <h1 class="title" style="font-size:17pt;">Ce qui tourne aujourd'hui.</h1>
+  <div style="height:3.5mm"></div>
 
   <div class="grid3">
     <div class="card">
       <h3>Application web</h3>
       <ul class="clean">
-        <li>Carte de friction du couloir</li>
-        <li>Fiche de détection détaillée</li>
-        <li>Tableau de bord communal</li>
+        <li>Vue régionale des 33 communes</li>
+        <li>Carte de friction et fiche de détection</li>
+        <li>Écran comité, tableau de bord, écran modèle</li>
+        <li>Thèmes clair et sombre</li>
+        <li>Responsive vérifié dès 360 px</li>
       </ul>
     </div>
     <div class="card">
-      <h3>Terrain</h3>
+      <h3>Terrain et robustesse</h3>
       <ul class="clean">
-        <li>Mode hors connexion</li>
+        <li>Mode terrain hors connexion</li>
         <li>Confirmation, correction, invalidation</li>
         <li>Synchronisation au retour du réseau</li>
+        <li>Double mode dégradé : sans API, données embarquées ; sans tuiles, fond CSS</li>
       </ul>
     </div>
     <div class="card">
-      <h3>Aide à l'arbitrage</h3>
+      <h3>Modèle et calculs</h3>
       <ul class="clean">
-        <li>Recalcul d'itinéraire</li>
-        <li>Segments incertains signalés</li>
-        <li>Traçabilité source / date / confiance</li>
+        <li>Modèle <span class="mono">ts-eurosat-1.0.0</span> entraîné et mesuré</li>
+        <li>Inférence sur tuiles Sentinel-2 réelles, en cache</li>
+        <li>3 itinéraires sur Banikoara en 0,94 s</li>
+        <li>Endpoints régionaux entre 1 et 11 ms</li>
       </ul>
     </div>
   </div>
 
-  <div style="height:8mm"></div>
+  <div style="height:4.5mm"></div>
 
-  <h2 style="color:var(--amber);">Ce qui est simulé</h2>
-  <div style="height:3mm"></div>
-  <ul class="clean amberdot">
-    <li><strong>Les détections de friction</strong> proviennent d'un jeu de démonstration synthétique, construit pour être plausible sur la commune de Banikoara — elles ne décrivent pas la situation réelle du terrain.</li>
-    <li><strong>L'emprise du couloir</strong> a été reconstituée par l'équipe, faute de jeu ouvert de polygones de couloirs au Bénin. Elle n'a aucune valeur officielle.</li>
-    <li><strong>Les métriques du modèle</strong> sont des valeurs de démonstration : aucun entraînement sur données réelles n'a encore été conduit.</li>
-    <li><strong>Le message vocal en fulfulde</strong> est représenté dans le parcours ; sa production et sa validation linguistique restent à faire.</li>
+  <div class="links">
+    <div class="l">Code source public</div>
+    <div class="u">https://github.com/KOBA2008/terra-sentinelle</div>
+    <div style="height:2.5mm"></div>
+    <div class="l">Démonstration en ligne, sans backend, sur données embarquées</div>
+    <div class="u">https://terra-sentinelle-5hp8hl4hs-koba-davids-projects.vercel.app</div>
+  </div>
+
+  <div style="height:4.5mm"></div>
+
+  <h2 style="color:var(--amber);">Ce qui ne fonctionne pas encore</h2>
+  <div style="height:2.5mm"></div>
+  <ul class="clean amberdot tight">
+    <li><strong>Aucune mesure de performance locale.</strong> Les métriques décrivent EuroSAT, donc l'Europe. Toute prédiction béninoise est non validée localement, faute de parcelles annotées sur la zone.</li>
+    <li><strong>L'emprise du couloir est une reconstitution de l'équipe</strong>, sans valeur officielle : aucun jeu ouvert de polygones de couloirs n'existe pour le Bénin, et le PFR de l'ANDF n'est pas ouvert.</li>
+    <li><strong>Couloirs, villages, points d'eau, pâturages et parcelles sont générés.</strong> L'imagerie satellitaire et le modèle, eux, sont réels.</li>
+    <li><strong>La fusion Sentinel-1</strong> est décrite et justifiée mais non implémentée : seule la voie optique tourne.</li>
+    <li><strong>La diffusion vocale en fulfulde</strong> est maquettée, sans chaîne audio réelle.</li>
+    <li><strong>Les coordonnées des 33 communes</strong> sont approximatives et restent à faire vérifier.</li>
+    <li><strong>L'effet réel est conditionné à l'usage par un comité :</strong> le vrai test, un comité qui modifie une décision après avoir vu la carte, reste à faire.</li>
   </ul>
 
-  <div style="height:8mm"></div>
+  <div style="height:4mm"></div>
 
   <h2>Prochaines étapes</h2>
-  <div style="height:3.5mm"></div>
-  <table class="tbl">
+  <div style="height:2.5mm"></div>
+  <table class="tbl compact">
     <tr><th>Étape</th><th>Ce qu'elle lève</th></tr>
-    <tr><td class="k">Entraînement réel sur Banikoara</td><td>Composites Sentinel-2 masqués nuages + Sentinel-1, à partir de Dynamic World comme a priori, avec mesure de l'écart local.</td></tr>
-    <tr><td class="k">Évaluation sur échantillon vérifié au sol</td><td>Remplace les métriques de démonstration par des métriques mesurées.</td></tr>
+    <tr><td class="k">Jeu annoté localement, sur Banikoara</td><td>Permet enfin de mesurer la performance au Bénin.</td></tr>
+    <tr><td class="k">Composites masqués nuages, fusion Sentinel-1</td><td>Rend le système disponible en pleine saison des pluies.</td></tr>
     <tr><td class="k">Calage de l'emprise avec la commune</td><td>Substitue une emprise validée à l'emprise reconstituée.</td></tr>
-    <tr><td class="k">Test d'usage avec un agent communal</td><td>Vérifie le mode hors connexion dans les conditions réelles de déplacement.</td></tr>
-    <tr><td class="k">Production du message vocal en fulfulde</td><td>Validation linguistique avec des locuteurs et les représentants d'éleveurs.</td></tr>
-    <tr><td class="k">Documentation des chiffres manquants</td><td>Renseigne les lignes « à documenter » de la page 2 à partir de sources vérifiables.</td></tr>
+    <tr><td class="k">Test d'usage avec un agent et un comité</td><td>Met à l'épreuve le hors connexion et le seul indicateur qui compte.</td></tr>
   </table>
 
   <div class="spacer"></div>
 
-  <div style="border-top:1.5px solid var(--ink); padding-top:4.5mm; display:flex; justify-content:space-between; align-items:flex-end;">
+  <div style="border-top:1.5px solid var(--ink); padding-top:3.5mm; display:flex; justify-content:space-between; align-items:flex-end;">
     <div>
       <div class="eyebrow">Contact</div>
-      <div style="font-family:Montserrat,sans-serif; font-weight:700; font-size:11pt; margin-top:2mm;">Équipe Terra Sentinelle — KOBA David</div>
-      <div class="mono" style="font-size:9pt; color:var(--ink-3); margin-top:1.5mm;">davidkoba825@gmail.com</div>
+      <div style="font-family:Montserrat,sans-serif; font-weight:700; font-size:11pt; margin-top:2mm;">Équipe TechMakers</div>
+      <div style="font-size:8.6pt; color:var(--ink-2); margin-top:1.2mm; line-height:1.45;">KOBA David · GANTIN Philippe-Cadet · ADANLAO Adéyinka Laurinda<br>DJIBO Issa · ABIALA Daniel</div>
+      <div class="mono" style="font-size:8.6pt; color:var(--ink-3); margin-top:1.2mm;">davidkoba825@gmail.com</div>
     </div>
     <div style="text-align:right;">
       <div class="eyebrow dim">Hackathon</div>
@@ -647,7 +742,7 @@
   </div>
 
   <footer>
-    <span>Terra Sentinelle · Document de pitch · Équipe KOBA David</span>
+    <span>Terra Sentinelle · Document de pitch · Équipe TechMakers</span>
     <span class="mono">6 / 6</span>
   </footer>
 </div>

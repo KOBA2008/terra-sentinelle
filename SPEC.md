@@ -217,3 +217,97 @@ POST /commune/{id}/predict     -> relance l'inférence (bornée, voir perf) et r
 Inférence bornée : au plus ~64 tuiles par commune (grille 8×8), tuiles mises en cache.
 Une prédiction de commune doit répondre en moins de 5 s une fois le cache chaud.
 Ne jamais lancer d'inférence sur les 33 communes d'un coup.
+
+## 11. ÉTAT RÉEL DU PROJET AU 12 SEPTEMBRE 2026 (source unique pour les documents)
+
+Les documents (deck, note de conception, pitch) doivent refléter EXACTEMENT cet état.
+Tout ce qui suit a été mesuré, pas estimé.
+
+### Ce qui est LIVRÉ et vérifié
+- **Couverture** : 5 départements, 33 communes (Alibori 6, Atacora 9, Borgou 8, Donga 4,
+  Collines 6). Réseau de 1 585 km. 157 zones de friction, dont 84 en attente de vérification.
+- **Commune de référence** : Banikoara, 57,13 km de couloir, 8 segments, 17 villages,
+  7 points d'eau, 5 zones de pâturage, 32 parcelles dont 6 dans l'emprise, 10 frictions.
+- **MODÈLE RÉELLEMENT ENTRAÎNÉ** (ce n'est plus une valeur de démonstration) :
+  EuroSAT RGB, imagerie Sentinel-2 réelle étiquetée, 27 000 vignettes 64x64, 10 classes.
+  Split stratifié 21 600 / 5 400, jeu de test tenu à l'écart, graine fixée.
+  Algorithme : sklearn HistGradientBoostingClassifier. 35 caractéristiques
+  (statistiques par canal, ExG, GRVI, texture). Version ts-eurosat-1.0.0.
+  **Métriques mesurées : accuracy 0,9528 | précision 0,902 | rappel 0,8618 | F1 0,8815 |
+  ROC-AUC 0,9866. Multi-classes 10 classes : accuracy 0,8883, F1 macro 0,8821.**
+- **Inférence sur imagerie RÉELLE du nord Bénin** : tuiles Sentinel-2 via EOX s2cloudless,
+  sans authentification, mises en cache sur disque (fonctionne hors connexion).
+  Grille 8x8 = 64 cellules par commune. Sur Banikoara : 7 cellules en culture permanente,
+  1 en culture annuelle, 56 en végétation herbacée ; p_cultivated de 0,003 à 0,991.
+- **Itinéraires** : 3 alternatives sur Banikoara en 0,94 s (60,4 / 50,7 / 54,5 km),
+  grille de coût 200 m, bornée à une commune ou deux communes adjacentes.
+- **API** : endpoints régionaux entre 1 et 11 ms.
+- **Application web** : vue régionale, carte de friction, fiche de détection, mode terrain
+  hors connexion, écran comité, tableau de bord, écran modèle.
+  **Thèmes clair ET sombre** (le clair est le thème de référence).
+  Responsive vérifié par capture à 360, 390, 768 et 1280 px.
+  Double mode dégradé (API absente → données embarquées ; tuiles absentes → fond CSS).
+- **Code source public** : https://github.com/KOBA2008/terra-sentinelle
+- **Démonstration en ligne** : https://terra-sentinelle-5hp8hl4hs-koba-davids-projects.vercel.app
+  (sans backend, sur données embarquées)
+
+### Ce qui NE fonctionne PAS encore (à dire explicitement)
+- Le modèle est entraîné sur de l'imagerie EUROPÉENNE et appliqué au Bénin. Les métriques
+  décrivent EuroSAT, PAS le Bénin. Aucune mesure de performance locale, faute de parcelles
+  annotées sur la zone. Toute prédiction béninoise est une sortie NON validée localement.
+- Aucun jeu ouvert de polygones de couloirs pour le Bénin. Le PFR / e-Foncier de l'ANDF
+  existe mais n'est pas ouvert. L'emprise utilisée est une reconstitution de l'équipe,
+  sans valeur officielle. Couloirs, villages, points d'eau, pâturages et parcelles sont
+  générés. L'imagerie satellitaire et le modèle, eux, sont réels.
+- Fusion Sentinel-1 décrite et justifiée, NON implémentée (seule la voie optique tourne).
+- Diffusion vocale en fulfulde maquettée, sans chaîne audio réelle.
+- Coordonnées des 33 communes approximatives, à faire vérifier.
+- Effet réel conditionné à l'usage par un comité : le vrai test (un comité a-t-il modifié
+  une décision après avoir vu la carte ?) reste à faire.
+
+### RÈGLE TYPOGRAPHIQUE (décidée le 11 sept 2026)
+**Aucun tiret cadratin dans les documents.** Utiliser deux-points pour une explication,
+point médian pour un séparateur, virgule sinon. Cette règle a déjà été appliquée au site.
+
+### Défi revendiqué
+Résilience climatique (secondaire : agriculture et sécurité alimentaire ; la diffusion
+vocale en fulfulde touche aussi le défi IA et langues locales).
+
+## 12. ÉQUIPE ET RÈGLES DE RÉDACTION (12 septembre 2026)
+
+### Équipe : TechMakers
+Le projet n'est PAS signé par une personne seule. Partout où une équipe est nommée
+(page de titre du deck, page de garde des PDF, pied de page, README, bloc contact),
+écrire :
+
+**Équipe TechMakers**
+- KOBA David
+- GANTIN Philippe-Cadet
+- ADANLAO Adéyinka Laurinda
+- DJIBO Issa
+- ABIALA Daniel
+
+Remplacer toute mention « Équipe KOBA David » ou « KOBA David » seul en tant que porteur.
+Respecter l'orthographe exacte des noms, accents compris.
+
+### Formulations retirées (décision de l'équipe, déjà appliquée au site)
+Ces éléments ont été retirés de l'application ; ils doivent l'être aussi des documents :
+1. La mention « Démonstration : données synthétiques, emprise de couloir reconstituée
+   (non officielle) » sous toutes ses formes.
+2. La phrase « Terra Sentinelle ne prédit pas les conflits et ne délivre aucune
+   autorisation de passage », y compris à l'intérieur du pitch canonique.
+3. Le bloc « Limites connues » tel qu'il était rédigé.
+4. Les mentions « valeurs de démonstration » et « aucun entraînement réel ».
+
+Conséquence sur la SPEC : les sections 1 et 3 ne sont plus des citations obligatoires.
+Le pitch canonique se termine désormais sur la phrase utile, sans la clause de refus.
+La phrase de cadrage (section 2) reste, elle, inchangée et utilisable.
+
+Ce qui RESTE dit, parce que factuel et demandé par le formulaire du hackathon :
+ce qui fonctionne et ce qui ne fonctionne pas encore (SPEC section 11), notamment
+l'écart de domaine du modèle, la fusion Sentinel-1 non implémentée, la diffusion vocale
+maquettée. Ces éléments sont des faits techniques, pas des formules de prudence.
+
+### Typographie
+Aucun tiret cadratin nulle part. Deux-points pour une explication, point médian pour un
+séparateur, virgule sinon.

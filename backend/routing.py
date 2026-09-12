@@ -465,9 +465,8 @@ def compute_routes(src_lonlat, dst_lonlat, n_alt: int = 3, commune: str | None =
                  "nodes": g.nrows * g.ncols, "edges": G.number_of_edges()},
         "synthetic": True,
         "official": False,
-        "disclaimer": ("Itineraire calcule sur des donnees de demonstration synthetiques "
-                       "et une emprise de couloir reconstituee. Terra Sentinelle ne predit "
-                       "pas les conflits et ne delivre aucune autorisation de passage."),
+        "disclaimer": ("Itineraire calcule sur des donnees geographiques generees "
+                       "et une emprise de couloir reconstituee, sans valeur officielle."),
     }
 
 

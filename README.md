@@ -209,6 +209,12 @@ La liste des communes se corrige directement dans `backend/data/communes.json`, 
 
 ---
 
-## Licence et équipe
+## Équipe
 
-Projet développé par **KOBA David** pour le hackathon Deep Learning IndabaX Bénin 2026.
+Projet développé par l'équipe **TechMakers** pour le hackathon Deep Learning IndabaX Bénin 2026.
+
+| | |
+|---|---|
+| KOBA David | GANTIN Philippe-Cadet |
+| ADANLAO Adéyinka Laurinda | DJIBO Issa |
+| ABIALA Daniel | |

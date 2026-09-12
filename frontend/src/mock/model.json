@@ -329,7 +329,6 @@
   },
   "domain_gap": "ATTENTION : ECART DE DOMAINE. Les metriques ci-dessus sont mesurees sur le jeu de test EuroSAT, c'est-a-dire sur de l'imagerie EUROPEENNE. Elles ne decrivent PAS la performance du modele au Benin et ne doivent jamais etre presentees comme telle. Les cartes d'occupation du sol globales sous-performent sur l'agriculture subsaharienne : parcelles plus petites que la vignette, cultures associees, jacheres, parcs agroforestiers, calendrier cultural et signature spectrale differents. S'ajoute un ecart de rendu : EuroSAT provient de produits Sentinel-2 L2A tandis que l'inference porte sur une mosaique EOX s2cloudless 2020 deja stylisee. Toute sortie du modele sur le Benin est donc une PREDICTION NON VALIDEE LOCALEMENT, a verifier sur le terrain par l'agent communal (role de Moussa Gounou, SPEC section 4). Aucune metrique beninoise n'est publiee ici parce qu'aucune n'a ete mesuree : il n'existe pas encore de jeu de verification annote pour le nord du Benin.",
   "validation_status": "non valide localement (Benin) ; metriques valides pour le domaine europeen d'entrainement uniquement",
-  "not_claimed": "Ce modele ne predit pas les conflits et ne delivre aucune autorisation de passage.",
   "offline_snapshot": true,
   "snapshot_note": "Instantané hors ligne : métriques réellement mesurées par train_model.py sur le jeu de test EuroSAT tenu à l'écart, recopiées ici parce que le déploiement public n'a pas de backend."
 }

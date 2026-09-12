@@ -349,8 +349,6 @@ def main() -> int:
             "verification annote pour le nord du Benin."),
         "validation_status": "non valide localement (Benin) ; metriques valides pour "
                              "le domaine europeen d'entrainement uniquement",
-        "not_claimed": "Ce modele ne predit pas les conflits et ne delivre aucune "
-                       "autorisation de passage.",
     }
     card_path = os.path.join(MODEL_DIR, "model_card.json")
     with open(card_path, "w", encoding="utf-8") as fh:

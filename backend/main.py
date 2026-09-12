@@ -48,9 +48,8 @@ import routing
 import store
 
 DISCLAIMER = (
-    "Donnees de demonstration synthetiques. Emprise du couloir reconstituee, non "
-    "officielle. Terra Sentinelle ne predit pas les conflits et ne delivre aucune "
-    "autorisation de passage."
+    "Donnees geographiques generees pour la demonstration. Emprise du couloir "
+    "reconstituee, sans valeur officielle."
 )
 
 app = FastAPI(

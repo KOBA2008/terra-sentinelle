@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Terra Sentinelle — generateur du deck 14 slides (16:9) pour IndabaX Benin 2026."""
+"""Terra Sentinelle : generateur du deck 15 slides (16:9) pour IndabaX Benin 2026."""
 from pptx import Presentation
 from pptx.util import Inches, Pt, Emu
 from pptx.dml.color import RGBColor
@@ -9,6 +9,7 @@ from pptx.oxml.ns import qn
 import copy
 
 OUT = "/home/koba-david/terra-sentinelle/deck/Terra_Sentinelle.pptx"
+N_SLIDES = 15
 
 # ---------- Palette (SPEC section 7) ----------
 BG_DEEP = RGBColor(0x08, 0x0F, 0x0C)
@@ -171,7 +172,7 @@ def chrome(slide, idx, kicker=None, title=None, title_size=32, sub=None, sub_siz
     """Filet de pied de page + numero + (option) kicker/titre/sous-titre."""
     bar(slide, M, FOOT_Y, W - 2 * M, 0.012, LINE)
     txt(slide, M, FOOT_Y + 0.14, 6.0, 0.26, "Terra Sentinelle · IndabaX Bénin 2026", 9, DIM)
-    txt(slide, W - M - 1.2, FOOT_Y + 0.14, 1.2, 0.26, "%02d / 14" % idx, 9, DIM,
+    txt(slide, W - M - 1.2, FOOT_Y + 0.14, 1.2, 0.26, "%02d / %d" % (idx, N_SLIDES), 9, DIM,
         font=MONO_FONT, align=PP_ALIGN.RIGHT)
     y = 0.62
     if kicker:
@@ -222,7 +223,7 @@ def row_h(items, w, tsize=15, bsize=12.5):
 
 
 # =====================================================================
-# 01 — Titre
+# 01 · Titre
 # =====================================================================
 s = add_slide()
 bar(s, 0, 0, W, 0.055, ACCENT)
@@ -231,20 +232,28 @@ bar(s, M, 3.14, 1.5, 0.045, ACCENT)
 txt(s, M, 3.46, 10.6, 0.9,
     "Rendre aux couloirs de transhumance une carte qui a l'âge de la saison en cours.",
     19, DIM, spacing=1.28)
-ch = rect(s, M, 4.62, 3.05, 0.46, None, ACCENT, 0.45)
-txt(s, M + 0.30, 4.735, 2.6, 0.3, "Défi : Résilience climatique", 12, ACCENT, bold=True)
-txt(s, M, 5.55, 8.0, 0.9,
-    "Équipe KOBA David\nHackathon Deep Learning · IndabaX Bénin 2026 · Cotonou",
+ch = rect(s, M, 4.40, 3.05, 0.46, None, ACCENT, 0.45)
+txt(s, M + 0.30, 4.515, 2.6, 0.3, "Défi : Résilience climatique", 12, ACCENT, bold=True)
+txt(s, M, 5.22, 8.0, 0.35, "Équipe TechMakers", 16, TEXT, TITLE_FONT, bold=True)
+txt(s, M, 5.62, 11.8, 0.62,
+    "KOBA David · GANTIN Philippe-Cadet · ADANLAO Adéyinka Laurinda\n"
+    "DJIBO Issa · ABIALA Daniel",
     13, DIM, spacing=1.35)
+txt(s, M, 6.34, 11.8, 0.3,
+    "Hackathon Deep Learning · IndabaX Bénin 2026 · Cotonou", 13, DIM)
 chrome(s, 1)
-notes(s, "Bonjour, je suis David KOBA. Terra Sentinelle concourt sur le défi Résilience climatique.\nEn "
+notes(s, "Bonjour, je suis David KOBA et je présente Terra Sentinelle au nom de l'équipe TechMakers : "
+         "Philippe-Cadet GANTIN, Adéyinka Laurinda ADANLAO, Issa DJIBO, Daniel ABIALA et moi-même.\n"
+         "Terra Sentinelle concourt sur le défi Résilience climatique.\nEn "
          "une phrase : dans le nord du Bénin, les couloirs de transhumance ont une carte, mais cette "
          "carte a des années. Nous lui redonnons l'âge de la saison en cours, à partir d'imagerie "
-         "satellitaire.\nJe vais vous montrer pour qui, pourquoi, comment — et ce que le système refuse "
-         "de faire.")
+         "satellitaire.\nDeux choses à retenir dès maintenant : le système couvre cinq départements et "
+         "trente-trois communes, et le modèle de classification est réellement entraîné, avec des "
+         "métriques mesurées que je vous montrerai.\nJe vais vous montrer pour qui, pourquoi, comment, "
+         "et ce que le système refuse de faire.")
 
 # =====================================================================
-# 02 — Le constat (phrase de cadrage SPEC §2)
+# 02 · Le constat (phrase de cadrage SPEC section 2)
 # =====================================================================
 s = add_slide()
 bar(s, M, 0.665, 0.055, 0.17, ACCENT)
@@ -258,17 +267,19 @@ txt(s, M + 0.55, 3.42, 11.3, 1.0,
     27, ACCENT, TITLE_FONT, bold=True, spacing=1.22)
 chrome(s, 2)
 notes(s, "Retenez cette phrase, c'est tout le projet.\nLes couloirs ont été délimités une fois : bornes, "
-         "procès-verbaux, concertation. Un vrai travail.\nMais les champs changent chaque saison — une "
+         "procès-verbaux, concertation. Un vrai travail.\nMais les champs changent chaque saison : une "
          "parcelle se défriche en quelques semaines.\nDonc le conflit ne naît pas d'une carte absente. Il "
          "naît d'une carte périmée : le troupeau arrive là où le couloir existe sur le papier, et où il y "
          "a désormais du coton.")
 
 # =====================================================================
-# 03 — Le problème : temporel, pas spatial
+# 03 · Le probleme : temporel, pas spatial
 # =====================================================================
 s = add_slide()
 chrome(s, 3, "Le problème", "Ce n'est pas un problème spatial.\nC'est un problème temporel.", 30)
-txt(s, M, 2.52, 11.8, 0.4, "Nord du Bénin · conflits agriculteurs–éleveurs", 13, SAND)
+txt(s, M, 2.52, 11.8, 0.4,
+    "Nord et centre du Bénin · 5 départements · 33 communes · conflits agriculteurs et éleveurs",
+    13, SAND)
 cy, chh = 3.15, 2.25
 cw = (W - 2 * M - 0.6) / 3
 card(s, M, cy, cw, chh, "La carte existe", "Couloirs délimités,\nbalisés, actés.\nUne fois.", ACCENT, 16, 13)
@@ -277,13 +288,14 @@ card(s, M + 2 * (cw + 0.30), cy, cw, chh, "Le comité décide\nà l'aveugle",
      "Il arbitre sans image\nrécente du terrain.", RED, 16, 13)
 txt(s, M, 5.78, 11.8, 0.5, "La carte est périmée avant d'être utilisée.", 17, TEXT, TITLE_FONT, bold=True)
 notes(s, "Précisons, parce que le problème est souvent mal posé.\nUn : la carte existe. Ce n'est pas un "
-         "vide cartographique.\nDeux : le sol bouge — extension cotonnière, mise en culture du couloir, à "
+         "vide cartographique.\nDeux : le sol bouge, extension cotonnière, mise en culture du couloir, à "
          "chaque saison.\nTrois : le comité communal doit arbitrer, mais sans image récente, sur des "
          "témoignages contradictoires.\nLe manque n'est donc pas spatial, il est temporel. Pas « où est "
-         "le couloir », mais « à quoi ressemble-t-il cette année ».")
+         "le couloir », mais « à quoi ressemble-t-il cette année ».\nEt ce n'est pas le problème d'une "
+         "commune isolée : nous couvrons aujourd'hui trente-trois communes sur cinq départements.")
 
 # =====================================================================
-# 04 — Notre utilisateur : Moussa Gounou
+# 04 · Notre utilisateur : Moussa Gounou
 # =====================================================================
 s = add_slide()
 chrome(s, 4, "Notre utilisateur", "Moussa Gounou", 34)
@@ -307,19 +319,22 @@ txt(s, x2 + 0.32, 3.34, W - M - x2 - 0.64, 0.9,
     "Le comité communal de transhumance (web)\nLes représentants d'éleveurs (message vocal)",
     13, DIM, spacing=1.35)
 rect(s, x2, 4.58, W - M - x2, 1.76)
-txt(s, x2 + 0.32, 4.88, 4.6, 0.35, "ZONE DE DÉMONSTRATION", 11, SAND, bold=True)
+txt(s, x2 + 0.32, 4.88, 4.6, 0.35, "COUVERTURE ET DÉMONSTRATION", 11, SAND, bold=True)
 txt(s, x2 + 0.32, 5.30, W - M - x2 - 0.64, 0.9,
-    "Commune de Banikoara, Alibori, nord Bénin\n11.298 N · 2.438 E",
+    "5 départements · 33 communes · 1 585 km\nBanikoara, commune de référence détaillée",
     13, DIM, spacing=1.35)
 notes(s, "Nous n'avons pas conçu pour « les communes », mais pour une personne.\nMoussa Gounou, agent "
          "d'élevage à Banikoara. Avant la saison, il reçoit la liste des portions du couloir devenues "
-         "cultivées. Il part vérifier — et là-bas, pas de réseau. Il confirme ou invalide chaque "
+         "cultivées. Il part vérifier, et là-bas, pas de réseau. Il confirme ou invalide chaque "
          "détection hors ligne ; au retour du réseau tout se synchronise. Le comité arbitre le "
          "lendemain.\nDerrière lui : le comité, sur le web, et les représentants d'éleveurs, qui "
-         "reçoivent la décision en vocal.")
+         "reçoivent la décision en vocal.\nUn mot sur l'échelle : le système ne couvre plus une seule "
+         "commune. Cinq départements, trente-trois communes, mille cinq cent quatre-vingt-cinq "
+         "kilomètres de couloirs. Banikoara reste la commune que je détaille, parce que c'est celle qui "
+         "porte le jeu de données le plus riche.")
 
 # =====================================================================
-# 05 — La solution + chaine de traitement
+# 05 · La solution + chaine de traitement
 # =====================================================================
 s = add_slide()
 chrome(s, 5, "La solution")
@@ -363,27 +378,28 @@ txt(s, M, 5.90, 11.8, 0.4,
     12.5, DIM)
 notes(s, "La solution : transformer une carte statique en système de veille actualisé avant chaque "
          "saison.\nLa chaîne. Images Sentinel-2 à 10 mètres. Un modèle identifie les zones mises en "
-         "culture. On les croise avec l'emprise du couloir — c'est là qu'est notre valeur. On en tire une "
-         "carte de friction, avec gravité et confiance.\nPuis l'humain reprend la main : vérification "
+         "culture. On les croise avec l'emprise du couloir : c'est là qu'est notre valeur. On en tire "
+         "une carte de friction, avec gravité et confiance.\nPuis l'humain reprend la main : vérification "
          "terrain, arbitrage du comité, diffusion vocale en fulfulde.\nLa machine est en amont. La "
          "décision est au centre, et elle est humaine.")
 
 # =====================================================================
-# 06 — La carte de friction
+# 06 · La carte de friction
 # =====================================================================
 s = add_slide()
 chrome(s, 6, "Le livrable", "La carte de friction", 32,
        "Ce que le comité reçoit avant la saison : les portions devenues cultivées, "
-       "classées par gravité, avec leur niveau de confiance.", 14)
+       "classées par gravité, avec leur niveau de confiance. "
+       "157 zones sur 33 communes, dont 84 en attente de vérification.", 14)
 hy = 3.28
 cols = [("SEGMENT", M + 0.30, 3.1), ("SURFACE", M + 3.55, 1.5), ("GRAVITÉ", M + 5.35, 2.6),
         ("CONFIANCE", M + 8.20, 1.6), ("STATUT", M + 10.05, 1.6)]
 for lab, cx, cw_ in cols:
     txt(s, cx, hy, cw_, 0.3, lab, 10, DIM, bold=True)
 bar(s, M, hy + 0.34, W - 2 * M, 0.012, LINE)
-rows = [("Couloir central — segment 04", "18,4 ha", "Grave", RED, "0.88", "à vérifier", AMBER),
-        ("Couloir central — segment 07", "6,1 ha", "Moyenne", AMBER, "0.71", "confirmé", ACCENT),
-        ("Dérivation ouest — segment 12", "2,3 ha", "Faible", ACCENT, "0.54", "incertain", DIM)]
+rows = [("Couloir central · segment 04", "18,4 ha", "Grave", RED, "0.88", "à vérifier", AMBER),
+        ("Couloir central · segment 07", "6,1 ha", "Moyenne", AMBER, "0.71", "confirmé", ACCENT),
+        ("Dérivation ouest · segment 12", "2,3 ha", "Faible", ACCENT, "0.54", "incertain", DIM)]
 for i, (seg, ha, grav, gc, conf, st, sc) in enumerate(rows):
     ry = hy + 0.52 + i * 0.72
     rect(s, M, ry, W - 2 * M, 0.60, RAISE, LINE, 0.14)
@@ -399,34 +415,88 @@ txt(s, M, 6.10, 11.8, 0.4,
     12, DIM, italic=True)
 notes(s, "Voici le livrable, celui que le comité a sous les yeux.\nPour chaque portion : la surface, un "
          "niveau de gravité, un niveau de confiance, un statut.\nRegardez la troisième ligne : confiance "
-         "0,54, statut incertain. Nous ne la cachons pas — c'est justement celle que Moussa ira voir en "
-         "premier.\nChaque ligne garde sa source, la date du passage satellite et son statut de "
-         "validation. Précision : les valeurs affichées sont des données de démonstration.")
+         "0,54, statut incertain. Nous ne la cachons pas : c'est justement celle que Moussa ira voir en "
+         "premier.\nÀ l'échelle des trente-trois communes, cela fait 157 zones de friction, dont 84 "
+         "encore en attente de vérification.\nChaque ligne garde sa source, la date du passage satellite "
+         "et son statut de validation. Précision honnête : les zones de friction affichées sont "
+         "générées, comme les couches géographiques ; le modèle, lui, est réel et ses métriques sont "
+         "mesurées, je vous les montre dans deux slides.")
 
 # =====================================================================
-# 07 — Pourquoi l'IA
+# 07 · Pourquoi l'IA
 # =====================================================================
 s = add_slide()
 chrome(s, 7, "Pourquoi l'IA", "L'IA n'est pas un ajout.\nElle est le mécanisme.", 30)
 txt(s, M, 2.72, 11.8, 0.5,
-    "Seule l'imagerie satellite peut rafraîchir la carte d'une commune entière, chaque saison.",
+    "Seule l'imagerie satellite peut rafraîchir la carte de 33 communes, chaque saison.",
     16, SAND, spacing=1.25)
 cy, chh = 3.55, 2.35
 cw = (W - 2 * M - 0.6) / 3
-card(s, M, cy, cw, chh, "L'échelle", "Banikoara : des milliers\nd'hectares de couloir.\nAucune brigade ne\nl'arpente chaque année.", SAND, 15, 12.5)
+card(s, M, cy, cw, chh, "L'échelle", "1 585 km de couloirs\nsur 33 communes.\nAucune brigade ne\nles arpente chaque année.", SAND, 15, 12.5)
 card(s, M + cw + 0.30, cy, cw, chh, "La cadence", "Sentinel-2 repasse\ntous les 5 jours.\nLa carte peut suivre\nle rythme des champs.", ACCENT, 15, 12.5)
 card(s, M + 2 * (cw + 0.30), cy, cw, chh, "Le signal", "Distinguer sol nu,\njachère et culture\ndemande un modèle,\npas un seuil.", AMBER, 15, 12.5)
-notes(s, "Pourquoi de l'IA, et pas une simple enquête de terrain ? Trois raisons.\nL'échelle : des "
-         "milliers d'hectares de couloir sur la seule commune de Banikoara. Aucune brigade ne les arpente "
-         "chaque année.\nLa cadence : Sentinel-2 repasse tous les cinq jours, gratuitement. Seule source "
-         "capable de suivre le rythme des champs.\nLe signal : distinguer sol nu, jachère et culture "
-         "demande un modèle appris, pas un seuil.\nRetirez l'IA, il ne reste plus de produit.")
+notes(s, "Pourquoi de l'IA, et pas une simple enquête de terrain ? Trois raisons.\nL'échelle : mille cinq "
+         "cent quatre-vingt-cinq kilomètres de couloirs sur trente-trois communes. Aucune brigade ne les "
+         "arpente chaque année.\nLa cadence : Sentinel-2 repasse tous les cinq jours, gratuitement. Seule "
+         "source capable de suivre le rythme des champs.\nLe signal : distinguer sol nu, jachère et "
+         "culture demande un modèle appris, pas un seuil.\nRetirez l'IA, il ne reste plus de produit.\nEt "
+         "ce modèle, justement, existe. C'est la slide suivante.")
 
 # =====================================================================
-# 08 — Les nuages : choix technique assume
+# 08 · Le modele (NOUVELLE SLIDE)
 # =====================================================================
 s = add_slide()
-chrome(s, 8, "Choix technique assumé", "La saison de culture est la saison des pluies.", 29,
+chrome(s, 8, "Le modèle", "Un classifieur réellement entraîné.", 30,
+       "Métriques mesurées sur un jeu de test tenu à l'écart, pas des valeurs annoncées.", 14)
+my = 2.32
+mets = [("0,9528", "exactitude"), ("0,902", "précision"), ("0,8618", "rappel"),
+        ("0,8815", "F1"), ("0,9866", "ROC-AUC")]
+tgap = 0.26
+tw = (W - 2 * M - 4 * tgap) / 5
+for i, (v, lab) in enumerate(mets):
+    xx = M + i * (tw + tgap)
+    rect(s, xx, my, tw, 1.02)
+    bar(s, xx, my - 0.012, tw, 0.05, ACCENT)
+    txt(s, xx, my + 0.27, tw, 0.38, v, 21, ACCENT, font=MONO_FONT, bold=True, align=PP_ALIGN.CENTER)
+    txt(s, xx, my + 0.69, tw, 0.26, lab, 10.5, DIM, align=PP_ALIGN.CENTER)
+cy = 3.52
+cw = (W - 2 * M - 0.6) / 3
+card(s, M, cy, cw, 2.15, "Entraînement",
+     "EuroSAT, Sentinel-2 réel\n27 000 vignettes 64x64\nSplit 21 600 / 5 400\nTest tenu à l'écart",
+     ACCENT, 15, 12.5)
+card(s, M + cw + 0.30, cy, cw, 2.15, "Algorithme",
+     "HistGradientBoosting\n35 caractéristiques\nExG, GRVI, texture\nVersion ts-eurosat-1.0.0",
+     AMBER, 15, 12.5)
+card(s, M + 2 * (cw + 0.30), cy, cw, 2.15, "Inférence, nord Bénin",
+     "Tuiles Sentinel-2 réelles\nGrille 8x8, mise en cache\nBanikoara : 8 cellules\nen culture sur 64",
+     SAND, 15, 12.5)
+rect(s, M, 5.86, W - 2 * M, 0.70, RAISE, AMBER, 0.10)
+bar(s, M, 5.848, W - 2 * M, 0.05, AMBER)
+txt(s, M + 0.36, 6.07, W - 2 * M - 0.72, 0.32,
+    "Ces métriques décrivent EuroSAT, imagerie européenne, et non le Bénin.",
+    14, TEXT, spacing=1.18)
+notes(s, "Voici ce qui a changé depuis la conception du projet, et c'est le point le plus important de "
+         "cette présentation sur le plan technique.\nLe modèle n'est plus une intention : il est "
+         "entraîné. Jeu d'entraînement EuroSAT, c'est-à-dire de la vraie imagerie Sentinel-2 étiquetée, "
+         "vingt-sept mille vignettes de soixante-quatre pixels, dix classes. Split stratifié vingt et un "
+         "mille six cents en entraînement, cinq mille quatre cents en test, graine fixée, jeu de test "
+         "tenu à l'écart.\nAlgorithme : un HistGradientBoostingClassifier de scikit-learn, trente-cinq "
+         "caractéristiques, statistiques par canal, indices de végétation ExG et GRVI, mesures de "
+         "texture. Pas de deep learning : pas de GPU ici, et la pertinence prime sur la complexité "
+         "inutile.\nLes chiffres au-dessus sont mesurés sur le test : exactitude 0,95, précision 0,90, "
+         "rappel 0,86, F1 0,88, ROC-AUC 0,99. En multi-classes sur les dix classes : exactitude 0,89, "
+         "F1 macro 0,88.\nEt l'inférence tourne sur de la vraie imagerie du nord Bénin : des tuiles "
+         "Sentinel-2 s2cloudless, mises en cache sur disque, donc la démonstration ne dépend pas du "
+         "réseau. Sur Banikoara, grille de soixante-quatre cellules : huit sont classées en culture, "
+         "sept en culture permanente, une en culture annuelle.\nMaintenant la ligne orange, et je la lis "
+         "moi-même : ces métriques décrivent EuroSAT, c'est-à-dire l'Europe. Elles ne décrivent pas le "
+         "Bénin. J'y reviens.")
+
+# =====================================================================
+# 09 · Les nuages : choix technique assume
+# =====================================================================
+s = add_slide()
+chrome(s, 9, "Choix technique assumé", "La saison de culture est la saison des pluies.", 29,
        "Donc la saison des nuages. C'est le premier obstacle réel, et il se traite.", 14)
 py, ph, pw = 2.92, 2.80, (W - 2 * M - 0.55) / 2
 # Panneau optique
@@ -463,29 +533,32 @@ bar(s, x2 + 0.42, py + 1.86, pw - 0.84, 0.14, SAND)
 txt(s, x2 + 0.42, py + 0.60, 2.4, 0.22, "nuages", 9, DIM)
 txt(s, x2 + 0.42, py + 2.04, 2.4, 0.22, "sol", 9, DIM)
 txt(s, x2 + 0.30, py + 2.30, pw - 0.6, 0.34,
-    "Le radar traverse les nuages.\nIl prend le relais en pleine saison humide.", 11.5, DIM, spacing=1.25)
+    "Le radar traverse les nuages.\nDécrit et justifié, pas encore implémenté.", 11.5, DIM, spacing=1.25)
 txt(s, M, 5.86, 11.8, 0.44,
     "« La pertinence des choix techniques compte davantage que la complexité inutile. »",
     13.5, ACCENT, italic=True)
 notes(s, "Voici le piège du projet, et notre choix technique.\nLa saison de culture, ici, c'est la saison "
-         "des pluies. Donc des nuages. Une image optique sous un nuage, c'est un pixel perdu — au pire "
+         "des pluies. Donc des nuages. Une image optique sous un nuage, c'est un pixel perdu : au pire "
          "moment de l'année.\nDeux parades. Un composite médian Sentinel-2 sur plusieurs dates avec "
          "masquage des nuages : on garde la médiane des passages dégagés. Puis Sentinel-1, le radar, qui "
-         "traverse les nuages et prend le relais en saison humide.\nRien d'exotique : deux briques "
-         "choisies pour une contrainte réelle.")
+         "traverse les nuages et prendra le relais en saison humide.\nJe suis précis sur ce point : "
+         "aujourd'hui, seule la voie optique tourne. La fusion Sentinel-1 est décrite et justifiée, elle "
+         "n'est pas implémentée. Je préfère le dire que le laisser croire.\nRien d'exotique : deux "
+         "briques choisies pour une contrainte réelle.")
 
 # =====================================================================
-# 09 — Pourquoi pas Dynamic World
+# 10 · Pourquoi pas Dynamic World
 # =====================================================================
 s = add_slide()
-chrome(s, 9, "La question qu'on va nous poser",
-       "« Pourquoi pas simplement Dynamic World ? »", 30)
+chrome(s, 10, "La question qu'on va nous poser",
+       "« Pourquoi pas simplement Dynamic World ? »", 30,
+       "L'argument tient toujours. Il est maintenant démontré, plus seulement affirmé.", 14)
 cy, chh = 2.42, 1.98
 cw = (W - 2 * M - 0.6) / 3
 card(s, M, cy, cw, chh, "Les cartes globales\ndécrochent ici",
      "Petites parcelles,\ncultures associées :\nl'agriculture subsaharienne\ny est sous-performée.", AMBER, 14, 12)
-card(s, M + cw + 0.30, cy, cw, chh, "On s'en sert,\ncomme a priori",
-     "Dynamic World en entrée,\nadaptation locale,\nécart mesuré.", ACCENT, 14, 12)
+card(s, M + cw + 0.30, cy, cw, chh, "Nous avons entraîné\nnotre propre modèle",
+     "Métriques mesurées,\ntest tenu à l'écart,\nécart de domaine chiffré\net déclaré.", ACCENT, 14, 12)
 card(s, M + 2 * (cw + 0.30), cy, cw, chh, "Notre apport\nest ailleurs",
      "Pas le classifieur :\nle croisement avec\nl'emprise du couloir.", SAND, 14, 12)
 rect(s, M, 5.00, W - 2 * M, 1.34, RAISE, ACCENT, 0.10)
@@ -495,60 +568,70 @@ txt(s, M + 0.36, 5.26, W - 2 * M - 0.72, 0.9,
     19, TEXT, TITLE_FONT, bold=True, spacing=1.25)
 notes(s, "Posons nous-mêmes la question qui viendra : Dynamic World existe déjà. Pourquoi ne pas "
          "s'arrêter là ?\nD'abord parce que les cartes globales décrochent sur l'agriculture "
-         "subsaharienne : petites parcelles, cultures associées. C'est documenté.\nEnsuite, nous ne les "
-         "rejetons pas : Dynamic World sert d'a priori, nous adaptons localement et nous mesurons "
-         "l'écart.\nSurtout : notre contribution n'est pas le classifieur, c'est le croisement avec "
-         "l'emprise du couloir. Une carte de cultures ne dit rien à un comité. Une carte de friction, si.")
+         "subsaharienne : petites parcelles, cultures associées. C'est documenté.\nLa différence avec la "
+         "version précédente de ce projet, c'est que nous ne nous contentons plus de l'affirmer. Nous "
+         "avons entraîné un classifieur, mesuré ses performances sur un jeu de test tenu à l'écart, et "
+         "nous publions à la fois les chiffres et l'écart de domaine. L'argument est démontré, plus "
+         "seulement énoncé.\nSurtout : notre contribution n'est pas le classifieur, c'est le croisement "
+         "avec l'emprise du couloir. Une carte de cultures ne dit rien à un comité. Une carte de "
+         "friction, si.")
 
 # =====================================================================
-# 10 — Les donnees
+# 11 · Les donnees
 # =====================================================================
 s = add_slide()
-chrome(s, 10, "Les données", "Ce que nous utilisons — et ce qui manque.", 30)
-ty, th = 2.48, 3.62
+chrome(s, 11, "Les données", "Ce que nous utilisons, et ce qui manque.", 30)
+ty, th = 2.30, 4.24
 lw = 7.05
 rect(s, M, ty, lw, th)
 bar(s, M, ty - 0.012, lw, 0.05, ACCENT)
 txt(s, M + 0.32, ty + 0.28, lw - 0.64, 0.3, "LIBRE, OUVERT, UTILISÉ", 11, ACCENT, bold=True)
 data = [("Sentinel-2", "optique 10 m · Copernicus"),
-        ("Sentinel-1", "radar · traverse les nuages"),
+        ("EOX s2cloudless", "tuiles réelles, sans clé, en cache"),
+        ("EuroSAT (Zenodo)", "27 000 vignettes étiquetées"),
+        ("Sentinel-1", "radar · non encore implémenté"),
         ("Dynamic World V1", "occupation du sol quasi temps réel"),
         ("ESA WorldCover v200", "10 m · 11 classes dont cropland"),
         ("OpenStreetMap Bénin", "Geofabrik"),
         ("Limites administratives", "HDX"),
         ("OIM TTT-DTM", "mouvements de transhumance")]
 for i, (n, d) in enumerate(data):
-    yy = ty + 0.72 + i * 0.40
+    yy = ty + 0.74 + i * 0.38
     dot = rect(s, M + 0.34, yy + 0.10, 0.09, 0.09, ACCENT, None, 0.5, MSO_SHAPE.OVAL)
     txt(s, M + 0.60, yy, 2.95, 0.32, n, 12.5, TEXT)
     txt(s, M + 3.62, yy, lw - 3.94, 0.32, d, 11.5, DIM)
 x2 = M + lw + 0.40
 rw = W - M - x2
-rect(s, x2, ty, rw, 1.82, RAISE, AMBER, 0.10)
+rect(s, x2, ty, rw, 2.02, RAISE, AMBER, 0.10)
 bar(s, x2, ty - 0.012, rw, 0.05, AMBER)
 txt(s, x2 + 0.32, ty + 0.28, rw - 0.64, 0.3, "CE QUI MANQUE", 11, AMBER, bold=True)
-txt(s, x2 + 0.32, ty + 0.68, rw - 0.64, 1.0,
-    "Aucun jeu ouvert de polygones\nde couloirs au Bénin.\nLe PFR de l'ANDF existe, mais fermé.",
+txt(s, x2 + 0.32, ty + 0.70, rw - 0.64, 1.0,
+    "Aucun jeu ouvert de polygones\nde couloirs au Bénin.\nLe PFR de l'ANDF existe, mais fermé.\n"
+    "Aucune parcelle annotée sur zone.",
     12.5, DIM, spacing=1.32)
-rect(s, x2, ty + 2.04, rw, 1.58, RAISE, SAND, 0.10)
-bar(s, x2, ty + 2.028, rw, 0.05, SAND)
-txt(s, x2 + 0.32, ty + 2.32, rw - 0.64, 0.3, "CE QUE NOUS FAISONS", 11, SAND, bold=True)
-txt(s, x2 + 0.32, ty + 2.72, rw - 0.64, 0.8,
-    "L'emprise du couloir est reconstituée\npar l'équipe. Non officielle.\nÉcrit dans l'interface.",
+rect(s, x2, ty + 2.24, rw, 1.94, RAISE, SAND, 0.10)
+bar(s, x2, ty + 2.228, rw, 0.05, SAND)
+txt(s, x2 + 0.32, ty + 2.52, rw - 0.64, 0.3, "CE QUE NOUS FAISONS", 11, SAND, bold=True)
+txt(s, x2 + 0.32, ty + 2.94, rw - 0.64, 0.8,
+    "L'emprise du couloir est reconstituée\npar l'équipe, sans valeur officielle.\n"
+    "Les couches géographiques\nsont générées.",
     12.5, TEXT, spacing=1.32)
-notes(s, "Tout ce qui est à gauche est libre et vérifié : Sentinel-1 et 2 via Copernicus, Dynamic World, "
-         "ESA WorldCover, OpenStreetMap Bénin, les limites de HDX, les données de transhumance de "
-         "l'OIM.\nMaintenant ce qui manque, et je préfère le dire moi-même : il n'existe aucun jeu ouvert "
-         "de polygones de couloirs au Bénin. Le registre de l'ANDF existe, mais fermé.\nDonc l'emprise "
-         "que nous affichons est reconstituée par l'équipe, non officielle, et c'est écrit dans "
-         "l'interface. Le jour où une mairie fournit la vraie, elle se substitue sans rien changer au "
-         "reste.")
+notes(s, "Tout ce qui est à gauche est libre et vérifié : Sentinel-1 et 2 via Copernicus, les tuiles "
+         "s2cloudless d'EOX qui nous donnent de la vraie imagerie sans authentification, EuroSAT pour "
+         "l'entraînement, Dynamic World, ESA WorldCover, OpenStreetMap Bénin, les limites de HDX, les "
+         "données de transhumance de l'OIM.\nMaintenant ce qui manque, et je préfère le dire moi-même : "
+         "il n'existe aucun jeu ouvert de polygones de couloirs au Bénin. Le registre de l'ANDF existe, "
+         "mais fermé. Et il n'existe pas non plus de parcelles annotées sur notre zone, ce qui nous "
+         "interdit de mesurer la performance locale du modèle.\nDonc l'emprise que nous affichons est "
+         "reconstituée par l'équipe et sans valeur officielle, comme les villages, les points d'eau, "
+         "les pâturages et les parcelles. L'imagerie et le modèle, eux, sont réels. Le jour où une "
+         "mairie fournit la vraie, elle se substitue sans rien changer au reste.")
 
 # =====================================================================
-# 11 — L'eleveur dans la boucle
+# 12 · L'eleveur dans la boucle
 # =====================================================================
 s = add_slide()
-chrome(s, 11, "IA et langues locales", "L'éleveur dans la boucle.", 30,
+chrome(s, 12, "IA et langues locales", "L'éleveur dans la boucle.", 30,
        "Une décision que son destinataire ne peut pas lire n'est pas une décision diffusée.", 14)
 fy = 3.05
 fw, fgap = 2.72, 0.52
@@ -572,15 +655,16 @@ txt(s, M, 5.06, 11.8, 0.9,
 notes(s, "Un système de décision qui ne parle pas la langue de ceux qu'il concerne ne sert à rien.\nLe "
          "comité arbitre : maintien, ajustement ou contournement. La décision devient un message vocal en "
          "fulfulde, la langue des éleveurs transhumants du nord Bénin, diffusé par les canaux qu'ils "
-         "utilisent déjà — WhatsApp, radios communautaires — avant le départ des troupeaux.\nLe vocal "
-         "n'est pas un gadget : il contourne la barrière de la langue et celle de l'écrit. C'est aussi "
-         "pourquoi le projet touche le défi IA et langues locales.")
+         "utilisent déjà, WhatsApp, radios communautaires, avant le départ des troupeaux.\nÀ ce stade la "
+         "diffusion vocale est maquettée : l'enchaînement existe dans l'interface, la chaîne audio "
+         "réelle, non.\nLe vocal n'est pas un gadget : il contourne la barrière de la langue et celle de "
+         "l'écrit. C'est aussi pourquoi le projet touche le défi IA et langues locales.")
 
 # =====================================================================
-# 12 — Gouvernance et risque
+# 13 · Gouvernance et risque
 # =====================================================================
 s = add_slide()
-chrome(s, 12, "Gouvernance et risque",
+chrome(s, 13, "Gouvernance et risque",
        "Une carte de conflit foncier est une donnée sensible.", 28,
        "Nous le disons avant qu'on nous le demande.", 14)
 cy, chh = 3.02, 2.35
@@ -596,59 +680,94 @@ notes(s, "Soyons lucides sur ce que nous fabriquons. Une carte qui montre qui a 
          "qu'elle prétend éviter.\nTrois garde-fous. L'accès est par rôle : agent, comité et autorité ne "
          "voient pas la même chose. Les zones sensibles restent invisibles hors du comité. L'hébergement "
          "se fait chez l'autorité communale : nous ne centralisons pas le foncier du nord Bénin sur un "
-         "serveur privé.\nNous énonçons ce risque nous-mêmes plutôt que d'attendre la question.")
+         "serveur privé. C'est d'autant plus vrai maintenant que nous couvrons trente-trois "
+         "communes.\nNous énonçons ce risque nous-mêmes plutôt que d'attendre la question.")
 
 # =====================================================================
-# 13 — Ce que Terra Sentinelle ne fait pas  (slide la plus importante)
+# 14 · Ce que Terra Sentinelle ne fait pas  (slide la plus importante)
 # =====================================================================
 s = add_slide()
 bar(s, 0, 0, W, 0.055, RED)
-txt(s, M, 1.05, 11.8, 0.4, "CE QUE TERRA SENTINELLE NE FAIT PAS", 13, RED, bold=True)
-bar(s, M, 1.98, 0.07, 1.34, RED)
-txt(s, M + 0.58, 1.92, 11.1, 2.1,
-    "« Terra Sentinelle ne prédit pas les conflits\net ne délivre aucune autorisation de passage. »",
+txt(s, M, 1.00, 11.8, 0.4, "CE QUE TERRA SENTINELLE NE FAIT PAS", 13, RED, bold=True)
+bar(s, M, 1.81, 0.07, 1.34, RED)
+txt(s, M + 0.58, 1.75, 11.1, 2.1,
+    "Un outil de veille, pas une autorité.\nNous énonçons ses limites nous-mêmes.",
     31, TEXT, TITLE_FONT, bold=True, spacing=1.30)
-bar(s, M, 4.40, W - 2 * M, 0.012, LINE)
+bar(s, M, 3.50, W - 2 * M, 0.012, LINE)
 items = [("Il ne dit pas qui avait le droit d'être là.", RED),
          ("Il ne tranche pas la légitimité foncière.", AMBER),
+         ("Il ne valide pas lui-même ses détections au Bénin.", AMBER),
          ("Il informe un arbitrage humain. Rien de plus.", ACCENT)]
 for i, (t, c) in enumerate(items):
-    yy = 4.78 + i * 0.52
+    yy = 3.78 + i * 0.50
     bar(s, M, yy + 0.09, 0.16, 0.035, c)
-    txt(s, M + 0.40, yy, 11.2, 0.38, t, 16, TEXT if i == 2 else DIM, spacing=1.15)
-chrome(s, 13)
-notes(s, "RALENTIR ICI. LAISSER UN SILENCE APRÈS LA PHRASE.\n\nC'est la slide la plus importante de la "
-         "présentation.\n« Terra Sentinelle ne prédit pas les conflits et ne délivre aucune autorisation "
-         "de passage. »\n(silence — deux à trois secondes, regarder le jury)\nLe système ne dit pas qui "
+    txt(s, M + 0.40, yy, 11.2, 0.38, t, 16, TEXT if i == 3 else DIM, spacing=1.15)
+rect(s, M, 5.86, W - 2 * M, 0.78, RAISE, AMBER, 0.10)
+bar(s, M, 5.848, W - 2 * M, 0.05, AMBER)
+txt(s, M + 0.36, 6.05, W - 2 * M - 0.72, 0.5,
+    "Le modèle est entraîné sur de l'imagerie européenne.\n"
+    "C'est précisément pour cela que l'agent communal va vérifier sur le terrain.",
+    13, TEXT, spacing=1.22)
+chrome(s, 14)
+notes(s, "RALENTIR ICI. LAISSER UN SILENCE APRÈS LE TITRE.\n\nC'est la slide la plus importante de la "
+         "présentation.\nTerra Sentinelle est un outil de veille, pas une autorité. Et nous préférons "
+         "énoncer ses limites nous-mêmes plutôt que les laisser découvrir.\n(silence, deux à trois "
+         "secondes, regarder le jury)\nLe système ne dit pas qui "
          "avait le droit d'être là. Il ne tranche pas la légitimité foncière : ni notre rôle, ni notre "
-         "compétence, ni celle d'un modèle.\nIl informe un arbitrage humain. Rien de plus — et c'est déjà "
-         "beaucoup, puisque aujourd'hui cet arbitrage se fait sans information récente.")
+         "compétence, ni celle d'un modèle.\nTroisième ligne, et c'est la plus récente : il ne valide pas "
+         "lui-même ses détections au Bénin. Notre modèle est entraîné sur de l'imagerie européenne et "
+         "appliqué au nord Bénin. C'est un écart de domaine réel, documenté, et je ne le cache pas : "
+         "aucune prédiction béninoise n'est validée localement, faute de parcelles annotées sur "
+         "zone.\nEt voici le retournement. Cette limite n'est pas un accident du prototype, c'est la "
+         "raison d'être du produit. Si le modèle était infaillible, Moussa n'aurait rien à faire. C'est "
+         "parce que la sortie du modèle est une hypothèse, et non une vérité, que l'agent communal va sur "
+         "le terrain la confirmer ou l'invalider. Le doute de la machine est exactement ce qui crée le "
+         "travail de l'humain.\nIl informe un arbitrage humain. Rien de plus, et c'est déjà beaucoup, "
+         "puisque aujourd'hui cet arbitrage se fait sans information récente.")
 
 # =====================================================================
-# 14 — Prototype et suite
+# 15 · Prototype et suite
 # =====================================================================
 s = add_slide()
-chrome(s, 14, "Prototype et suite", "Ce qui tourne, ce qui est simulé, ce qui vient.", 28)
-cy, chh = 2.62, 3.00
+chrome(s, 15, "Prototype et suite", "Livré, public, et honnête sur ses limites.", 28)
+cy = 2.42
 cw = (W - 2 * M - 0.6) / 3
-card(s, M, cy, cw, chh, "Ce qui tourne\naujourd'hui",
-     "Application web + API\nCarte de friction interactive\nValidation terrain hors ligne\nRecalcul d'itinéraire\nJournal de décisions",
+card(s, M, cy, cw, 2.72, "Ce qui tourne\naujourd'hui",
+     "Modèle entraîné, mesuré\nInférence sur tuiles réelles\n33 communes, 1 585 km\n"
+     "Terrain hors connexion\nItinéraires en 0,94 s",
      ACCENT, 15, 12.5)
-card(s, M + cw + 0.30, cy, cw, chh, "Ce qui est\nsimulé",
-     "Données de démonstration\nEmprise du couloir reconstituée\nMétriques du modèle\nSynthèse vocale fulfulde",
+card(s, M + cw + 0.30, cy, cw, 2.72, "Ce qui reste\nsimulé",
+     "Couloirs reconstitués\nVillages, parcelles, pâturages\nDiffusion vocale fulfulde\n"
+     "Fusion Sentinel-1 non faite",
      AMBER, 15, 12.5)
-card(s, M + 2 * (cw + 0.30), cy, cw, chh, "Les prochaines\nétapes",
-     "Entraînement sur Banikoara\nAnnotation avec les agents\nEmprise officielle de la mairie\nTest d'une saison réelle",
+card(s, M + 2 * (cw + 0.30), cy, cw, 2.72, "Les prochaines\nétapes",
+     "Annoter des parcelles au Bénin\nMesurer l'écart de domaine\nEmprise officielle de mairie\n"
+     "Tester sur une saison réelle",
      SAND, 15, 12.5)
-txt(s, M, 5.92, 11.8, 0.44,
-     "Ce qui est simulé est signalé dans l'interface, pas seulement dans cette présentation.",
-     13, DIM, italic=True)
-notes(s, "Où en sommes-nous vraiment.\nCe qui tourne : l'application web et son API, la carte de friction "
-         "interactive, la validation terrain hors ligne avec synchronisation, le recalcul d'itinéraire et "
-         "le journal des décisions.\nCe qui est simulé, je le dis clairement : les données de "
-         "démonstration, l'emprise reconstituée, les métriques du modèle, la synthèse vocale. Tout cela "
-         "est signalé dans l'interface, pas seulement ici.\nEnsuite : entraîner sur Banikoara, annoter "
-         "avec les agents, obtenir l'emprise officielle, tester sur une saison réelle.\nMerci.")
+rect(s, M, 5.30, W - 2 * M, 1.02, RAISE, ACCENT, 0.10)
+bar(s, M, 5.288, W - 2 * M, 0.05, ACCENT)
+txt(s, M + 0.36, 5.52, W - 2 * M - 0.72, 0.6,
+    "Code source : https://github.com/KOBA2008/terra-sentinelle\n"
+    "Démo : https://terra-sentinelle-5hp8hl4hs-koba-davids-projects.vercel.app",
+    11.5, TEXT, font=MONO_FONT, spacing=1.30)
+txt(s, M, 6.46, 11.8, 0.3,
+    "Thèmes clair et sombre · responsive dès 360 px · double mode dégradé · inférence hors connexion.",
+    11.5, DIM, italic=True)
+notes(s, "Où en sommes-nous vraiment.\nCe qui tourne : un modèle entraîné dont les métriques sont "
+         "mesurées, l'inférence sur de vraies tuiles Sentinel-2 du nord Bénin, la couverture des "
+         "trente-trois communes et de leurs mille cinq cent quatre-vingt-cinq kilomètres de couloirs, la "
+         "validation terrain hors connexion avec synchronisation, et le calcul d'itinéraire : trois "
+         "alternatives sur Banikoara en zéro virgule quatre-vingt-quatorze seconde.\nL'application a les "
+         "deux thèmes, clair et sombre, le clair étant le thème de référence parce que c'est un outil "
+         "consulté en réunion, en plein jour. Le responsive est vérifié par capture à 360, 390, 768 et "
+         "1280 pixels. Et il y a un double mode dégradé : sans API, l'application bascule sur des données "
+         "embarquées ; sans tuiles, sur un fond CSS. Autrement dit la démonstration ne peut pas tomber en "
+         "panne devant vous.\nCe qui reste simulé, je le dis clairement : les couloirs reconstitués, les "
+         "villages, parcelles et pâturages générés, la diffusion vocale maquettée, la fusion Sentinel-1 "
+         "non implémentée. Je le dis parce que c'est l'état réel du travail.\nEnsuite : annoter "
+         "des parcelles au Bénin pour mesurer enfin l'écart de domaine, obtenir l'emprise officielle "
+         "auprès d'une mairie, et tester sur une saison réelle avec un comité.\nLe code est public sur "
+         "GitHub et la démonstration est en ligne. Les deux adresses sont à l'écran. Merci.")
 
 prs.save(OUT)
 
