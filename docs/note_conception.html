@@ -61,8 +61,8 @@
   .warn .t { color: #8a5c08; }
   .quote { border-left: 2.5pt solid #1a7a52; padding: 1mm 0 1mm 4mm; margin: 3mm 0 4mm;
            font-size: 10.5pt; color: #17342a; }
-  .pitch { background: #f4f8f6; border: 0.6pt solid #cfe0d7; padding: 4mm 5mm; margin: 3mm 0 4mm;
-           font-size: 9.8pt; line-height: 1.6; text-align: justify; }
+  .pitch { background: #f4f8f6; border: 0.6pt solid #cfe0d7; padding: 3.4mm 5mm; margin: 3mm 0 4mm;
+           font-size: 9.4pt; line-height: 1.5; text-align: justify; }
   .kv { width: 100%; border-collapse: collapse; margin-top: 2mm; }
   .kv td { border: none; border-bottom: 0.4pt solid #e3ebe7; padding: 1.5mm 0; font-size: 9.2pt; background: none !important; }
   .kv td:first-child { width: 42mm; color: #6f7d76; }
@@ -72,8 +72,8 @@
 
   /* chiffres cles */
   .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; margin: 3mm 0 4mm; }
-  .kpi { border: 0.6pt solid #cfe0d7; border-top: 2pt solid #1a7a52; padding: 2.6mm 2mm; text-align: center; }
-  .kpi .v { font-family: "DejaVu Sans Mono", monospace; font-weight: 700; font-size: 13pt; color: #11553a; }
+  .kpi { border: 0.6pt solid #cfe0d7; border-top: 2pt solid #1a7a52; padding: 2mm 2mm; text-align: center; }
+  .kpi .v { font-family: "DejaVu Sans Mono", monospace; font-weight: 700; font-size: 12pt; color: #11553a; }
   .kpi .l { font-size: 7pt; letter-spacing: .1em; text-transform: uppercase; color: #6f7d76; margin-top: 1.2mm; }
   .links { border: 0.6pt solid #1a7a52; background: #f4f8f6; padding: 2.4mm 4mm; margin: 3mm 0; }
   .links .l { font-size: 7.6pt; letter-spacing: .12em; text-transform: uppercase; color: #1a7a52; font-weight: 700; }
@@ -101,7 +101,8 @@
   .page.dn li { margin-bottom: 1.1mm; }
   .page.dn .rule { margin: 2mm 0 3mm; }
   .page.dn .box { padding: 2.6mm 4mm; margin: 3mm 0; }
-  .page.dn h3 { margin: 4.5mm 0 1.2mm; }
+  .page.dn .quote { margin: 2mm 0 3mm; }
+  .page.dn h3 { margin: 3.5mm 0 1.2mm; }
   .page.dn h4 { margin: 3.2mm 0 1mm; }
 </style>
 </head>
@@ -129,7 +130,7 @@
     <table class="kv" style="margin-top:6mm;">
       <tr><td>Défi revendiqué</td><td><strong>Résilience climatique</strong></td></tr>
       <tr><td>Défi secondaire</td><td>Agriculture et sécurité alimentaire</td></tr>
-      <tr><td>Équipe</td><td><strong>TechMakers</strong> : KOBA David, GANTIN Philippe-Cadet, ADANLAO Adéyinka Laurinda, DJIBO Issa, ABIALA Daniel</td></tr>
+      <tr><td>Équipe</td><td><strong>TechMakers</strong> : KOBA David · GANTIN Philippe-Cadet<br>ADANLAO Adéyinka Laurinda · DJIBO Issa · ABIALA Daniel</td></tr>
       <tr><td>Couverture</td><td>5 départements, 33 communes, 1 585 km de couloirs, 157 zones de friction</td></tr>
       <tr><td>Commune de démonstration</td><td>Banikoara (Alibori), lat 11,298 / lon 2,438</td></tr>
       <tr><td>Utilisateur principal</td><td>Moussa Gounou, agent d'élevage de la mairie de Banikoara</td></tr>
@@ -210,11 +211,11 @@
     (chapitre 13). L'écart de domaine qui en découle est traité au chapitre 11.
   </div>
 
-  <div class="pfoot"><span>Terra Sentinelle · Note de conception technique</span><span>2</span></div>
+  <div class="pfoot"><span>Terra Sentinelle · Note de conception technique · Équipe TechMakers</span><span>2</span></div>
 </div>
 
 <!-- ============ PAGE 3 : §1 RÉSUMÉ ============ -->
-<div class="page">
+<div class="page dn">
   <div class="phead"><span>1 · Résumé</span><span>Page 3</span></div>
   <h2><span class="num">1</span>Résumé</h2>
   <div class="rule"></div>
@@ -249,18 +250,18 @@
     Le projet est présenté au titre de la <strong>résilience climatique</strong>. La transhumance est une
     stratégie d'adaptation à la variabilité des ressources en eau et en pâturage ; lorsque les itinéraires qui
     la rendent possible se ferment, c'est une capacité d'adaptation qui se ferme avec eux. Le défi secondaire
-    est l'<strong>agriculture et la sécurité alimentaire</strong> : le même outil rend visible, pour les
-    cultivateurs comme pour les éleveurs, quelles portions du territoire sont devenues incompatibles avec
-    l'usage prévu. La diffusion vocale en fulfulde touche en outre le défi des langues locales.
+    est l'<strong>agriculture et la sécurité alimentaire</strong> : le même outil rend visible quelles
+    portions du territoire sont devenues incompatibles avec l'usage prévu. La diffusion vocale en fulfulde
+    touche en outre le défi des langues locales.
   </p>
 
   <h3>Utilisateur principal</h3>
   <p>
     <strong>Moussa Gounou</strong>, agent d'élevage de la mairie de Banikoara (Alibori). C'est lui qui reçoit
     la carte de friction avant la saison, qui va vérifier sur le terrain, souvent hors réseau, et qui
-    confirme ou invalide chaque détection depuis son téléphone. Le comité communal de transhumance arbitre
-    ensuite sur la base de ce qu'il a validé. Les représentants d'éleveurs sont les destinataires du message
-    vocal en fulfulde. Le chapitre 3 détaille ce parcours de bout en bout.
+    confirme ou invalide chaque détection depuis son téléphone. Le comité arbitre ensuite sur la base de ce
+    qu'il a validé ; les représentants d'éleveurs reçoivent le message vocal en fulfulde. Le chapitre 3
+    détaille ce parcours.
   </p>
 
   <h3>Le système en chiffres mesurés</h3>
@@ -271,18 +272,18 @@
     <div class="kpi"><div class="v">0,8815</div><div class="l">F1 du modèle</div></div>
   </div>
 
-  <div class="box">
+  <div class="box" style="margin-bottom:0;">
     <div class="t">Position du produit</div>
     Terra Sentinelle n'est pas un outil de prédiction. C'est un <strong>instrument d'actualisation de la
-    connaissance du territoire</strong>, dont le produit final n'est pas une carte mais une décision de comité
-    prise avant la saison, datée, motivée et diffusée à ceux qu'elle concerne.
+    connaissance du territoire</strong>, dont le produit final n'est pas une carte mais une décision de
+    comité prise avant la saison, datée, motivée et diffusée.
   </div>
 
-  <div class="pfoot"><span>Terra Sentinelle · Note de conception technique</span><span>3</span></div>
+  <div class="pfoot"><span>Terra Sentinelle · Note de conception technique · Équipe TechMakers</span><span>3</span></div>
 </div>
 
 <!-- ============ PAGE 4 : §2 LE PROBLÈME ============ -->
-<div class="page">
+<div class="page dn">
   <div class="phead"><span>2 · Le problème</span><span>Page 4</span></div>
   <h2><span class="num">2</span>Le problème</h2>
   <div class="rule"></div>
@@ -291,16 +292,15 @@
     Dans les communes du nord et du centre du Bénin, en Alibori, Borgou, Atacora, Donga et Collines,
     l'élevage transhumant et l'agriculture de saison partagent le même espace. Les troupeaux se déplacent
     selon la disponibilité de l'eau et du pâturage ; les cultivateurs étendent ou déplacent leurs parcelles
-    selon les pluies, les prix et la fertilité des sols. Ces deux usages ne sont pas incompatibles par
-    nature : ils le deviennent quand ils se rencontrent au même endroit, au même moment, sans que personne ne
-    l'ait vu venir.
+    selon les pluies et la fertilité des sols. Ces deux usages ne sont pas incompatibles par nature : ils le
+    deviennent quand ils se rencontrent au même endroit, au même moment, sans que personne ne l'ait vu venir.
   </p>
   <p>
     L'incident typique est connu : un troupeau emprunte un itinéraire qu'il utilise depuis des années et
     traverse une parcelle mise en culture depuis la saison précédente. Les cultures sont endommagées, la
     responsabilité est disputée, la médiation s'installe, parfois elle échoue. Le coût humain et économique
-    de ces épisodes dans le nord du Bénin est <em>à documenter</em> à partir des sources officielles ; nous
-    ne citerons pas ici de chiffre que nous ne pourrions pas sourcer.
+    de ces épisodes est <em>à documenter</em> à partir des sources officielles : nous ne citerons pas de
+    chiffre que nous ne pourrions pas sourcer.
   </p>
 
   <h3>Ce n'est pas un problème de carte manquante</h3>
@@ -315,9 +315,9 @@
     stable. L'occupation du sol, elle, est un processus continu : chaque saison agricole, des parcelles
     apparaissent, d'autres sont abandonnées, des fronts de culture avancent de quelques centaines de mètres.
     Au bout de quelques saisons, la carte officielle décrit un territoire qui n'existe plus tel quel, alors
-    qu'elle continue de servir de référence aux décisions. L'écart entre les deux n'est visible par personne,
-    parce que personne n'a les moyens de le mesurer chaque année sur l'ensemble d'un linéaire communal, et
-    encore moins sur les 1 585 km de couloirs que couvre le système.
+    qu'elle continue de servir de référence. L'écart n'est visible par personne, faute de moyens pour le
+    mesurer chaque année sur un linéaire communal entier, et plus encore sur les 1 585 km que couvre le
+    système.
   </p>
 
   <div class="quote">
@@ -331,9 +331,9 @@
       à moto, chaque année, avant la saison, dépasse les moyens ordinaires d'un service communal d'élevage.</li>
     <li><strong>Fenêtre de décision étroite.</strong> L'information n'est utile que si elle arrive
       <em>avant</em> le passage des troupeaux ; constatée pendant, elle ne sert plus qu'au contentieux.</li>
-    <li><strong>Dispersion des données.</strong> Les limites administratives, les points d'eau, les villages,
-      les suivis de mouvements existent, mais dans des jeux séparés, à des dates différentes, sans emprise de
-      couloir exploitable qui les relie (voir chapitre 7).</li>
+    <li><strong>Dispersion des données.</strong> Limites administratives, points d'eau, villages et suivis de
+      mouvements existent, mais dans des jeux séparés, à des dates différentes, sans emprise de couloir qui
+      les relie (chapitre 7).</li>
     <li><strong>Absence de produit de décision.</strong> Même lorsqu'une information existe, elle n'est pas
       mise en forme pour le seul organe qui peut en faire quelque chose : le comité communal de transhumance.</li>
   </ul>
@@ -342,13 +342,12 @@
   <p>
     Le satellite observe déjà le territoire tous les cinq jours environ, gratuitement, depuis 2015. La
     question n'est donc plus l'acquisition de l'information mais sa <strong>mise en décision</strong> :
-    transformer un flux d'images en un petit nombre de portions de couloir à examiner, hiérarchisées par
-    gravité et accompagnées d'un niveau de confiance explicite, remis à un comité qui se réunit avant la
-    saison. Le produit visé n'est pas une carte de plus, c'est une <strong>liste courte de décisions à
-    prendre</strong>, vérifiable sur le terrain et traçable ensuite.
+    transformer un flux d'images en un petit nombre de portions à examiner, hiérarchisées par gravité, avec
+    un niveau de confiance explicite, remis à un comité qui se réunit avant la saison. Le produit visé n'est
+    pas une carte de plus : c'est une <strong>liste courte de décisions à prendre</strong>.
   </p>
 
-  <div class="pfoot"><span>Terra Sentinelle · Note de conception technique</span><span>4</span></div>
+  <div class="pfoot"><span>Terra Sentinelle · Note de conception technique · Équipe TechMakers</span><span>4</span></div>
 </div>
 
 <!-- ============ PAGE 5 : §3 UTILISATEURS ET PARCOURS ============ -->
@@ -390,8 +389,8 @@
     Devant une détection, il constate ce qui existe réellement : une parcelle en culture, une jachère, une
     erreur du modèle sur un sol nu, ou une emprise mal placée. Il enregistre une observation :
     <span class="mono">confirmed</span>, <span class="mono">corrected</span> (avec correction de la géométrie
-    ou de la gravité) ou <span class="mono">invalidated</span>, avec une note et, si utile, une photo. Tout
-    est stocké localement ; rien n'exige de réseau.</p>
+    ou de la gravité) ou <span class="mono">invalidated</span>, avec une note et, si utile, une photo. Rien
+    n'exige de réseau.</p>
 
   <p><span class="stepnum">4. Retour du réseau, synchronisation.</span>
     Les observations partent en lot vers <span class="mono">POST /observations</span>. Le serveur répond ce
@@ -401,8 +400,8 @@
   <p><span class="stepnum">5. Séance du comité.</span>
     Le lendemain, le comité communal ouvre l'interface web. Il voit le linéaire du couloir, les zones
     confirmées en gravité forte, celles qui restent incertaines, affichées comme telles, et, pour les
-    portions bloquantes, jusqu'à trois itinéraires alternatifs calculés avec leur distance, leur coût et les
-    contraintes rencontrées (chapitre 9). Pour chaque segment, il décide : <strong>maintien</strong>,
+    portions bloquantes, jusqu'à trois itinéraires alternatifs avec distance, coût et contraintes
+    (chapitre 9). Pour chaque segment, il décide : <strong>maintien</strong>,
     <strong>ajustement</strong> ou <strong>contournement</strong>. La décision est enregistrée avec son
     auteur collectif, sa date et sa note.</p>
 
@@ -412,13 +411,13 @@
     effectif, radio locale, messagerie ou relais des représentants, relève de l'organisation communale. À ce
     stade, cette diffusion est maquettée : il n'existe pas encore de chaîne audio réelle.</p>
 
-  <div class="box">
+  <div class="box" style="margin:2mm 0 0; padding:2.2mm 4mm;">
     <div class="t">Principe de parcours</div>
     L'information ne devient jamais une décision sans passer par un humain qui l'a vue sur le terrain, puis
-    par un organe collectif qui l'a arbitrée. Le satellite ouvre le dossier ; il ne le referme pas.
+    par un organe collectif qui l'a arbitrée : le satellite ouvre le dossier, il ne le referme pas.
   </div>
 
-  <div class="pfoot"><span>Terra Sentinelle · Note de conception technique</span><span>5</span></div>
+  <div class="pfoot"><span>Terra Sentinelle · Note de conception technique · Équipe TechMakers</span><span>5</span></div>
 </div>
 
 <!-- ============ PAGE 6 : §4 COUVERTURE GÉOGRAPHIQUE ============ -->
@@ -502,7 +501,7 @@
     servent au cadrage cartographique, jamais à une décision.
   </p>
 
-  <div class="pfoot"><span>Terra Sentinelle · Note de conception technique</span><span>6</span></div>
+  <div class="pfoot"><span>Terra Sentinelle · Note de conception technique · Équipe TechMakers</span><span>6</span></div>
 </div>
 
 <!-- ============ PAGE 7 : §5 ARCHITECTURE ============ -->
@@ -592,7 +591,7 @@
     </tbody>
   </table>
 
-  <div class="pfoot"><span>Terra Sentinelle · Note de conception technique</span><span>7</span></div>
+  <div class="pfoot"><span>Terra Sentinelle · Note de conception technique · Équipe TechMakers</span><span>7</span></div>
 </div>
 
 <!-- ============ PAGE 8 : §5 API + §6 début ============ -->
@@ -632,7 +631,7 @@
     interface ne puisse afficher les métriques sans lui.
   </p>
 
-  <div class="pfoot"><span>Terra Sentinelle · Note de conception technique</span><span>8</span></div>
+  <div class="pfoot"><span>Terra Sentinelle · Note de conception technique · Équipe TechMakers</span><span>8</span></div>
 </div>
 
 <!-- ============ PAGE 9 : §6 NUAGES + PARADE + FIGURE ============ -->
@@ -739,7 +738,7 @@
   </svg>
   <div class="cap" style="margin:1mm 0 0;">Figure 3 : de l'acquisition au produit de décision. Le trajet en pointillés est la voie radar, prévue mais pas encore implémentée.</div>
 
-  <div class="pfoot"><span>Terra Sentinelle · Note de conception technique</span><span>9</span></div>
+  <div class="pfoot"><span>Terra Sentinelle · Note de conception technique · Équipe TechMakers</span><span>9</span></div>
 </div>
 
 <!-- ============ PAGE 10 : §7 DONNÉES + §8 début ============ -->
@@ -786,7 +785,7 @@
     le modèle, eux, sont réels.
   </div>
 
-  <div class="pfoot"><span>Terra Sentinelle · Note de conception technique</span><span>10</span></div>
+  <div class="pfoot"><span>Terra Sentinelle · Note de conception technique · Équipe TechMakers</span><span>10</span></div>
 </div>
 
 <!-- ============ PAGE 11 : §8 LE MODÈLE ============ -->
@@ -833,7 +832,7 @@
     </tbody>
   </table>
 
-  <div class="pfoot"><span>Terra Sentinelle · Note de conception technique</span><span>11</span></div>
+  <div class="pfoot"><span>Terra Sentinelle · Note de conception technique · Équipe TechMakers</span><span>11</span></div>
 </div>
 
 <!-- ============ PAGE 12 : §8 INFÉRENCE + ÉCART DE DOMAINE ============ -->
@@ -906,7 +905,7 @@
     décision est la fin, et il n'existe nulle part aujourd'hui.
   </p>
 
-  <div class="pfoot"><span>Terra Sentinelle · Note de conception technique</span><span>12</span></div>
+  <div class="pfoot"><span>Terra Sentinelle · Note de conception technique · Équipe TechMakers</span><span>12</span></div>
 </div>
 
 <!-- ============ PAGE 13 : §9 FRICTION + §10 ÉVALUATION + §11 LIMITES ============ -->
@@ -996,7 +995,7 @@
       d'utiliser la carte, les détections restent des polygones dans une base.</li>
   </ul>
 
-  <div class="pfoot"><span>Terra Sentinelle · Note de conception technique</span><span>13</span></div>
+  <div class="pfoot"><span>Terra Sentinelle · Note de conception technique · Équipe TechMakers</span><span>13</span></div>
 </div>
 
 <!-- ============ PAGE 14 : §12 GOUVERNANCE + §13 ÉTAT DU PROTOTYPE ============ -->
@@ -1048,7 +1047,7 @@
     calendrier de séance du comité</strong>.
   </p>
 
-  <div class="pfoot"><span>Terra Sentinelle · Note de conception technique</span><span>14</span></div>
+  <div class="pfoot"><span>Terra Sentinelle · Note de conception technique · Équipe TechMakers</span><span>14</span></div>
 </div>
 
 </body>
